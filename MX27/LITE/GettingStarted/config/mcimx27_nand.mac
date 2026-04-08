@@ -1,0 +1,23 @@
+execUserPreload()
+{
+__var Reg;
+  __message "----- NAND Bootloader start -----";
+  __hwReset(1000);
+  
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+  
+  // AHB-Lite IP Interface
+  __writeMemory32(0x00040304, 0x10000000, "Memory");
+  __writeMemory32(0x3FFC0000, 0x10020000, "Memory");
+  __writeMemory32(0xFFFBFCFB, 0x10000004, "Memory");
+  __writeMemory32(0xFFFFFFFF, 0x10020004, "Memory");
+
+  // Set maximum JTAG Drive Strength (DSCR1 group 9)
+  __writeMemory32(3UL<<16, 0x10027820, "Memory");
+  __emulatorSpeed(-1);
+}

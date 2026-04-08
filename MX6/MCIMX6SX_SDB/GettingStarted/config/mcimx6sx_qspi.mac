@@ -1,0 +1,22 @@
+execUserReset()
+{
+  __message "----- ExecUserReset -----\n";
+  __writeMemory32(0x0,0x00A00608,"Memory");  //Stop PTMR
+}
+
+execUserPreload()
+{
+__var Reg;
+
+  /*Disable MMU*/
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFDFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+
+  /*QSPI Reset Spi Domain and AHB domain*/
+  Reg = __readMemory32(0x021E0000,"Memory");
+  __writeMemory32(Reg | 0x3,0x021E0000,"Memory");
+  /*Release Resets*/
+  __writeMemory32(Reg ,0x021E0000,"Memory");
+}

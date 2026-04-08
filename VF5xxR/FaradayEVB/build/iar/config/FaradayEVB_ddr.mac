@@ -1,0 +1,344 @@
+reg32testbit(add,shift)
+{
+__var reg;
+	reg = __readMemory32(add, "Memory");
+	reg &= 1UL << shift;
+	return reg;
+}
+
+reg32clrbit(add,shift)
+{
+	__var reg;
+	reg = __readMemory32(add, "Memory");
+	reg &= ~(1UL << shift);
+	__writeMemory32(reg, add, "Memory");
+}
+
+reg32setbit(add,shift)
+{
+	__var reg;
+	reg = __readMemory32(add, "Memory");
+	reg |= (1UL << shift);
+	__writeMemory32(reg, add, "Memory");
+}
+
+reg32_write(add, val)
+{
+	__writeMemory32(val, add, "Memory");
+}
+
+clk_init()
+{
+  //CLKCONFIG (BGA):
+  //CA5: 396MHz
+  //DDR: 396MHz
+  //BUS: 132MHz
+  //IPS: 66MHz
+  //CM4: 132MHz
+
+  /* Set XTAL as SYSCLK */
+  reg32clrbit(0x4006B02C, 11); /* power up FXOSC */
+  while(reg32testbit(0x4006B004, 5)==0); //wait until XTAL ready
+  reg32setbit(0x4006B008, 5);   //set XTAL as fast clock source
+
+  /* Enable all clocks gates from CCM */
+  reg32_write(0x4006B040,0xFFFFFFFF);
+  reg32_write(0x4006B044,0xFFFFFFFF);
+  reg32_write(0x4006B048,0xFFFFFFFF);
+  reg32_write(0x4006B04C,0xFFFFFFFF);
+  reg32_write(0x4006B050,0xFFFFFFFF);
+  reg32_write(0x4006B054,0xFFFFFFFF);
+  reg32_write(0x4006B058,0xFFFFFFFF);
+  reg32_write(0x4006B05C,0xFFFFFFFF);
+  reg32_write(0x4006B060,0x3FFFFFFF); ; //Ensure OpenVG clock gate disabled during init to prevent interrupt - see TKT106942
+  reg32_write(0x4006B064,0xFFFFFFFF);
+  reg32_write(0x4006B068,0xFFFFFFFF);
+  reg32_write(0x4006B06C,0xFFFFFFFF);
+
+  /* enable PLLs in ANADIG */
+  /* End of Enable Spread Spectrum */
+  reg32_write(0x40050270, 0x00002001); //PLL1
+  while(reg32testbit(0x40050270, 31)==0);//wait until lock
+  /* End of Enable Spread Spectrum */
+  reg32_write(0x40050030, 0x00002001); //PLL2
+  while(reg32testbit(0x40050030, 31)==0);//wait until lock
+  reg32_write(0x40050010, 0x00003040); //PLL3
+  while(reg32testbit(0x40050010, 31)==0);//wait until lock
+  reg32_write(0x40050070, 0x00002031); //PLL4
+  while(reg32testbit(0x40050070, 31)==0);//wait until lock
+  reg32_write(0x400500E0, 0x00002001); //PLL5
+  while(reg32testbit(0x400500E0, 31)==0);//wait until lock
+  reg32_write(0x400500A0, 0x00002028); //PLL6
+  while(reg32testbit(0x400500A0, 31)==0);//wait until lock
+  reg32_write(0x40050020, 0x00003040); //PLL7
+  while(reg32testbit(0x40050020, 31)==0);//wait until lock
+
+  /* Set ARMCLKDIV = 1, BUSDIV=3, IPG_CLK_DIV=2 */
+  reg32_write(0x4006B00C, 0x00600810);
+  /* Enable all PFDs sources and set SYSCLK as PLL1 PFD3 for 396MHz */
+  reg32_write(0x4006B008, 0xF003ff64);
+}
+
+ddr_phy_init()
+{
+	// phy_dq_timing_reg freq set 0
+	reg32_write(0x400AE400, 0x00002613);
+	reg32_write(0x400AE440, 0x00002613);
+	reg32_write(0x400AE480, 0x00002613);
+	reg32_write(0x400AE4C0, 0x00002613);
+
+	// phy_dqs_timing_reg freq set 0
+	reg32_write(0x400AE404, 0x00002615);
+	reg32_write(0x400AE444, 0x00002615);
+	reg32_write(0x400AE484, 0x00002615);
+	reg32_write(0x400AE4C4, 0x00002615);
+
+	// phy_gate_lpbk_ctrl_reg freq set 0
+	reg32_write(0x400AE408, 0x01210080);	// read delay bit21:19
+	reg32_write(0x400AE448, 0x01210080);	// phase_detect_sel bit18:16
+	reg32_write(0x400AE488, 0x01210080);	// bit lpbk_ctrl bit12
+	reg32_write(0x400AE4C8, 0x01210080);
+
+	// phy_dll_master_ctrl_reg freq set 0
+	reg32_write(0x400AE40C, 0x0001012a);
+	reg32_write(0x400AE44C, 0x0001012a);
+	reg32_write(0x400AE48C, 0x0001012a);
+	reg32_write(0x400AE4CC, 0x0001012a);
+
+	// phy_dll_slave_ctrl_reg freq set 0
+	reg32_write(0x400AE410, 0x00012020);
+	reg32_write(0x400AE450, 0x00012020);
+	reg32_write(0x400AE490, 0x00012020);
+	reg32_write(0x400AE4D0, 0x00012020);
+
+	reg32_write(0x400AE4C8, 0x00001100);
+}
+
+ddr_init()
+{
+
+  /* Set up I/O */
+  reg32_write(0x4004821c, 0x00000190);
+  reg32_write(0x40048220, 0x00000190);
+  reg32_write(0x40048224, 0x00000190);
+  reg32_write(0x40048228, 0x00000190);
+  reg32_write(0x4004822c, 0x00000190);
+  reg32_write(0x40048230, 0x00000190);
+  reg32_write(0x40048234, 0x00000190);
+  reg32_write(0x40048238, 0x00000190);
+  reg32_write(0x4004823c, 0x00000190);
+  reg32_write(0x40048240, 0x00000190);
+  reg32_write(0x40048244, 0x00000190);
+  reg32_write(0x40048248, 0x00000190);
+  reg32_write(0x4004824c, 0x00000190);
+  reg32_write(0x40048250, 0x00000190);
+  reg32_write(0x40048254, 0x00000190);
+  reg32_write(0x40048258, 0x00000190);
+  reg32_write(0x4004825c, 0x00000190);
+  reg32_write(0x40048260, 0x00000190);
+  reg32_write(0x40048264, 0x00000190);
+  reg32_write(0x40048268, 0x00000190);
+  reg32_write(0x4004826c, 0x00000190);
+  reg32_write(0x40048270, 0x00000190);
+  reg32_write(0x40048274, 0x00010110); //CLK_0
+  reg32_write(0x40048278, 0x00000190);
+  reg32_write(0x4004827c, 0x00000190);
+  reg32_write(0x40048280, 0x00000190);
+  reg32_write(0x40048284, 0x00000190);
+  reg32_write(0x40048288, 0x00000190);
+  reg32_write(0x4004828c, 0x00000190);
+  reg32_write(0x40048290, 0x00000190);
+  reg32_write(0x40048294, 0x00000190);
+  reg32_write(0x40048298, 0x00000190);
+  reg32_write(0x4004829c, 0x00000190);
+  reg32_write(0x400482a0, 0x00000190);
+  reg32_write(0x400482a4, 0x00000190);
+  reg32_write(0x400482a8, 0x00000190);
+  reg32_write(0x400482ac, 0x00000190);
+  reg32_write(0x400482b0, 0x00000190);
+  reg32_write(0x400482b4, 0x00000190);
+  reg32_write(0x400482b8, 0x00000190);
+  reg32_write(0x400482bc, 0x00000190);
+  reg32_write(0x400482c0, 0x00000190);
+  reg32_write(0x400482c4, 0x00010110); //DQS_1
+  reg32_write(0x400482c8, 0x00010110); //DQS_0
+  reg32_write(0x400482cc, 0x00000190);
+  reg32_write(0x400482d0, 0x00000190);
+  reg32_write(0x400482d4, 0x00000190);
+  reg32_write(0x400482d8, 0x00000190);
+  reg32_write(0x400482dc, 0x00000190);
+  reg32_write(0x400482e0, 0x00000190);
+
+	//
+	// Dram Device Parameters
+	//
+	reg32_write(0x400AE000, 0x00000600);	// LPDDR2 or DDR3
+	reg32_write(0x400AE008, 0x00000020);	// TINIT F0
+	// cold boot - 1ms??? 0x61a80
+	reg32_write(0x400AE028, 0x0000007c);	// reset during power on
+						// warm boot - 200ns
+	reg32_write(0x400AE02C, 0x00013880);	// 500us - 10ns
+	reg32_write(0x400AE030, 0x0000050c);	// CASLAT_LIN, WRLAT
+	reg32_write(0x400AE034, 0x14040404);	// trc, trrd, tccd, tbst_int_interval
+	reg32_write(0x400AE038, 0x1405040F);	// tfaw, trp, twtr, tras_min
+	reg32_write(0x400AE040, 0x04040000);	// tmrd, trtp
+	reg32_write(0x400AE044, 0x006db00c);	// tras_max, tmod
+	reg32_write(0x400AE048, 0x00000403);	// tckesr, tcke
+
+	reg32_write(0x400AE050, 0x01000000);	// ap, writeinterp
+	reg32_write(0x400AE054, 0x06050101);	// twr_int, trcd_int, tras_lockout, ccAP
+	reg32_write(0x400AE058, 0x000b0000);	// tdal
+	reg32_write(0x400AE05C, 0x03000200);	// bstlen, tmrr - lpddr2, tdll
+	reg32_write(0x400AE060, 0x00000006);	// addr_mirror, reg_dimm, trp_ab
+	reg32_write(0x400AE064, 0x00010000);	// tref_enable, auto_refresh, arefresh
+	reg32_write(0x400AE068, 0x0c28002c);	// tref, trfc
+	reg32_write(0x400AE070, 0x00000005);	// tref_interval fixed at 5
+	reg32_write(0x400AE074, 0x00000003);	// tpdex
+
+	reg32_write(0x400AE078, 0x0000000a);	// txpdll
+	reg32_write(0x400AE07C, 0x00300200);	// txsnr, txsr
+	reg32_write(0x400AE084, 0x00010000);	// cke_dly, en_quick_srefresh,
+																				// srefresh_exit_no_refresh,
+																				// pwr, srefresh_exit
+	reg32_write(0x400AE088, 0x00050500);	// cksrx, cksre, lowpwr_ref_en
+
+	//
+	// Frequency change
+	//
+	reg32_write(0x400AE098, 0x00000100);	// freq change...
+	reg32_write(0x400AE09C, 0x04001002);	// PHY_INI: com, sta, freq_ch_dll_off
+
+	reg32_write(0x400AE0A4, 0x00000001);	// 15.02 - allow dfi_init_start
+	reg32_write(0x400AE0B4, 0x00000000);	// wrmd
+	reg32_write(0x400AE0B8, 0x00000000);	// rmd
+	reg32_write(0x400AE0BC, 0x00000000);	// REF_PER_AUTO_TEMPCHK: LPDDR2 set to 2, else 0
+
+	reg32_write(0x400AE148, 0x1FFFFFFF); 	// mask all interrupts
+
+	reg32_write(0x400AE0C0, 0x00460420);	// mr0, ddr3 burst of 8 only
+																				// mr1, if freq < 125, dll_dis = 1, rtt = 0
+																				// if freq > 125, dll_dis = 0, rtt = 3
+	reg32_write(0x400AE0C4, 0x00000000);	// mr0_f1_0 & mr2_f0_0
+
+	reg32_write(0x400AE0CC, 0x00000000);	// mr3 & mrsingle_data
+	reg32_write(0x400AE0D0, 0x00000000);	// mr17, mr16
+
+	//
+	// ECC
+	//
+	reg32_write(0x400AE0E4, 0x00000000);	// ctrl_raw
+																				// ctrl_raw, if DDR3, set 3, else 0
+	reg32_write(0x400AE0E8, 0x00000000);
+
+	//
+	// ZQ stuff
+	//
+	reg32_write(0x400AE108, 0x01000200);	// zqcl, zqinit
+	reg32_write(0x400AE10C, 0x02000040);	// zqcs
+	reg32_write(0x400AE114, 0x00000200);	// zq_on_sref_exit, qz_req
+
+	reg32_write(0x400AE118, 0x00000040);	// ref_per_zq
+	reg32_write(0x400AE11C, 0x00000000);	// zqreset, ddr3 set to 0
+	reg32_write(0x400AE120, 0x01000000);	// zqcs_rotate, no_zq_init, zqreset_f1
+
+	//
+	// DRAM controller misc
+	//
+	reg32_write(0x400AE124, 0x0a010301);	// arebit, col_diff, row_diff, bank_diff
+	reg32_write(0x400AE128, 0x0101ffff);	// bank_split, addr_cmp_en, cmd/age cnt
+	reg32_write(0x400AE12C, 0x01010101);	// rw same pg, rw same en, pri en, plen
+	reg32_write(0x400AE130, 0x03030101);	// #q_entries_act_dis, (#cmdqueues
+																				// dis_rw_grp_w_bnk_conflict
+																				// w2r_split_en, cs_same_en
+	reg32_write(0x400AE134, 0x01000101);	// cs_map, inhibit_dram_cmd, dis_interleave, swen //by devendra
+	reg32_write(0x400AE138, 0x0000000c);	// qfull, lpddr2_s4, reduc, burst_on_fly
+	reg32_write(0x400AE13C, 0x01000000);	// ctrlupd_req_per aref en, ctrlupd_req
+																				// ctrller busy, in_ord_accept
+
+	//
+	// ODT
+	//
+	reg32_write(0x400AE15C, 0x01010000);	// odt: wr_map_cs, rd_map_cs, port_data_err_id
+	reg32_write(0x400AE160, 0x00040000);	// todtl_2cmd
+																				// todtl_2cmd = odtl_off = CWL + AL - 2ck
+	reg32_write(0x400AE164, 0x00000002);	// add_odt stuff
+	reg32_write(0x400AE16C, 0x00020000);
+	reg32_write(0x400AE170, 0x00000000);	// tdqsck_min, _max, w2w_smcsdl
+
+	reg32_write(0x400AE180, 0x00002819);	// wlmrd, wldqsen
+
+	reg32_write(0x400AE1A4, 0x00202000);
+	reg32_write(0x400AE1A8, 0x20200000);
+	reg32_write(0x400AE1B8, 0x00002020);
+	reg32_write(0x400AE1C8, 0x00202000);
+	reg32_write(0x400AE1D0, 0x20200000);
+
+	//
+	// AXI ports
+	//
+	reg32_write(0x400AE1D4, 0x00000101);	// FIFO type (0-async, 1-2:1, 2-1:2, 3- sync, w_pri, r_pri
+	reg32_write(0x400AE1D8, 0x01010000);	// w_pri, rpri, en
+	reg32_write(0x400AE1DC, 0x00000000);	// fifo_type
+	reg32_write(0x400AE1E0, 0x02020000);
+	reg32_write(0x400AE1E4, 0x00000202);	// round robin port ordering
+	reg32_write(0x400AE1E8, 0x01010064);
+	reg32_write(0x400AE1EC, 0x00010101);
+	reg32_write(0x400AE1F0, 0x00000064);
+
+	//
+	// TDFI
+	//
+	reg32_write(0x400AE1F4, 0x00000000);	// dll_rst_adj_dly, dll_rst_delay
+	reg32_write(0x400AE1F8, 0x00000b00);	// phy_rdlat
+	reg32_write(0x400AE1FC, 0x00000000);	// dram_ck_dis
+	reg32_write(0x400AE20C, 0x00003cc8);	// tdfi_ctrlupd_interval_f0
+	reg32_write(0x400AE210, 0x00000506);	// wrlat, rdlat 15.02
+	reg32_write(0x400AE224, 0x00020000);	// Phyctl_dl
+	reg32_write(0x400AE22C, 0x04070303);
+
+	// leveling
+	reg32_write(0x400AE228, 0x80000301);	// phy_wrlv: resplat, load, dll, en
+	reg32_write(0x400AE230, 0x0000000a);	// phy_rdlv_ww
+	reg32_write(0x400AE234, 0x00000000);	// phy_wrlv_resp
+	reg32_write(0x400AE23C, 0x0010ffff);	// rdlv_gat_mxdl, rdlv_mxdl
+	reg32_write(0x400AE240, 0x16070303);	// phy_rdlvl: _res, _load, _dll, _en
+	reg32_write(0x400AE244, 0x0000000f);	// phy_rdlv_rr
+	reg32_write(0x400AE248, 0x00000000);	// phy_rdlvl_resp
+	reg32_write(0x400AE24C, 0x00000000);	// rdlv_resp_msk
+	reg32_write(0x400AE250, 0x00000000);	// rdlvl: _en, _gate_resp_msk
+	reg32_write(0x400AE254, 0x00000000);	// rdlvl: _gt_chkens, _gate_en
+	reg32_write(0x400AE258, 0x00000000);	// phy_rdlvlmax
+	reg32_write(0x400AE25C, 0x00000204);	// rdlv: _gat_dq_zero_cnt, _dq_zero_cnt
+	reg32_write(0x400AE260, 0x00000000);	// rdlv: _gtrefint, _refint
+	reg32_write(0x400AE264, 0x00000000);	// en_1t_tmg
+
+	reg32_write(0x400AE268, 0x00000000);	// pad_zq: _early_cmp_en_timer, _mode, _hw_for, _cmp_out_smp
+	reg32_write(0x400AE26C, 0x00000202);	// pad: _ibe1, ibe0, pad_ibe: _sel1, _sel0,
+																				// axi_awcache, axi_cobuf, pad_odt: bate0, byte1
+	reg32_write(0x400AE278, 0x00000006);	// twr
+	reg32_write(0x400AE27C, 0x00000006);	// todth
+
+  ddr_phy_init();
+
+	reg32_write(0x400AE000, 0x00000601);	// LPDDR2 or DDR3, start
+
+	__delay(2);
+}
+
+execUserPreload()
+{
+__var Reg;
+  __message "--- Prepare hardware for download to the DDR ---";
+
+  //Excludes the flexbus memory range to prevent reading when the flexbus clock is disabled.
+  //  Vybrid Reference Manual 8.6.8.5 states: 
+  //  "Any access to the FlexBus device without clocks initialized may hang the bus."
+	
+  if (__driverType("jlink"))
+  {
+    __jlinkExecCommand("map exclude 0x30000000-0x3effffff"); //Exclude flexbus range
+  }
+
+  clk_init();
+  ddr_init();
+}

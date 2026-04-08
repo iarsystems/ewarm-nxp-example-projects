@@ -1,0 +1,16 @@
+__setup ()
+{
+    __writeMemory32(0x00000002, 0x40074000, "Memory");  // SYSMEMREMAP = 2
+}
+
+execUserFlashInit()
+{   
+    __message "------- Prepare for flashloader -------";
+    __setup();
+}
+
+execUserPreload()
+{   
+    __message "------- Prepare for debug -------";
+    __setup();
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>OSC VLPR Mode</iar_name>                                                                  <!--App-->
+  <iar_description>This example shows VLPR operation with core, bus and flash blocks clocked by FLL module.</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

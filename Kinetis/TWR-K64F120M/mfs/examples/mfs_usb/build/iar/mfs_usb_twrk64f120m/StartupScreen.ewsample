@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\..\mfs_usb</copyDir>
+  <copyDir>..\..\..\..\..\..\config</copyDir>
+  <copyDir>..\..\..\..\..\build</copyDir>
+  <copyDir>..\..\..\..\..\source</copyDir>
+  <copyDir>..\..\..\..\..\..\mqx\build</copyDir>
+  <copyDir>..\..\..\..\..\..\mqx\source</copyDir>
+  <copyDir>..\..\..\..\..\..\shell\build</copyDir>
+  <copyDir>..\..\..\..\..\..\shell\source</copyDir>
+  <copyDir>..\..\..\..\..\..\rtcs\build</copyDir>
+  <copyDir>..\..\..\..\..\..\rtcs\source</copyDir>
+  <copyDir>..\..\..\..\..\..\usb\host\build</copyDir>
+  <copyDir>..\..\..\..\..\..\usb\host\source</copyDir>
+  <copyDir>..\..\..\..\..\..\usb\common</copyDir>
+</exampleInfo>
+

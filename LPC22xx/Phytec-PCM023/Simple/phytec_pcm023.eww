@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/blinky.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/hello.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>blinky</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>blinky</project>
+        <configuration>Internal RAM</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>Internal RAM</configuration>
+      </member>
+      <member>
+        <project>blinky</project>
+        <configuration>External Flash</configuration>
+      </member>
+      <member>
+        <project>blinky</project>
+        <configuration>External Flash - Erase Only</configuration>
+      </member>
+      <member>
+        <project>blinky</project>
+        <configuration>External Flash - Full Chip Erase First</configuration>
+      </member>
+      <member>
+        <project>blinky</project>
+        <configuration>External RAM</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>External Flash</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>External Flash - Erase Only</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>External Flash - Full Chip Erase Fisrt</configuration>
+      </member>
+      <member>
+        <project>hello</project>
+        <configuration>External RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

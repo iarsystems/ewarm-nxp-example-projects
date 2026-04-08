@@ -1,0 +1,75 @@
+########################################################################
+#
+#                           uip_webserver.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+DESCRIPTION
+===========
+  This example project shows how to use the IAR Embedded Workbench for ARM
+ to develop code for IAR-LPC-4088-SK board. This demo shows a web server
+ application  running on the top of the uIP 1.0 TCP-IP stack.
+ 
+ The default IP address is (defined in uipopt.h):
+   192.168.0.100 
+ The physical MAC address is (defined in uipopt.h):
+   00-ff-ff-ff-ff-ff
+  
+COMPATIBILITY
+=============
+
+   The example project is compatible with IAR-LPC-4088-SK board. 
+  By default, the project is configured to use the J-Link SWD interface.
+
+CONFIGURATION
+=============
+  Flash Debug - The Progam is loaded to internal Flash.
+   
+ Jumpers:
+   PWR_SEL    - depending of power source
+   ISP_E      - unfilled
+   RST_E      - unfilled
+  
+ Note:
+    The LCD shares pins with Trace port. If ETM is enabled the LCD will not
+    work.
+  
+GETTING STARTED
+===============
+
+  1) Open the uip_webserver work space.
+  
+  2) Power the board and connect the debugger probe.
+
+  3) If you previously haven't run any of the IAR-LPC4088-SK examples
+     you must program the SPI flash memory with the bmp images used by the
+     demo projects. You should do this also if you have erased or programmed 
+     the SPI flash with your own data.
+
+     - Select img_loader project.
+     
+     - Use the "Make" button or press F7 to build it.
+     
+     - To program the images select "Project > Download > Download active application"
+       A warning will appear. Ignore it by clicking the O.K. button. The flash
+       loader will write the images to the SPI memory.
+       
+     - Switch back to the uip_webserver project.
+
+  4) You can configure the board's network settings in uipop.h file.
+     By default settings are:
+      IP address     - 192.168.0.100
+	    Subnet mask    - 255.255.255.0
+	    Default gateway- 192.168.0.1
+
+  5) Build the uip_webserver example. Press CTRL+D or use Download and
+     Debug button to start a debug session.
+ 
+  6) Press F5 or use the GO button to run the example.
+
+  7) Connect the board to a LAN. On a PC connected to the same LAN open a browser
+     and in the address bar type the IP of the board (192.168.0.1). The front 
+     page of the uip web server will be loaded. By clicking on the links you can
+     access the other web pages.

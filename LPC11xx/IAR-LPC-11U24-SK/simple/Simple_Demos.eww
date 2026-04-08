@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/ADC/ADC.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Blinky/Blinky.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/eepromAPI/eepromAPI.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/gpio/GPIO.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/i2c/I2C.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/SSP/SSP.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/systick/systick.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/timer32/timer32.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/UART/UART.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/USBROMD/ROM_USB_cdc/ROM_USB_cdc.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/USBROMD/ROM_USB_hid/ROM_USB_hid.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/USBROMD/ROM_USB_msc/ROM_USB_msc.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/wdt/WDT.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>ADC</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>Blinky</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>eepromAPI</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>GPIO</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>I2C</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>SSP</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>systick</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>timer32</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>UART</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>ROM_USB_cdc</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>ROM_USB_hid</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>ROM_USB_msc</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>WDT</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

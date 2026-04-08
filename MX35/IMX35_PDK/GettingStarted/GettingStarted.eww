@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GettingStarted.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>NAND_RELEASE</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>SDRAM_DEBUG</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>IRAM_DEBUG</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

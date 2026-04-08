@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>MCM</iar_name>                                                                  <!--App-->
+  <iar_description>This software example demonstrates specific configuration of the Miscellaneous Control Module (MCM) in
+  which access attributes for CM0+ and DMA bus masters are inherited from the reference (MKM34Z256VLx7 Platform).</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/ext_sramtest.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>ext_sramtest</project>
+        <configuration>Debug iFlash</configuration>
+      </member>
+      <member>
+        <project>ext_sramtest</project>
+        <configuration>Debug iRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

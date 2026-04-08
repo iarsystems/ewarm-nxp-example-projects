@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\..\gpio</copyDir>
+  <copyDir>..\..\..\..\..\..\config</copyDir>
+  <copyDir>..\..\..\..\..\build</copyDir>
+  <copyDir>..\..\..\..\..\source</copyDir>
+</exampleInfo>
+

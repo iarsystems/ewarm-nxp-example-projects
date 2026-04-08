@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>TimerInt</iar_name>                                   <!--App-->
+  <iar_description>This example shows a "bare bones" program to set up an interrupt on Timer0 match compare on channel 0, and how to install the ISR, and configure the VIC for it to interrupt as an IRQ</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

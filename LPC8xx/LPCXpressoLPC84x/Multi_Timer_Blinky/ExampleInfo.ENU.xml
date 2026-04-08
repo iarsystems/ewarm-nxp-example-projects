@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Multi_Timer_Blinky</iar_name>                                   <!--App-->
+  <iar_description>This example demonstrates the configuration and use of the Self Wake-up Timer (WKT), the ARM Cortex
+  SysTick Timer (SysTick), and the Multi-Rate Timer (MRT)
+  </iar_description>          <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

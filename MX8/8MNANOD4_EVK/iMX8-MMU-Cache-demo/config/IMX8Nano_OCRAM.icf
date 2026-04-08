@@ -1,0 +1,74 @@
+/*******************************************************************************
+                                Copyright 2020 IAR Systems. All rights reserved.
+Function:i.MX8M Nano Applications Processor
+
+Note:Evaluation Kit for the i.MX 8M Nano
+
+History:
+ No  Rev  Date       Name           Note
+---+-----+----------+-------------+--------------------------------------------
+000 00.00 2020/07/15 S.Tonoshita    New
+*******************************************************************************/
+
+define symbol ROM_start      = 0x00900400;
+define symbol ROM_end        = 0x0091FFFF;
+define symbol RAM_start      = 0x00920000;
+define symbol RAM_end        = 0x0093FFFF;
+define symbol MMU_TTB_start  = 0x00940000;
+define symbol MMU_TTB_end    = 0x0097FFFF;
+
+define symbol ITCM_start     = 0x007E0000;
+define symbol ITCM_end       = 0x007FFFFF;
+
+
+define region ROM_region     = [from ROM_start to ROM_end];
+define region RAM_region     = [from RAM_start to RAM_end];
+define region MMU_TTB_region = [from MMU_TTB_start to MMU_TTB_end];
+define region ITCM_region    = [from ITCM_start to ITCM_end];
+
+
+initialize by copy { rw };
+
+define block CORE0_CSTACK  with alignment = 16, size = 8K { };
+define block CORE1_CSTACK  with alignment = 16, size = 8K { };
+define block CORE2_CSTACK  with alignment = 16, size = 8K { };
+define block CORE3_CSTACK  with alignment = 16, size = 8K { };
+define block HEAP          with alignment = 16, size = 8K { };
+
+
+place at address 0x0    { ro section .intvec };
+place in ROM_region     { ro };
+place in RAM_region     { rw, block HEAP };
+place in RAM_region     { block CORE0_CSTACK,block CORE1_CSTACK,block CORE2_CSTACK,block CORE3_CSTACK };
+place in MMU_TTB_region { section TLB };
+
+
+// Place the AARCH64 reset code.
+if (!isdefinedsymbol(__Reset_address)) {
+  define symbol __Reset_address = 0x00900000;
+}
+place at address __Reset_address { ro section .reset };
+
+// Define the addresses to the AARCH64 exception vectors. 
+// We only define the 4 exception vectors for the EL1 level and that is coming from EL1.
+// The table itself must be aligned on a 2KB-aligned address.
+if (!isdefinedsymbol(__Exception_table_address)) {
+  define symbol __Exception_table_address = 0x00900000;
+}
+define exported symbol __evector  = __Exception_table_address;
+define symbol synchronous_evector = __evector + 0x200;
+define symbol IRQ_evector         = __evector + 0x280;
+define symbol FIQ_evector         = __evector + 0x300;
+define symbol error_evector       = __evector + 0x380;
+
+// Place default exception code at the exception vectors.
+place at address synchronous_evector { ro section .SynchronousException };
+place at address IRQ_evector         { ro section .IRQException };
+place at address FIQ_evector         { ro section .FIQException };
+place at address error_evector       { ro section .ErrorException };
+
+//------------------------------------------------------------------------------
+// Initializes the program on the Cortex-M7 side.
+// Download the program to the area from 0x007E0000 to 0x007FFFFF (128Mbyte).
+//------------------------------------------------------------------------------
+place in ITCM_region  { section CM7_SECTION };

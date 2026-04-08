@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Project/TimerInt.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>TimerInt</project>
+        <configuration>JLINK_RAM</configuration>
+      </member>
+      <member>
+        <project>TimerInt</project>
+        <configuration>JLINK_FLASH</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\linker</copyDir>
+  <copyDir>..\..\config</copyDir>
+  <copyDir>..\..\..\..\src</copyDir>
+</exampleInfo>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+DESCRIPTION
+===========
+  This example project shows how to use the IAR Embedded Workbench for ARM to
+ develop code for the Pasat MB40 LPC2106 development board.
+ The code assumes that LCD and PS/2 keyboard is fitted (for local control).
+ Alternatively use RS232 cable to connect with the PC for remote control.
+
+ After the program starts, it displays the message to LCD:
+ "TinyARM  LPC2106 "
+ "--Demonstration--" 
+ "--To start demo--" 
+ "Press MB40 key   " 
+ "or               " 
+ "Press PC key     " 
+  and similar message to the PC Hyperterminal window:
+ "TinyARM  LPC2106"
+ "--Demonstration--"
+ "--To start demo--" 
+ "Press key either on MB40 or PC keyboard
+  If you press key on local PS/2 keybard connected to MB40 then the control
+  is passed to PS/2 & LCD.
+  If you press key on a keyboard connected to the PC then the control is
+  passed to the PC.
+  Now follow the text on the LCD or Hyperterminal window.
+  You can do one of the following things:
+  - edit 32 kbyte buffer
+  - read I2C 24C256 EEPROM
+  - program I2C 24C256 EEPROM
+  - read SPI 25C256 EEPROM
+  - program SPI 25C256 EEPROM
+  - show/set time
+  - blink LEDs
+  - edit on LCD screen
+  - perform speed tests
+
+COMPATIBILITY
+=============
+  The project is compatible with MB40 LPC2106 development board.
+  The project is by default configured to use the J-Link JTAG interface 
+  
+GETTING STARTED
+===============
+
+  1) Start the IAR Embedded Workbench for ARM.
+
+  2) Select File->Open->Workspace...
+     Open the following workspace:
+
+     <installation-root>\arm\examples\NXP
+     \LPC2106\Pasat-MB40\MB40Lcd\MB40Lcd.eww
+     
+  3) Select project and configuration.
+
+  4) Power the board and connect the J-Link.
+ 
+  5) Press CTRL+D or use Download and Debug button to start a debug session.
+   </pre>
+
+  </div>
+  </body>
+</html>
+

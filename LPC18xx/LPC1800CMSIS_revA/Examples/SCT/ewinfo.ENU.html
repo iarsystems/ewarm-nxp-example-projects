@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+SCT simple match example 
+
+Example description:
+
+	Purpose:
+
+		This example describes how to:
+		- use SCT to toggle its CTOUT pins when there is a timer match
+		- define events based on SCT self generated outputs, used to switch states
+
+	Process:
+
+		Install the SCT tools from www.lpcware.com and read the user guide and the 
+		getting started guide to understand how to use Fizzim for generating the SCT
+		 C code file (and integrate it into an IDE, for example into Keil uVision).
+		User guide and getting started guide are available within the SCt tools package.
+		
+		This example cycles through 5 different states, to toggle 4 SCT pins in the following sequence:
+		
+		toggle all - toggle one - toggle two - toggle 3 - toggle 4 - toggle all - ... 
+
+		The H counter is used to switch between the states at a low frequency. This is done by generating
+		a short pulse on an output, which is not needed off-chip but just internally as 
+		an event source.
+
+		The L counter is used within each state to toggle the output at a high frequency
+			
+		So the SCT configuration requires:
+
+		   - 5 states: 1 entry state (used for toggling all pins), 4 other states for each separate CTOUTx pin toggling
+		   - 4 SCT output pins
+
+		Open the sct_simple_match.fzm for more detail, or look at the SCT configuration.png image
+		
+		use oscilloscope to monitor CTOUT[2,3,4,5].
+
+		Note that on the Hitex board, you can set JP21 to see the SCT outputs toggling on the RGB led.
+		It should generate an alternating white / green / blue / red light toggling at high frequency 
+					
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	includes Keil project and configuration files 
+	sct_fsm.c: SCT configuration
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	src\Sct_SimpleMatch.c: Main program
+	SCT configuration.png: picture of the SCT state machine configuration
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+			HItex LPC4300 Board
+			
+
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Run example and observe CTOUT[2...5] signals on oscilloscope, or CTOUT[3,4,5] on RGB Led (set JP21)		
+			  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

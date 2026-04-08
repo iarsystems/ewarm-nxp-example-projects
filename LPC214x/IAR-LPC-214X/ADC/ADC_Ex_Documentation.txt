@@ -1,0 +1,30 @@
+Project Start: 6/11/05
+
+Project LPC2148_A2D_Ex
+
+Intent:
+This application is intended to show how to set up the Analog-to-Digital con-
+verter for conversion of input to channel 0 of AD0.
+
+Specifications:
+1. Perform a conversion once a second
+2. 1 sec time interval set by software timer
+3. Timer0 generates master interrupt at 100Hz by compare to match register 0
+4. Use printf() from stdio.h to send data to serial port. Requires implemen-
+   tation of putchar() for UART and inclusion of this file in your project.
+   This will override default putchar(). UART1 uses a baud rate of 9600,
+   8 bit data, 1 stop bit, no parity.
+
+Author: Mark Moran
+Last Date Modified: 11 Jun 05
+Status: Works According to specification
+
+Copyright: IAR Systems Software Inc. 2005
+Disclaimer: This code is furnished "as is" to illustrate how to use the IAR
+Embedded Workbench integrated development environment to create and debugcode
+for NXP LPC2xxx ARM7 microcontrollers. Code in this example may be used
+freely for any purpose. Every effort has been made to ensure compliance
+with above specification. Anyone using this code for any purpose whatsoever
+agrees to accept all pursuant risks in use and hold IAR harmless for any and all
+damages. In other words, if this code smokes your board, it is not our fault.
+

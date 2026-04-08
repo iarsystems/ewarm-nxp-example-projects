@@ -1,0 +1,86 @@
+setup()
+{
+  __var i;
+    // AHB-Lite IP Interface
+  //AIPI1_PSR0 = 0x00040304;
+  //AIPI1_PSR1 = 0xFFFBFCFB;
+  //AIPI2_PSR0 = 0x3FFC0000;
+  //AIPI2_PSR1 = 0xFFFFFFFF;
+  // AHB-Lite IP Interface
+  __writeMemory32(0x00040304, 0x10000000, "Memory");
+  __writeMemory32(0xFFFBFCFB, 0x10000004, "Memory");
+  __writeMemory32(0x3FFC0000, 0x10020000, "Memory");
+  __writeMemory32(0xFFFFFFFF, 0x10020004, "Memory");
+
+  // EIM
+  // EIM_CNF.BCM = 0
+  __writeMemory32(0x00000000, 0xDF001030, "Memory");
+  // CS0 Initialization
+  __writeMemory32(0x00000E01, 0xDF001000, "Memory");
+  __writeMemory32(0x00000E01, 0xDF001004, "Memory");
+  // CS1 Initialization
+  __writeMemory32(0x00002000, 0xDF001008, "Memory");
+  __writeMemory32(0x11118501, 0xDF00100C, "Memory");
+  __writeMemory32(0x00000000, 0xCC800000, "Memory");
+  __writeMemory32(0x31084003, 0x10027020, "Memory");
+  
+  // PLL and Clock Setting
+  // CLKO Select
+  // CCSR (Set CLKO_SEL = HCLK)
+  __writeMemory32(0x00000308, 0x10027028, "Memory");
+
+  // MPCTL0: (For 32.768KHz Input Frequency)
+  // MPLL = 266MHz
+  // reference to Table 7-7.
+  __writeMemory32(0x007B1C73, 0x10027004, "Memory");
+
+
+  // Select the Frequency
+  // CSCR: FCLK=MPLL/1; HCLK=FCLK/2; 
+  // (If MPLL==266MHz, FCLK=266MHz and HCLK=133MHz)
+  // Change CSCR with two steeps
+  // First step is to program the BCLKDIV followed by PRESC.
+  //__delay(10);
+  i = __readMemory32(0x10027000, "Memory"); 
+  i &= ~(0x7 << 29);
+  __writeMemory32(i,          0x10027000, "Memory");
+  i &= ~(0xF << 10);
+  i |=  (1   << 10);
+  __writeMemory32(i,          0x10027000, "Memory");
+  i |= (3 << 21);
+  __writeMemory32(i,          0x10027000, "Memory");
+  // delay few milliseconds until PLL lock the frequency
+  __delay(10);
+  
+  // SDRAM
+  // CSD0 Initialization (SDRAM)  16Mx16x2 IAM=0 CSD0 CL3 
+  __writeMemory32(0x92120300, 0xDF000000, "Memory");  // Set Precharge Command
+  __readMemory32(0xC0200000, "Memory");   // A10 - High Issue Precharge all Command
+
+  __writeMemory32(0xA2120300, 0xDF000000, "Memory");  // Set AutoRefresh Command
+
+  // Issue AutoRefresh Command 8 >= 
+  for(i = 0; i < 8; i++)
+  {
+    __readMemory32(0xC0000000, "Memory");
+  }
+
+  __writeMemory32(0xB2120300, 0xDF000000, "Memory");  // Set Mode Register
+  __readMemory32(0xC0119800, "Memory"); // Issue Mode Register Command
+
+  // Set to Normal Mode
+  // From the spec of the SDRAM 
+  // 1. tRCD = 19ns minimum  -> RCD = 3 clk (SDCLK=133MHz) -> SRCD = 11b 
+  // 2. tRP  = 19ns minimum  -> RP  = 3 clk (SDCLK=133MHz) -> SRP  = 0b 
+  // 3. tRC  = 65ns minimum  -> RC  = 9 clk (SDCLK=133MHz) -> SRC  = 1001b 
+  // 4. refresh rate = 8192rows/64ms -> SREFR = 11b
+  __writeMemory32(0x8212F339, 0xDF000000, "Memory");  // Set Mode Register
+
+}
+
+execUserPreload()
+{
+  __message "Prepare hardware for download to the SDRAM \n";
+  __hwReset(0);
+  setup();
+}

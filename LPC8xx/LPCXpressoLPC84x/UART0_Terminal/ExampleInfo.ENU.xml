@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>UART0_Terminal</iar_name>                                   <!--App-->
+  <iar_description>This example demonstrates the configuration and use of the USART module, in asynchronous mode,
+  while communicating with a terminal emulator
+  </iar_description>          <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

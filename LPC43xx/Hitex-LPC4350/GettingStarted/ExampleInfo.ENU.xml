@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>GettingStarted</iar_name>                                   <!--App-->
+  <iar_description>Toggles onboard LED every 0.25s. Lights up corresponding LEDs when one or more sensor buttons are touched.</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

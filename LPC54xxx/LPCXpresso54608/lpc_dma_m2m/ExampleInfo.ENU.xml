@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_dma_m2m</iar_name>                                   <!--App-->
+  <iar_description>
+    The DMA memory to memory example (lpc_dma_m2m) is a simple demonstration program that uses the SDK software
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

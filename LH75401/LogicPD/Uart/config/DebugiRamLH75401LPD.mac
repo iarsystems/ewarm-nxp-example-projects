@@ -1,0 +1,27 @@
+setup()
+{
+  // Remap = 1
+  __writeMemory32(1,0xfffe2008,"Memory");
+  // HCKL = 2
+  __writeMemory32(2,0xfffe2018,"Memory");
+  // CS0 = 1
+  __writeMemory32(0x14001CE7,0xffff1000,"Memory");
+  // CS2 = 1
+  __writeMemory32(0x10000400,0xffff1008,"Memory");
+  // CS3 = 1
+  __writeMemory32(0x1000FFEF,0xffff100C,"Memory");
+  // BUS = 1
+  __writeMemory32(0x00007FFF,0xfffe5000,"Memory");
+}
+
+execUserReset()
+{
+  setup();
+  __message("iRam debug init macro");
+}
+
+execUserPreload()
+{
+  setup();
+  __message("iRam debug init macro");
+}

@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+UART Autobaud example
+
+Example description:
+	Purpose:
+		This is a simple UART example using auto baudrate mode
+	Process:	
+		UART0 is configured as the default settings:
+			- Baudrate set to auto mode
+	 		- 8 data bit
+	 		- 1 Stop bit
+	 		- None parity
+		After reset,  first, type 'A' or 'a' character to start Auto baud rate mode.
+		Once Auto baud rate mode completed, print welcome screen,
+		then press any key to have it read in from the terminal and returned back to the terminal.
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Autobaud.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+				
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– Baudrate is optional 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+				
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART0 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example:
+					+ Choose any baudrate
+					+ Press 'A' or 'a' to synchronize
+					+ Press any key and see echo on serial display
+	
+---------------------------------------------------------------------------  
+UART DMA example
+
+Example description:
+	Purpose:
+		This example describes how to use UART in DMA mode
+	Process:
+		UART0 is configured as the following:
+		 	+ Baudrate = 9600bps
+		 	+ 8 data bit
+		 	+ 1 Stop bit
+		 	+ None parity
+	 	GPDMA channel 0 using to transmit the welcome message (the destination source is UART0 transmit pin)
+	 	GPDMA channel 1 using to receive the character (the destination source is the UART0 receive pin)
+	 	
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Dma.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 9600bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART0 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, using Serial display to monitor the message and to send a charater to UART
+
+---------------------------------------------------------------------------  
+UART Interrupt example
+
+Example description:
+	Purpose:
+		This example describes how to use UART in interrupt mode
+	Process:
+		UART0 configuration:
+			– 9600bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Receive and transmit enable
+					
+		UART0 will print welcome screen first, then:
+		 	- press any key to have it read in from the terminal and returned back to the terminal.
+			- Press ESC to exit.
+			- Press 'r' to print welcome screen menu again.
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Interrupt.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Embedded Artists LPC1800 Evaluation board version 2.3
+			Hitex LPC1850EVA-A4-2 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 9600bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+				
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART0 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, use serial display to control UART0 as the guide on screen
+
+---------------------------------------------------------------------------  
+UART Polling example
+
+Example description:
+	Purpose:
+		This example describes how to use UART in polling mode
+	Process:
+		UART0 configuration:
+			– 9600bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Receive and transmit enable
+		
+		UART0 will print welcome screen first, then:
+		 	- press any key to have it read in from the terminal and returned back to the terminal.
+			- Press ESC to exit.
+			- Press 'r' to print welcome screen menu again.
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Polling.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+				
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 9600bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+				
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART0 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, use serial display to control UART0 as the guide on screen
+
+---------------------------------------------------------------------------  
+RS485_Master example
+
+Example description:
+	Purpose:
+		This example describes how to use RS485 functionality on UART0 of LPC18XX
+		in master mode.
+	Process:	
+		RS485 function on UART0 acts as Master mode on RS485 bus.
+		Master device will send a specified slave device address value
+		first, then master device will send data frames. After sending
+		completed, master device wait for response from slave device (example RS485_slave).
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Rs485Master.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+				
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+				
+		RS485 Connection:
+		Pls see the 'Transceiver_Master.png' in this directory for wiring information.			
+				
+	
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART1 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, use serial display to control UART0 as the guide on screen
+
+---------------------------------------------------------------------------  
+RS485_Slave example
+
+Example description:
+	Purpose:
+		This example describes how to use RS485 functionality on UART0 of LPC18XX
+		in slave mode.
+	Process:	
+		RS485 function on UART0 acts as slave mode on RS485 bus.
+		RS485 Slave device in this example can operate in separate mode
+		as following:
+			- Slave device always receives all frames on RS485 bus, regardless
+			  data frame (9 bit mode with parity stick '0') or slave address
+			  frame (9 bit mode with parity stick '1').
+			- Slave device does not always receive all frames on RS485 bus. In this
+			  case, only slave address frame can trigger an interrupt event,
+			  then slave device can accept the following data frame by determine that
+			  slave address frame is its own address or not(implemented by software).
+			- Slave device is in auto slave address detection mode. In this mode,
+			  only slave address frame with slave address value that matched with
+			  pre-configured slave address will be accepted automatically (by hardware)
+			  and trigger an interrupt callback event to handle following data frames.
+				
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Uart_Rs485Slave.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+				
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+				
+		RS485 Connection:
+		Pls see the 'Transceiver_Slave.png' in this directory for wiring information.				
+	
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on Hitex Flash mode)
+		- Step 3: Connect UART1 port on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, use serial display to control UART0 as the guide on screen
+    </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

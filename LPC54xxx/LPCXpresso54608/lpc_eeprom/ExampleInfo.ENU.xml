@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_eeprom</iar_name>                                   <!--App-->
+  <iar_description>
+    The EEPROM Example project (lpc_eeprom) is a demonstration program
+    that uses the KSDK software to program eeprom memory and verify the program
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

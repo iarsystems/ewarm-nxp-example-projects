@@ -1,0 +1,702 @@
+
+clear_auto_restart()
+{
+  /* HW_RTC_CTRL_bit.SFTRST = 0;*/
+ 	__writeMemory32(1ul<<31,0x80056008,"Memory");
+
+  /* HW_RTC_CTRL_bit.CLKGATE = 0;*/
+ 	__writeMemory32(1ul<<30,0x80056008,"Memory");
+
+  /* Due to the hardware design bug of mx28 EVK-A
+  *  we need to set the AUTO_RESTART bit. */
+  __delay(10);
+  /* HW_RTC_PERSISTENT0_bit.AUTO_RESTART = 1; */
+ 	__writeMemory32(1ul<<17,0x80056064,"Memory");
+
+  /* HW_RTC_CTRL_bit.FORCE_UPDATE=1; */
+ 	__writeMemory32(1ul<<5,0x80056064,"Memory");
+
+  /* HW_RTC_CTRL_bit.FORCE_UPDATE=0; */
+ 	__writeMemory32(1ul<<5,0x80056068,"Memory");
+
+}
+
+power_init()
+{
+__var reg;
+  /* Select ref_xtal path to generate the CPU clock domain */
+  /* HW_CLKCTRL_CLKSEQ_bit.BYPASS_CPU = 1; */
+   __writeMemory32(1ul<<18,0x800401D4,"Memory");
+
+  clear_auto_restart();
+  /* Set LDO outputs 25mV below DC-DC*/
+	/* HW_POWER_VDDDCTRL_bit.LINREG_OFFSET  = 2;
+	 * HW_POWER_VDDACTRL_bit.LINREG_OFFSET  = 2;
+	 * HW_POWER_VDDIOCTRL_bit.LINREG_OFFSET = 2;
+	 */
+	reg  = __readMemory32(0x80044040,"Memory");
+	reg &= ~(3ul << 16);
+	reg |=   2ul << 16;
+  __writeMemory32(reg,0x80044040,"Memory");
+	reg  = __readMemory32(0x80044050,"Memory");
+	reg &= ~(3ul << 12);
+	reg |=   2ul << 12;
+  __writeMemory32(reg,0x80044050,"Memory");
+	reg  = __readMemory32(0x80044060,"Memory");
+	reg &= ~(3ul << 12);
+	reg |=   2ul << 12;
+  __writeMemory32(reg,0x80044060,"Memory");
+
+	/* HW_POWER_5VCTRL_bit.VBUSVALID_5VDETECT = 1; */
+  //__writeMemory32(1 << 4,0x80044014,"Memory");
+	
+	/* HW_POWER_CTRL_bit.POLARITY_VDD5V_GT_VDDIO = 1; */
+  //__writeMemory32(1 << 2,0x80044004,"Memory");
+
+	/* HW_POWER_CTRL_bit.POLARITY_VBUSVALID = 0; */
+  //__writeMemory32(1 << 5,0x80044008,"Memory");
+
+  /* HW_POWER_VDDDCTRL_bit.ENABLE_LINREG = 1;
+	 * HW_POWER_VDDDCTRL_bit.PWDN_BRNOUT = 1;
+   * HW_POWER_VDDDCTRL_bit.DISABLE_FET = 1;
+   */
+	reg  = __readMemory32(0x80044040,"Memory");
+	reg |=   (1ul << 20) | (1ul << 21) | (1ul << 23);
+  __writeMemory32(reg,0x80044040,"Memory");
+  	
+  /* HW_POWER_VDDACTRL_bit.ENABLE_LINREG = 1;
+	 * HW_POWER_VDDACTRL_bit.PWDN_BRNOUT = 1;
+   * HW_POWER_VDDACTRL_bit.DISABLE_FET = 1;
+   */
+	reg  = __readMemory32(0x80044050,"Memory");
+	reg |= (1ul << 16) | (1ul << 17) | (1ul << 19);
+  __writeMemory32(reg,0x80044050,"Memory");
+
+  /* HW_POWER_VDDIOCTRL_bit.DISABLE_FET = 1; */
+	reg  = __readMemory32(0x80044060,"Memory");
+	reg |= (1ul << 16);
+  __writeMemory32(reg,0x80044060,"Memory");
+
+  /* HW_POWER_VDDMEMCTRL_bit.ENABLE_LINREG = 0; */
+	reg  = __readMemory32(0x80044070,"Memory");
+	reg &= ~(1ul << 8);
+  __writeMemory32(reg,0x80044070,"Memory");
+
+  /* Improve efficieny and reduce transient ripple */
+  /* Change stepping voltage only after the diff control loop has toggled as well. */
+  /* HW_POWER_LOOPCTRL_bit.TOGGLE_DIF = 1; */
+  __writeMemory32(1ul << 20,0x800440B4,"Memory");
+
+  /* Enable the commom mode and differential mode hysterisis */
+  /* HW_POWER_LOOPCTRL_bit.EN_CM_HYST = 1; */
+  /* HW_POWER_LOOPCTRL_bit.EN_DF_HYST = 1; */
+  __writeMemory32((1ul << 17) | (1ul << 18),0x800440B4,"Memory");
+
+  /* HW_POWER_DCLIMITS_bit.POSLIMIT_BUCK = 0x30; */
+	reg  = __readMemory32(0x800440A0,"Memory");
+	reg &= ~(0x7Ful << 8);
+	reg |=  0x30ul << 8;
+  __writeMemory32(reg,0x800440A0,"Memory");
+
+	/* HW_POWER_LOOPCTRL_bit.RCSCALE_THRESH = 1; */
+  __writeMemory32(1ul << 14,0x800440B4,"Memory");
+	
+  /* HW_POWER_LOOPCTRL_bit.EN_RCSCALE = 3; */
+  __writeMemory32(3ul << 12,0x800440B4,"Memory");
+
+  /* HW_POWER_MINPWR_bit.HALF_FETS = 0; */
+  __writeMemory32(1ul << 5,0x80044028,"Memory");
+  /* HW_POWER_MINPWR_bit.DOUBLE_FETS = 1; */
+  __writeMemory32(1ul << 6,0x80044024,"Memory");
+
+  /* HW_POWER_5VCTRL_bit.ENABLE_DCDC = 1; */
+  __writeMemory32(1ul << 0,0x80044014,"Memory");
+
+	/* disable automatic battery voltage measurements */
+	/* HW_LRADC_CONVERSION_bit.AUTOMATIC = 0; */
+  __writeMemory32(1ul << 20,0x80050138,"Memory");
+	/* HW_POWER_BATTMONITOR_bit.BATT_VAL = 0; */
+  __writeMemory32(0,0x800440E0,"Memory");
+
+  /* HW_POWER_VDDDCTRL_bit.DISABLE_FET  = 0; */
+	reg  = __readMemory32(0x80044040,"Memory");
+	reg &= ~(1ul << 20);
+  __writeMemory32(reg,0x80044040,"Memory");
+
+  /* HW_POWER_VDDACTRL_bit.DISABLE_FET  = 0; */
+	reg  = __readMemory32(0x80044050,"Memory");
+	reg &= ~(1ul << 16);
+  __writeMemory32(reg,0x80044050,"Memory");
+
+  /* HW_POWER_VDDIOCTRL_bit.DISABLE_FET = 0; */
+	reg  = __readMemory32(0x80044060,"Memory");
+	reg &= ~(1ul << 16);
+  __writeMemory32(reg,0x80044060,"Memory");
+
+	/* VDDIO 3.3V is necessary to achieve best power supply capability
+	 * and best EMI I/O performance. */
+  /* HW_POWER_VDDIOCTRL_bit.TRG = VDDIO_V;
+   * for(volatile int i = 1500; i; i--);
+   * HW_POWER_VDDIOCTRL_bit.BO_OFFSET = 3;
+   */
+	reg  = __readMemory32(0x80044060,"Memory");
+	reg &= ~0x1Ful;
+	reg |= 10;	
+  __writeMemory32(reg,0x80044060,"Memory");
+	__delay(10);
+	reg &= ~(0x7ul << 8);
+	reg |= 3ul << 8;	
+  __writeMemory32(reg,0x80044060,"Memory");
+
+	/* VDDD 1.55V is necessary to achieve 454 MHZ clock	*/
+  /* HW_POWER_VDDDCTRL_bit.TRG = VDDD_V;
+   * for(volatile int i = 1500; i; i--);
+   * HW_POWER_VDDDCTRL_bit.BO_OFFSET = 4;
+   */
+	reg  = __readMemory32(0x80044040,"Memory");
+	reg &= ~0x1Ful;
+	reg |= 30;	
+  __writeMemory32(reg,0x80044040,"Memory");
+	__delay(10);
+	reg &= ~(0x7ul << 8);
+	reg |= 4ul << 8;	
+  __writeMemory32(reg,0x80044040,"Memory");
+
+	/* VDDA 1.8V */
+  /* HW_POWER_VDDACTRL_bit.TRG = VDDA_V;
+   * for(volatile int i = 1500; i; i--);
+   * HW_POWER_VDDACTRL_bit.BO_OFFSET = 4;
+   */
+	reg  = __readMemory32(0x80044050,"Memory");
+	reg &= ~0x1Ful;
+	reg |= 12;	
+  __writeMemory32(reg,0x80044050,"Memory");
+	__delay(10);
+	reg &= ~(0x7ul << 8);
+	reg |= 4ul << 8;	
+  __writeMemory32(reg,0x80044050,"Memory");
+
+	/* setup the auto power down if we lost 5V.*/
+  /* HW_POWER_5VCTRL_bit.PWDN_5VBRNOUT = 1; */
+  __writeMemory32(1ul << 7,0x80044014,"Memory");
+
+}
+
+/* Clock init CPUCLK - 454.73MHz, AHBCLK - 151.57MHz, EMICLK - 205.71MHz */
+clock_init()
+{
+__var reg;
+  /* Power on PLL*/
+  /* HW_CLKCTRL_PLL0CTRL0_bit.POWER = 1; */
+  __writeMemory32(1ul << 17,0x80040004,"Memory");
+
+  /* for(volatile int i = 1000; i; i--); */
+  __delay(1);
+
+  /* Set PLL and clock dividers */
+	/*HW_CLKCTRL_FRAC0_bit.CLKGATEEMI = 1;*/
+  __writeMemory32(1ul << 15,0x800401B4,"Memory");	
+
+  /* HW_CLKCTRL_FRAC0_bit.EMIFRAC = 21; */
+  reg  = __readMemory32(0x800401B0,"Memory");
+  reg &= ~(0x7Ful<<8);
+  reg |=   21ul<<8;
+  __writeMemory32(reg,0x800401B0,"Memory");
+
+	/* HW_CLKCTRL_FRAC0_bit.CLKGATEEMI = 0; */
+  __writeMemory32(1ul << 15,0x800401B8,"Memory");
+	
+  /* for(volatile int i = 1000; i; i--); */
+  __delay(1);
+
+  /* HW_CLKCTRL_EMI_bit.CLKGATE = 0; */
+	reg  = __readMemory32(0x800400F0,"Memory");
+	reg &= ~(1ul << 31);
+  __writeMemory32(reg,0x800400F0,"Memory");
+
+  /* HW_CLKCTRL_EMI_bit.DIV_XTAL = 1; */
+	reg &= ~(0xFul << 8);
+	reg |=   1ul << 8;
+  __writeMemory32(reg,0x800400F0,"Memory");
+
+  /* HW_CLKCTRL_EMI_bit.DIV_EMI = 2; */
+	reg &= ~0x3Ful;
+	reg |=  2ul;
+  __writeMemory32(reg,0x800400F0,"Memory");
+
+  /* HW_CLKCTRL_CLKSEQ_bit.BYPASS_EMI = 0; */
+  __writeMemory32(1ul << 7,0x800401D8,"Memory");
+
+  /* HW_CLKCTRL_FRAC0_bit.CLKGATECPU = 0; */
+	reg  = __readMemory32(0x800401B0,"Memory");
+	reg &=~0x3Ful;
+	reg |= 19;
+  __writeMemory32(reg,0x800401B0,"Memory");
+
+  /* HW_CLKCTRL_HBUS_bit.DIV = 3; */
+	reg  = __readMemory32(0x80040060,"Memory");
+	reg &=~0x1Ful;
+	reg |= 3ul;
+  __writeMemory32(reg,0x80040060,"Memory");
+
+  /* for(volatile int i = 1000; i; i--); */
+  __delay(1);
+
+  /* HW_CLKCTRL_CPU_bit.DIV_CPU = 1; */
+	reg  = __readMemory32(0x80040050,"Memory");
+	reg &= ~0x3f;
+	reg |= 1;
+  __writeMemory32(reg,0x80040050,"Memory");
+	
+	/* HW_CLKCTRL_CLKSEQ_bit.BYPASS_CPU = 0; */
+  __writeMemory32(1ul<<18,0x800401D8,"Memory");
+}
+
+ddr_ede1116_200MHz_init()
+{
+
+__var reg;
+  /* Set EMI pins */
+  /* Configure Bank-3 Pins 0-15 as EMI pins*/
+  /* HW_PINCTRL_MUXSEL10_CLR = 0xFFFFFFFF; */
+  __writeMemory32(0xFFFFFFFF,0x800181A8,"Memory");
+  /* HW_PINCTRL_MUXSEL11_CLR = 0x0030FFFF; */
+  __writeMemory32(0x0030FFFF,0x800181B8,"Memory");
+  /* HW_PINCTRL_MUXSEL12_CLR = 0x3FFFFFFF; */
+  __writeMemory32(0x3FFFFFFF,0x800181C8,"Memory");
+  /* HW_PINCTRL_MUXSEL13_CLR = 0x0003FFFF; */
+  __writeMemory32(0x0003FFFF,0x800181D8,"Memory");
+	/* set to ddr2 mode*/
+	/* HW_PINCTRL_EMI_DS_CTRL_bit.DDR_MODE = 0x3; */
+	reg  = __readMemory32(0x80019B80,"Memory");
+	reg &= ~(3ul<<16);
+	reg |=   3 << 16;
+  __writeMemory32(reg,0x80019B80,"Memory");  	
+  /* Disable controller */
+  /* HW_DRAM_CTL16_bit.START = 0; */
+	reg  = __readMemory32(0x800E0040,"Memory");
+	reg &= ~1ul;
+  __writeMemory32(reg,0x800E0040,"Memory");  	
+  /* Init EMI register*/
+	/* DRAM_REG[0] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0000,"Memory");  	
+	/* DRAM_REG[1] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0004,"Memory");  	
+	/* DRAM_REG[2] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0008,"Memory");  	
+	/* DRAM_REG[3] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E000C,"Memory");  	
+	/* DRAM_REG[4] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0010,"Memory");  	
+	/* DRAM_REG[5] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0014,"Memory");  	
+	/* DRAM_REG[6] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0018,"Memory");  	
+	/* DRAM_REG[7] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E001C,"Memory");  	
+	/* DRAM_REG[8] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0020,"Memory");  	
+	/* DRAM_REG[9] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0024,"Memory");  	
+	/* DRAM_REG[10] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0028,"Memory");  	
+	/* DRAM_REG[11] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E002C,"Memory");  	
+	/* DRAM_REG[12] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0030,"Memory");  	
+	/* DRAM_REG[13] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0034,"Memory");  	
+	/* DRAM_REG[14] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0038,"Memory");  	
+	/* DRAM_REG[15] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E003C,"Memory");  	
+	/* DRAM_REG[16] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0040,"Memory");  	
+	/* DRAM_REG[17] = 0x00000100; */
+  __writeMemory32(0x00000100,0x800E0044,"Memory");  	
+	/* DRAM_REG[21] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0054,"Memory");  	
+	/* DRAM_REG[22] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0058,"Memory");  	
+	/* DRAM_REG[23] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E005C,"Memory");  	
+	/* DRAM_REG[24] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0060,"Memory");  	
+	/* DRAM_REG[25] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0064,"Memory");  	
+	/* DRAM_REG[26] = 0x00010101; */
+  __writeMemory32(0x00010101,0x800E0068,"Memory");  	
+	/* DRAM_REG[27] = 0x01010101; */
+  __writeMemory32(0x01010101,0x800E006C,"Memory");  	
+	/* DRAM_REG[28] = 0x000f0f01; */
+  __writeMemory32(0x000f0f01,0x800E0070,"Memory");  	
+	/* DRAM_REG[29] = 0x0f02020a; 0x0302020a */
+  __writeMemory32(0x0302020a,0x800E0074,"Memory");  //??	
+	/* DRAM_REG[30] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0078,"Memory");  	
+	/* DRAM_REG[31] = 0x00010101; */
+  __writeMemory32(0x00010101,0x800E007C,"Memory");  	
+	/* DRAM_REG[32] = 0x00000100; */
+  __writeMemory32(0x00000100,0x800E0080,"Memory");  	
+	/* DRAM_REG[33] = 0x00000100; */
+  __writeMemory32(0x00000100,0x800E0084,"Memory");  	
+	/* DRAM_REG[34] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0088,"Memory");  	
+	/* DRAM_REG[35] = 0x00000002; */
+  __writeMemory32(0x00000002,0x800E008C,"Memory");  	
+	/* DRAM_REG[36] = 0x01010000; */
+  __writeMemory32(0x01010000,0x800E0090,"Memory");  	
+	/* DRAM_REG[37] = 0x07080403; */
+  __writeMemory32(0x07080403,0x800E0094,"Memory");  	
+	/* DRAM_REG[38] = 0x06005003; */
+  __writeMemory32(0x06005003,0x800E0098,"Memory");  	
+	/* DRAM_REG[39] = 0x0a0000c8; */
+  __writeMemory32(0x0a0000c8,0x800E009C,"Memory");  	
+	/* DRAM_REG[40] = 0x02009c40; */
+  __writeMemory32(0x02009c40,0x800E00A0,"Memory");  	
+	/* DRAM_REG[41] = 0x0002030c; */
+  __writeMemory32(0x0002030c,0x800E00A4,"Memory");  	
+	/* DRAM_REG[42] = 0x0036a609; */
+  __writeMemory32(0x0036a609,0x800E00A8,"Memory");  	
+	/* DRAM_REG[43] = 0x031a0612; */
+  __writeMemory32(0x031a0612,0x800E00AC,"Memory");  	
+	/* DRAM_REG[44] = 0x02030202; */
+  __writeMemory32(0x02030202,0x800E00B0,"Memory");  	
+	/* DRAM_REG[45] = 0x00c8001c; */
+  __writeMemory32(0x00c8001c,0x800E00B4,"Memory");  	
+	/* DRAM_REG[46] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00B8,"Memory");  	
+	/* DRAM_REG[47] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00BC,"Memory");  	
+	/* DRAM_REG[48] = 0x00012100; 0x00011900 */
+  __writeMemory32(0x00011900,0x800E00C0,"Memory");  //??	
+	/* DRAM_REG[49] = 0xffff0303; */
+  __writeMemory32(0xffff0303,0x800E00C4,"Memory");  	
+	/* DRAM_REG[50] = 0x00012100; */
+  __writeMemory32(0x00012100,0x800E00C8,"Memory");  	
+	/* DRAM_REG[51] = 0xffff0303; */
+  __writeMemory32(0xffff0303,0x800E00CC,"Memory");  	
+	/* DRAM_REG[52] = 0x00012100; */
+  __writeMemory32(0x00012100,0x800E00D0,"Memory");  	
+	/* DRAM_REG[53] = 0xffff0303; */
+  __writeMemory32(0xffff0303,0x800E00D4,"Memory");  	
+	/* DRAM_REG[54] = 0x00012100; */
+  __writeMemory32(0x00012100,0x800E00D8,"Memory");  	
+	/* DRAM_REG[55] = 0xffff0303; */
+  __writeMemory32(0xffff0303,0x800E00DC,"Memory");  	
+	/* DRAM_REG[56] = 0x00000003; */
+  __writeMemory32(0x00000003,0x800E00E0,"Memory");  	
+	/* DRAM_REG[57] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00E4,"Memory");  	
+	/* DRAM_REG[58] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00E8,"Memory");  	
+	/* DRAM_REG[59] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00EC,"Memory");  	
+	/* DRAM_REG[60] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00F0,"Memory");  	
+	/* DRAM_REG[61] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00F4,"Memory");  	
+	/* DRAM_REG[62] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00F8,"Memory");  	
+	/* DRAM_REG[63] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E00FC,"Memory");  	
+	/* DRAM_REG[64] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0100,"Memory");  	
+	/* DRAM_REG[65] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0104,"Memory");  	
+	/* DRAM_REG[66] = 0x00000612; */
+  __writeMemory32(0x00000612,0x800E0108,"Memory");  	
+	/* DRAM_REG[67] = 0x01000f02; */
+  __writeMemory32(0x01000f02,0x800E010C,"Memory");  	
+	/* DRAM_REG[68] = 0x06120612; 0x00000000*/
+  __writeMemory32(0x00000000,0x800E0110,"Memory");	// ??
+	/* DRAM_REG[69] = 0x00000200; */
+  __writeMemory32(0x00000200,0x800E0114,"Memory");  	
+	/* DRAM_REG[70] = 0x00020007; */
+  __writeMemory32(0x00020007,0x800E0118,"Memory");  	
+	/* DRAM_REG[71] = 0xf4004a27; */
+  __writeMemory32(0xf4004a27,0x800E011C,"Memory");  	
+	/* DRAM_REG[72] = 0xf4004a27; */
+  __writeMemory32(0xf4004a27,0x800E0120,"Memory");  	
+	/* DRAM_REG[73] = 0xf4004a27; */
+  __writeMemory32(0xf4004a27,0x800E0124,"Memory");  	
+	/* DRAM_REG[74] = 0xf4004a27; */
+  __writeMemory32(0xf4004a27,0x800E0128,"Memory");  	
+	/* DRAM_REG[75] = 0x07000300; 0x07400300*/
+  __writeMemory32(0x07400300,0x800E012C,"Memory"); // ??	
+	/* DRAM_REG[76] = 0x07000300; 0x07400300*/
+  __writeMemory32(0x07400300,0x800E0130,"Memory");  	
+	/* DRAM_REG[77] = 0x07400300; 0x07400300*/
+  __writeMemory32(0x07400300,0x800E0134,"Memory");  	
+	/* DRAM_REG[78] = 0x07400300; */
+  __writeMemory32(0x07400300,0x800E0138,"Memory");  	
+	/* DRAM_REG[79] = 0x00000005; */
+  __writeMemory32(0x00000005,0x800E013C,"Memory");  	
+	/* DRAM_REG[80] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0140,"Memory");  	
+	/* DRAM_REG[81] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0144,"Memory");  	
+	/* DRAM_REG[82] = 0x01000000; */
+  __writeMemory32(0x01000000,0x800E0148,"Memory");  	
+	/* DRAM_REG[83] = 0x01020408; */
+  __writeMemory32(0x01020408,0x800E014C,"Memory");  	
+	/* DRAM_REG[84] = 0x08040201; */
+  __writeMemory32(0x08040201,0x800E0150,"Memory");  	
+	/* DRAM_REG[85] = 0x000f1133; */
+  __writeMemory32(0x000f1133,0x800E0154,"Memory");  	
+	/* DRAM_REG[86] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0158,"Memory");  	
+	/* DRAM_REG[87] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E015C,"Memory");  	
+	/* DRAM_REG[88] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0160,"Memory");  	
+	/* DRAM_REG[89] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0164,"Memory");  	
+	/* DRAM_REG[90] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0168,"Memory");  	
+	/* DRAM_REG[91] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E016C,"Memory");  	
+	/* DRAM_REG[92] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0170,"Memory");  	
+	/* DRAM_REG[93] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0174,"Memory");  	
+	/* DRAM_REG[94] = 0x00001f04; */
+  __writeMemory32(0x00001f04,0x800E0178,"Memory");  	
+	/* DRAM_REG[95] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E017C,"Memory");  	
+	/* DRAM_REG[96] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0180,"Memory");  	
+	/* DRAM_REG[97] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0184,"Memory");  	
+	/* DRAM_REG[98] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0188,"Memory");  	
+	/* DRAM_REG[99] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E018C,"Memory");  	
+	/* DRAM_REG[100] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0190,"Memory");  	
+	/* DRAM_REG[101] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0194,"Memory");  	
+	/* DRAM_REG[102] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0198,"Memory");  	
+	/* DRAM_REG[103] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E019C,"Memory");  	
+	/* DRAM_REG[104] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01A0,"Memory");  	
+	/* DRAM_REG[105] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01A4,"Memory");  	
+	/* DRAM_REG[106] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01A8,"Memory");  	
+	/* DRAM_REG[107] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01AC,"Memory");  	
+	/* DRAM_REG[108] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01B0,"Memory");  	
+	/* DRAM_REG[109] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01B4,"Memory");  	
+	/* DRAM_REG[110] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01B8,"Memory");  	
+	/* DRAM_REG[111] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01BC,"Memory");  	
+	/* DRAM_REG[112] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01C0,"Memory");  	
+	/* DRAM_REG[113] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01C4,"Memory");  	
+	/* DRAM_REG[114] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01C8,"Memory");  	
+	/* DRAM_REG[115] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01CC,"Memory");  	
+	/* DRAM_REG[116] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01D0,"Memory");  	
+	/* DRAM_REG[117] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01D4,"Memory");  	
+	/* DRAM_REG[118] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01D8,"Memory");  	
+	/* DRAM_REG[119] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01DC,"Memory");  	
+	/* DRAM_REG[120] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01E0,"Memory");  	
+	/* DRAM_REG[121] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01E4,"Memory");  	
+	/* DRAM_REG[122] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01E8,"Memory");  	
+	/* DRAM_REG[123] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01EC,"Memory");  	
+	/* DRAM_REG[124] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01F0,"Memory");  	
+	/* DRAM_REG[125] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01F4,"Memory");  	
+	/* DRAM_REG[126] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01F8,"Memory");  	
+	/* DRAM_REG[127] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E01FC,"Memory");  	
+	/* DRAM_REG[128] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0200,"Memory");  	
+	/* DRAM_REG[129] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0204,"Memory");  	
+	/* DRAM_REG[130] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0208,"Memory");  	
+	/* DRAM_REG[131] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E020C,"Memory");  	
+	/* DRAM_REG[132] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0210,"Memory");  	
+	/* DRAM_REG[133] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0214,"Memory");  	
+	/* DRAM_REG[134] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0218,"Memory");  	
+	/* DRAM_REG[135] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E021C,"Memory");  	
+	/* DRAM_REG[136] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0220,"Memory");  	
+	/* DRAM_REG[137] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0224,"Memory");  	
+	/* DRAM_REG[138] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0228,"Memory");  	
+	/* DRAM_REG[139] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E022C,"Memory");  	
+	/* DRAM_REG[140] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0230,"Memory");  	
+	/* DRAM_REG[141] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0234,"Memory");  	
+	/* DRAM_REG[142] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0238,"Memory");  	
+	/* DRAM_REG[143] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E023C,"Memory");  	
+	/* DRAM_REG[144] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0240,"Memory");  	
+	/* DRAM_REG[145] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0244,"Memory");  	
+	/* DRAM_REG[146] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0248,"Memory");  	
+	/* DRAM_REG[147] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E024C,"Memory");  	
+	/* DRAM_REG[148] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0250,"Memory");  	
+	/* DRAM_REG[149] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0254,"Memory");  	
+	/* DRAM_REG[150] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0258,"Memory");  	
+	/* DRAM_REG[151] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E025C,"Memory");  	
+	/* DRAM_REG[152] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0260,"Memory");  	
+	/* DRAM_REG[153] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0264,"Memory");  	
+	/* DRAM_REG[154] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0268,"Memory");  	
+	/* DRAM_REG[155] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E026C,"Memory");  	
+	/* DRAM_REG[156] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0270,"Memory");  	
+	/* DRAM_REG[157] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0274,"Memory");  	
+	/* DRAM_REG[158] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0278,"Memory");  	
+	/* DRAM_REG[159] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E027C,"Memory");  	
+	/* DRAM_REG[160] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0280,"Memory");  	
+	/* DRAM_REG[161] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0284,"Memory");  	
+	/* DRAM_REG[162] = 0x00010000; */
+  __writeMemory32(0x00010000,0x800E0288,"Memory");  	
+	/* DRAM_REG[163] = 0x00030404; */
+  __writeMemory32(0x00030404,0x800E028C,"Memory");  	
+	/* DRAM_REG[164] = 0x00000003; */
+  __writeMemory32(0x00000003,0x800E0290,"Memory");  	
+	/* DRAM_REG[165] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0294,"Memory");  	
+	/* DRAM_REG[166] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E0298,"Memory");  	
+	/* DRAM_REG[167] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E029C,"Memory");  	
+	/* DRAM_REG[168] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02A0,"Memory");  	
+	/* DRAM_REG[169] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02A4,"Memory");  	
+	/* DRAM_REG[170] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02A8,"Memory");  	
+	/* DRAM_REG[171] = 0x01010000; */
+  __writeMemory32(0x01010000,0x800E02AC,"Memory");  	
+	/* DRAM_REG[172] = 0x01000000; */
+  __writeMemory32(0x01000000,0x800E02B0,"Memory");  	
+	/* DRAM_REG[173] = 0x03030000; */
+  __writeMemory32(0x03030000,0x800E02B4,"Memory");  	
+	/* DRAM_REG[174] = 0x00010303; */
+  __writeMemory32(0x00010303,0x800E02B8,"Memory");  	
+	/* DRAM_REG[175] = 0x01020202; */
+  __writeMemory32(0x01020202,0x800E02BC,"Memory");  	
+	/* DRAM_REG[176] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02C0,"Memory");  	
+	/* DRAM_REG[177] = 0x02040303; 0x02030303*/
+  __writeMemory32(0x02030303,0x800E02C4,"Memory");	// ??  	
+	/* DRAM_REG[178] = 0x21002103; */
+  __writeMemory32(0x00000000,0x800E02C8,"Memory");  	
+	/* DRAM_REG[179] = 0x00061200; */
+  __writeMemory32(0x00061200,0x800E02CC,"Memory");  	
+	/* DRAM_REG[180] = 0x06120612; */
+  __writeMemory32(0x06120612,0x800E02D0,"Memory");  	
+	/* DRAM_REG[181] = 0x04420442; */
+  __writeMemory32(0x04420442,0x800E02D4,"Memory");  	
+	/* DRAM_REG[182] = 0x04420442; */
+  __writeMemory32(0x04420442,0x800E02D8,"Memory");  	
+	/* DRAM_REG[183] = 0x00040004; */
+  __writeMemory32(0x00040004,0x800E02DC,"Memory");  	
+	/* DRAM_REG[184] = 0x00040004; */
+  __writeMemory32(0x00040004,0x800E02E0,"Memory");  	
+	/* DRAM_REG[185] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02E4,"Memory");  	
+	/* DRAM_REG[186] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02E8,"Memory");  	
+	/* DRAM_REG[187] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02EC,"Memory");  	
+	/* DRAM_REG[188] = 0x00000000; */
+  __writeMemory32(0x00000000,0x800E02F0,"Memory");  	
+	/* DRAM_REG[189] = 0xffffffff; */
+  __writeMemory32(0xffffffff,0x800E02F4,"Memory");  	
+  /* Disable self refresh*/
+  /* HW_DRAM_CTL17_bit.SREFRESH = 0; */
+	reg  = __readMemory32(0x800E0044,"Memory");
+	reg &= ~1ul;
+  __writeMemory32(reg,0x800E0044,"Memory");  	
+  /* Start initialization */
+  /* HW_DRAM_CTL16_bit.START = 1; */
+	reg  = __readMemory32(0x800E0040,"Memory");
+	reg |= 1ul;
+  __writeMemory32(reg,0x800E0040,"Memory");  	
+  /* while(!(HW_DRAM_CTL58 & 1ul<<20)); */
+  __delay(1);
+}
+
+execUserPreload()
+{
+__var Reg;
+  __message "---- execUserPreload ----" ;
+
+  __hwReset(0);
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+
+  /* Init power */
+  power_init();
+  /* Init clock */
+  clock_init();
+  /* Init DDR */
+  ddr_ede1116_200MHz_init();
+
+}
+
+execUserReset()
+{
+__var Reg;
+  __message "---- execUserReset ----" ;
+
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+NOR Flash programing example
+
+Example description:
+	Purpose:
+		This example describes how to use EMC to program the external Nor Flash
+	Process:
+		Setup Pin for External Memory
+		Setup EMC timing on CS0
+		Erase Sector 0 of Flash at address 0x1C000000
+		Program the Menu1 content to Nor Flash
+		Read Back and Print it to UART1
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	Emc_NorFlash.c: Main program
+	FlashPrg.c: Flash Function
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Running mode:
+		RAM mode:   This example can run only on RAM mode.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example
+
+-----------------------------------------------------------------------------------
+EMC SDRAM example
+
+Example description:
+	Purpose:
+		This example describes how to use EMC to connect with external SDRAM
+	Process:
+		Set M4 Clock equal or lower than 120MHz by set mult&lt;=10 in function CGU_Init()
+		Setup Pin for External Memory
+		Setup EMC timing on DYCS0
+		Fill RAM content
+		Check RAM content
+
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	Emc_Sdram.c: Main program
+	SDRAM_Init.c: contains IS42S16400D SDRAM init function.
+
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC1800 board
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example
+
+		   </pre>
+
+  </div>
+  </body>
+</html>
+

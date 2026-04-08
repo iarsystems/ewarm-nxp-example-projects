@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/wdttest.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>wdttest</project>
+        <configuration>Debug iFlash</configuration>
+      </member>
+      <member>
+        <project>wdttest</project>
+        <configuration>Debug iRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

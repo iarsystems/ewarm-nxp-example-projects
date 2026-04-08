@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>acmp_polling_print</iar_name>               <!--App-->
+  <iar_description>The purpose of this demo is to show how to use the ACMP driver in SDK software by polling way.</iar_description>  <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+DESCRIPTION
+===========
+
+  The initial purpose of this example is to show some of the timers
+functionality and working with the Vectored interrupt controller (VIC).
+The two buttons B1 and B2 of the LPC-E2129 evaluation board are
+connected to the EXT Interrupts. So on button press or release an
+interrupt is generated. The Buttons interrupt handles then starts
+a debounce delay by using the Match Registers. As an indication
+LED1 and LED2 are turned ON on pressing respectively B1 and B2.
+Timer1 interrupt is used to blink LED3. Blink is activated on pressing
+Button1 and stops on pressing Button2.
+
+Please refer to ERRATA SHEET(LPC2129,LPC2129/00) from 17, May, 2006
+
+
+COMPATIBILITY
+=============
+The project is compatible with the Olimex LPC-E2129 evaluation board.
+
+The project is by default configured to use the J-Link JTAG interface.
+
+
+GETTING STARTED
+===============
+Start the IAR Embedded Workbench for ARM.
+Select File->Open->Workspace...
+Open the workspace file
+...IAR Systems\Embedded Workbench 4.0\ARM\examples\NXP\LPC212x
+ \Olimex-LPC-E2129\Leds\LPC2129_butt_led.eww
+
+   - put the jumpers:
+        DBG  - must be filled
+        BSL  - removed
+        JRST - removed
+   - run program
+   - use the USB cable to connect the PC to USB of the Board
+
+CONFIGURATION
+=============
+The application is downloaded to the flash.
+
+   </pre>
+
+  </div>
+  </body>
+</html>
+

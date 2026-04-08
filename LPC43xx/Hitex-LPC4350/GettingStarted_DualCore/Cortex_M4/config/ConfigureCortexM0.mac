@@ -1,0 +1,28 @@
+__releaseCoreReset()
+{
+  __writeMemory32((~(__readMemory32(0x40053154,"Memory"))) & (~(1<<24)),0x40053104,"Memory");
+}
+
+__loadLoopCode()
+{
+  __writeMemory32(0x00001F00,0x10080000,"Memory");   /* dummy stack pointer */
+  __writeMemory32(0x000000D5,0x10080004,"Memory");   /* reset handler */
+  __writeMemory32(0xE7FEE7FE,0x100800D4,"Memory");   /* jump to itself instruction for M0a */
+  __writeMemory32(0x10080000,0x40043404,"Memory");   /* M0 shadow pointer. */
+}
+
+execUserReset()
+{
+  __message "------- execUserReset -----------";
+  __releaseCoreReset();
+  __message "------- execUserReset Finish -------";
+}
+
+execUserPreload()
+{
+  __message "------- execUserPreLoad -----------";
+  __loadLoopCode();
+  __releaseCoreReset();
+  __message "------- execUserPreLoad Finish --------";
+}	
+

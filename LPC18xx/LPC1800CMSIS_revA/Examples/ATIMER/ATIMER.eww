@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/ATIMER_WIC/EWARM/Atimer_Wic.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

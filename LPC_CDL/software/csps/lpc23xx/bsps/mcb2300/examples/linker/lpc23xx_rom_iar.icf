@@ -1,0 +1,32 @@
+define symbol __ROM_start__     = 0x00000000;
+define symbol __ROM_end__       = 0x0007FFFF;
+define symbol __RAM_start__     = 0x40000000;
+define symbol __RAM_end__       = 0x40007FFF;
+
+define symbol __size_cstack__   = 0x2000;
+define symbol __size_svcstack__ = 0x100;
+define symbol __size_irqstack__ = 0x100;
+define symbol __size_fiqstack__ = 0x10;
+define symbol __size_undstack__ = 0x10;
+define symbol __size_abtstack__ = 0x10;
+define symbol __size_heap__     = 0x1000;
+
+define memory MEM with size     = 4G;
+define region ROM_region        = MEM:[from __ROM_start__ to __ROM_end__];
+define region RAM_region        = MEM:[from __RAM_start__ to __RAM_end__];
+
+define block CSTACK    with alignment = 8, size = __size_cstack__   { };
+define block SVC_STACK with alignment = 8, size = __size_svcstack__ { };
+define block IRQ_STACK with alignment = 8, size = __size_irqstack__ { };
+define block FIQ_STACK with alignment = 8, size = __size_fiqstack__ { };
+define block UND_STACK with alignment = 8, size = __size_undstack__ { };
+define block ABT_STACK with alignment = 8, size = __size_abtstack__ { };
+define block HEAP      with alignment = 8, size = __size_heap__     { };
+
+initialize by copy with packing = none { readwrite };
+
+place at address MEM:__ROM_start__ { section .intvec };
+place in ROM_region   { readonly };
+place in RAM_region   { readwrite,
+                        block CSTACK, block SVC_STACK, block IRQ_STACK, block FIQ_STACK,
+                        block UND_STACK, block ABT_STACK, block HEAP };

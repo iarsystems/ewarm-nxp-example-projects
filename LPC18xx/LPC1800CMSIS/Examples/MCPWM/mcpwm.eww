@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Mcpwm_Simple/EWARM/Mcpwm_Simple.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Mcpwm_Simple</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Mcpwm_Simple</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

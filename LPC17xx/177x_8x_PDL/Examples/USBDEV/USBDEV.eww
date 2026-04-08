@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Usb_MassStorage/EWARM/Usb_MassStorage.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/USB_VirtualCom/EWARM/Usb_VirtualCom.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Usb_MassStorage</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_MassStorage</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Usb_VirtualCom</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_VirtualCom</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

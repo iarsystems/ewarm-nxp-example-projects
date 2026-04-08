@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>IRTC 1Hz Pulse</iar_name>                                                                  <!--App-->
+  <iar_description>The software example initializes IRTC module including so called fine compensation logic, RTCCLKOUT pin to generate 1 Hz pulse output.</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

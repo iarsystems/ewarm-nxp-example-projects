@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Mbx_Demo/IAR/M0/Mbx_Demo_M0.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Mbx_Demo/IAR/M4/Mbx_Demo_M4.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Mbx_Demo_M0</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Mbx_Demo_M0</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Mbx_Demo_M4</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Mbx_Demo_M4</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

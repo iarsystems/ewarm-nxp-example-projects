@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Timer_Capture/EWARM/Timer_Capture.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Timer_FreqMeasure/EWARM/Timer_FreqMeasure.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Timer_MatchInterrupt/EWARM/Timer_MatchInterrupt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Timer_MatchPolling/EWARM/Timer_MatchPolling.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchPolling</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchPolling</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchPolling</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchPolling</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

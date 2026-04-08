@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/RTC_Alarm/EWARM/Rtc_Alarm.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/RTC_Calibration/EWARM/Rtc_Calibration.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Rtc_Alarm</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Rtc_Alarm</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Rtc_Calibration</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Rtc_Calibration</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

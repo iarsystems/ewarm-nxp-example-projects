@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+
+  <project>
+    <path>$WS_DIR$/dual_core_tower.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/../dual_core_m4/dual_core_m4_tower.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>dual_core_m4_tower</project>
+        <configuration>SRAM</configuration>
+      </member>
+      <member>
+        <project>dual_core_tower</project>
+        <configuration>CoreA5</configuration>
+      </member>
+      <member>
+        <project>dual_core_tower</project>
+        <configuration>SRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+TIMER Capture example
+
+Example description:
+	Purpose:
+		This example describes how to use Capture Timer function.
+	Process:
+		We use Timer 0 to take a snapshot of the timer value when an input signal
+		on CAP0.2 (pin PF.8) transitions.
+		Timer configuration:
+			- Prescaler in microsecond value
+			- prescaler value = 1000000us = 1s
+			- Use channel, CAPn.0
+			- Enable capture both on rising and falling edge
+			- Generate capture interrupt
+		Whenever capture interrupt occurs, TIMER interrupt service routine will be invoke
+		to get captured time and display it into serial display
+		Changing connect PF_8 with GND and VCC whenever want to capture time.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Timer_Capture.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+		– 115200bps
+		– 8 data bit
+		– No parity
+		– 1 stop bit
+		– No flow control
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Start Debug then Run example and observe timer capture value on serial display
+		Changing connect PF_8 with GND and VCC whenever want to capture time.
+
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > TIMER > Capture"
+		for more details)
+
+-----------------------------------------------------------------------------------
+Frequency measure example
+
+Example description:
+	Purpose:
+		This example describes how to use Timer to measure a signal's frequency.
+	Process:
+		1) Initialize UART1 and display information menu.
+		2) Ask user to input frequency for a test signal.
+			 Configure PF_8(pin 20 of ETM connector) as CAP0.2, P7_0(pin 1 of Jumper JP19) as MAT3.2.
+		3) Configure TIMER3 as follow:
+			- Prescale register = 1 us.
+			- Match register = 1 / ((frequency)*1us*2)
+							 = 500000 / freuqency
+			- No interrupt, no stop but reset timer counter on match.
+		   Configure TIMER0 as follow:
+			- Prescale register = 1 us.
+			- Capture register: channel 0, capture on rising edge, generate interrupt
+			on capture.
+		4) Configure TIMER0 ISR:
+			- Prepare 5 interrupt times, in which timer counter and prescale are reset,
+			for stable.
+			- After this 5 interrupt times, get the capture value, raise done flag.
+		5) Start TIMER0 and TIMER3.
+		   Wait for done flag, then calculate and print out the measure frequency by:
+		      one cycle = capture value * 1us (as TIMER0 configuration).
+		      signal frequency = 1/one cycle = 1,000,000 / capture value.
+		   Press ESC if we intend to test with other frequencies.
+		   TIMER0 and TIMER2 are de-initialized.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Timer_FreqMeasure.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+		– 115200bps
+		– 8 data bit
+		– No parity
+		– 1 stop bit
+		– No flow control
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example
+					Use a wire connect PF_8 (pin 1 on X5 connector) and P7_0 (pin 23 on X2 connector)
+					Use PC's terminal to select the test signal on P3.2 and see
+					the result measured frequency printed out.
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > TIMER > FreqMeasure"
+		for more details)
+
+-----------------------------------------------------------------------------------
+TIMER Match example in generating different delay signals
+
+Example description:
+	Purpose:
+		This example describes how to use Timer Match to generate specific time
+		in interrupt mode.
+	Process:
+		In this case, the specific time generated is 1s.
+		Timer configuration:
+			- Timer channel: 0
+			- Prescaler in microsecond value
+			- prescaler value = 100us
+		Match configuration:
+			- Use channel 0, MR0
+			- Match value = 10000
+			Because timer tick = prescaler = 100us
+			So match time = 100 * 10000 = 1000000us = 1s
+			- Timer reset after match
+			- Not stop MR0 when match
+			- Toggle MR0.0 when match
+			Because match time = 1s
+			So MAT0.0 will be toggled at frequency = 1Hz
+			- Generate match interrupt
+		Whenever MR0 matches the value in TC register, match interrupt is occurs, TIMER0
+		will invoke interrupt service routine to handle interrupt, in this case, it will print
+		a notice sentence into serial display. timer will be reseted.
+
+		Note that: print data via UART can cause delay when match time set is too small.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Timer_MatchInterrupt.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+		– 115200bps
+		– 8 data bit
+		– No parity
+		– 1 stop bit
+		– No flow control
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example and observe match interrupt notice on serial display
+
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > TIMER > Interrupt_Match"
+		for more details)
+
+-----------------------------------------------------------------------------------
+TIMER Polling Match example
+
+Example description:
+	Purpose:
+		This example describes how to use Timer Match to generate specific time
+		in polling mode.
+	Process:
+		In this case, the specific time generated is 1/10s.
+		Timer configuration:
+			- Timer channel: 0
+			- Prescaler in microsecond value
+			- prescaler value = 100us
+		Match configuration:
+			- Use channel 0, MR0
+			- Match value = 1000
+			Because timer tick = prescaler = 100us
+			So match time = 100 * 1000 = 100000us = 100ms
+			- Timer reset after match
+			- Not stop MR0 when match
+			- Toggle MR0.0 when match
+			Because match time = 100ms
+			So MAT0.0 will be toggled at frequency = 10Hz
+			- Generate match interrupt
+		Using 'TIM_GetIntStatus( )' to wait until interrupt flag for MR0 is set.
+		When MR0 matches the value in the TC, interrupt flag MR0I is set, the program run out of
+		loop function and notice match interrupt occur, MAT0.0 pin is toggled.
+
+		Note that: print data via UART can cause delay when match time set is too small.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Timer_MatchPolling.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			EA LPC1800 EvalBoard
+			Hitex LPC4350 Board
+
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+		– 115200bps
+		– 8 data bit
+		– No parity
+		– 1 stop bit
+		– No flow control
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example and observe match interrupt notice on serial display
+
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > TIMER > Interrupt_Match"
+		for more details)
+
+  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

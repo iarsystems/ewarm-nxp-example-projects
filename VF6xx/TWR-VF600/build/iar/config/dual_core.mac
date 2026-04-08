@@ -1,0 +1,31 @@
+execUserSetup()
+{
+  //Excludes the flexbus memory range to prevent reading when the flexbus clock is disabled.
+  //  Vybrid Reference Manual 8.6.8.5 states: 
+  //  "Any access to the FlexBus device without clocks initialized may hang the bus."
+	
+  if (__driverType("jlink"))
+  {
+    __jlinkExecCommand("map exclude 0x30000000-0x3effffff"); //Exclude flexbus range
+  }
+
+  //Set start address for M4 core and reset both cores
+  
+  //Because the master lacks knowledge of the slave project, we extracted the entry symbol
+  //of the slave into a symbol-only object file which we include in the master project.
+  
+  //We can look up the address of this symbol here and use it as a start address for the slave
+  //The start address is written by the master to a special SFR.
+  //This may be done in software as well, where the label then is translated when linking.
+  //When using it here, we add 1 to it do denote that the start address is a thumb instruction.
+  
+  __var slave_adr;
+  slave_adr =  #__iar_program_start_slave;
+ 
+	__writeMemory32((int)slave_adr + 1, 0x4006E028, "Memory");
+  
+  //After this reset, the Vybrid bootloader is executed again and the slave
+  //will afterwards begin executing at the startup address.
+  __hwReset(0);
+  
+}

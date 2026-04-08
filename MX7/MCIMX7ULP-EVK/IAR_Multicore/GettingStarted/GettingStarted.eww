@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$/cortex_m4/cortex_m4.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$/cortex_a7/cortex_a7.ewp</path>
+    </project>
+    <batchBuild>
+        <batchDefinition>
+            <name>All</name>
+            <member>
+                <project>cortex_a7</project>
+                <configuration>OCRAM_STANDALONE</configuration>
+            </member>
+            <member>
+                <project>cortex_m4</project>
+                <configuration>OCRAM_STANDALONE</configuration>
+            </member>
+            <member>
+                <project>cortex_a7</project>
+                <configuration>OCRAM_AMP_SLAVE</configuration>
+            </member>
+            <member>
+                <project>cortex_m4</project>
+                <configuration>OCRAM_AMP_MULTICORE</configuration>
+            </member>
+            <member>
+                <project>cortex_a7</project>
+                <configuration>DDR_AMP_SLAVE</configuration>
+            </member>
+            <member>
+                <project>cortex_m4</project>
+                <configuration>OCRAM_DDR_AMP_MULTICORE</configuration>
+            </member>
+            <member>
+                <project>cortex_a7</project>
+                <configuration>DDR_STANDALONE</configuration>
+            </member>
+        </batchDefinition>
+    </batchBuild>
+</workspace>

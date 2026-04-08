@@ -1,0 +1,279 @@
+/*************************************************************************
+ *
+ *    Used with ICCARM and AARM.
+ *
+ *    (c) Copyright IAR Systems 2008
+ *
+ *    File name   : usb_desc.c
+ *    Description : USB descriptors module
+ *
+ *    History :
+ *    1. Date        : 2, June 2008
+ *       Author      : Stanimir Bonev
+ *       Description : Create
+ *
+ *    $Revision: 28 $
+ **************************************************************************/
+#include "arm_comm.h"
+
+#include "usb_cnfg.h"
+#include "usb_desc.h"
+#include "usb_hw.h"
+#include "usb_t9.h"
+#include "usb_dev_desc.h"
+   
+#include "audio_class.h"
+#include "audio_desc.h"
+
+#pragma data_alignment=4
+const UsbStandardDeviceDescriptorStr_t UsbStandardDeviceDescriptorStr =
+{
+  sizeof(UsbStandardDeviceDescriptorStr_t),
+  UsbDescriptorDevice,
+  0x0110,
+  0,
+  0,
+  0,
+  Ep0MaxSize,
+  0xFFFF,
+  0x0061,
+  0x0000,
+  iManufacturerStr,
+  iProductStr,
+  iSerialNumberStr,
+  1,
+};
+
+#pragma data_alignment=4
+static const uint8_t UsbFS_Cfg0[] =
+{
+  // Configuration Descriptor
+  sizeof(UsbStandardConfigurationDescriptor_t),
+  UsbDescriptorConfiguration,
+  _2BL(sizeof(UsbStandardConfigurationDescriptor_t) +
+       /* Interface 0 */
+       sizeof(UsbStandardInterfaceDescriptor_t) +
+       sizeof(UsbClassSpecificACInterfaceDescriptor_t) +
+       sizeof(UsbInputTerminalDescriptor_t) +
+       sizeof(UsbOutputTerminalDescriptor_t)+
+       sizeof(ClassSpecFeatureUnitDescriptor_t) + 3 +
+       /* Interface 1 */
+       sizeof(UsbStandardInterfaceDescriptor_t) +
+       sizeof(UsbStandardInterfaceDescriptor_t) +
+       sizeof(UsbClassSpecificASInterfaceDescriptor_t) +
+       sizeof(UsbTypeIFormatTypeDescriptor_t) + 3 +
+       sizeof(StandardASEndpointDescriptor_t) +
+       sizeof(ClassSpecASEndpointDescriptor_t)
+  ),
+  2,
+  1,
+  0,
+  UsbConfigurationCommmonAttr,
+  UsbConfigPower_mA(100),
+
+  // Interface 0 Standard AC Interface Descriptor
+  sizeof(UsbStandardInterfaceDescriptor_t),
+  UsbDescriptorInterface,
+  USB_CTRL_INTERFACE,
+  0,
+  0,
+  UsbDeviceClassAudio,
+  AUDIOCONTROL,
+  PR_PROTOCOL_UNDEFINED,
+  0,
+
+  // Class-Specific AC Interface Descriptor
+  sizeof(UsbClassSpecificACInterfaceDescriptor_t),
+  CS_INTERFACE,
+  HEADER,
+  _2BL(0x0100),
+  _2BL(sizeof(UsbClassSpecificACInterfaceDescriptor_t) +
+       sizeof(UsbInputTerminalDescriptor_t) +
+       sizeof(UsbOutputTerminalDescriptor_t)+
+       sizeof(ClassSpecFeatureUnitDescriptor_t) + 3),
+  1,
+  1,
+
+  // Input Terminal Descriptor - SPK
+  sizeof(UsbInputTerminalDescriptor_t),
+  CS_INTERFACE,
+  INPUT_TERMINAL,
+  SpkInTermID,
+  _2BL(AudioUsbStreaming),
+  0,
+  1,
+  _2BL(AUDIO_CHANNEL_M),
+  0,
+  0,
+
+  // Output Terminal Descriptor - SPK
+  sizeof(UsbOutputTerminalDescriptor_t),
+  CS_INTERFACE,
+  OUTPUT_TERMINAL,
+  SpkOutTermID,
+  _2BL(AudioOutputSpk),
+  0,
+  FeatUnit1Id,
+  0,
+
+  // Feature Unit Descriptor - SPK
+  sizeof(ClassSpecFeatureUnitDescriptor_t) + 3,
+  CS_INTERFACE,
+  FEATURE_UNIT,
+  FeatUnit1Id,
+  SpkInTermID,
+  1,
+  FeatUnitMute+FeatUnitVolume,
+  0,
+  0,
+
+  // Interface 1
+  // AudioStreaming Interface Descriptor
+  // Zero-bandwidth Alternate Setting 0
+  // Standard AS Interface Descriptor
+  sizeof(UsbStandardInterfaceDescriptor_t),
+  UsbDescriptorInterface,
+  USB_SPK_INTERFACE,
+  0,
+  0,
+  UsbDeviceClassAudio,
+  AUDIOSTREAMING,
+  PR_PROTOCOL_UNDEFINED,
+  0,
+
+  // Operational Alternate Setting 1
+  // Standard AS Interface Descriptor
+  sizeof(UsbStandardInterfaceDescriptor_t),
+  UsbDescriptorInterface,
+  1,
+  1,
+  1,
+  UsbDeviceClassAudio,
+  AUDIOSTREAMING,
+  PR_PROTOCOL_UNDEFINED,
+  0,
+
+  // Class-Specific AS General Interface Descriptor
+  sizeof(UsbClassSpecificASInterfaceDescriptor_t),
+  CS_INTERFACE,
+  AS_GENERAL,
+  SpkInTermID,
+  2,
+  _2BL(PCM),
+
+  // USB Spk Type I Format Type Descriptor
+  sizeof(UsbTypeIFormatTypeDescriptor_t)+ 3,
+  CS_INTERFACE,
+  FORMAT_TYPE,
+  FORMAT_TYPE_I,
+  1,
+  SubFrameSize,
+  16,
+  1,
+  (uint8_t)(SampFreq),(uint8_t)(SampFreq>>8),(uint8_t)(SampFreq>>16),
+
+  // USB SPK Standard Endpoint Descriptor
+  sizeof(StandardASEndpointDescriptor_t),
+  UsbDescriptorEp,
+  UsbEpOut(SpkEp>>1),
+  (uint8_t)UsbEpTransferIsochronous + (uint8_t)UsbEpSynchAdaptive,
+  _2BL(SpkEpMaxSize),
+  1,
+  0,
+  0,
+
+  // USB SPK Class-Specific Isoc. Audio Data Endpoint Descriptor
+  sizeof(ClassSpecASEndpointDescriptor_t),
+  CS_ENDPOINT,
+  EP_GENERAL,
+  0,
+  0,
+  _2BL(0),
+
+  0,
+};
+
+static const uint8_t * const UsbFS_CfgArray[] =
+{
+  UsbFS_Cfg0,
+  NULL,
+};
+
+static const UsbEP_ExtDesc_t UsbEPExt_Cfg0EP1 =
+{
+  1,                  // Configuration
+  UsbEpOut(SpkEp>>1),  // EP address
+  {
+    TRUE
+  }
+};
+
+static const UsbEP_ExtDesc_t * const UsbFS_EPExtArray[] =
+{
+  &UsbEPExt_Cfg0EP1,
+  NULL,
+};
+
+#pragma data_alignment=4
+const uint8_t UsbLanguagesStr [] =
+{
+  // Length of LanguagesStr + 2
+  4,
+  // Descriptor Type
+  UsbDescriptorString,
+  // Languages ID
+  // Languages1 ID English
+  0x09,0x04,
+};
+
+#pragma data_alignment=4
+const uint8_t ManufacturerStrLan1 [] =
+{
+  24, // length
+  UsbDescriptorString,  // Descriptor
+  'I',0,'A',0,'R',0,' ',0,'S',0,'y',0,'s',0,'t',0,'e',0,'m',0,'s',0, // Str
+};
+
+#pragma data_alignment=4
+const uint8_t ProductStrLan1 [] =
+{
+  30, //length
+  UsbDescriptorString, // Descriptor
+  'I',0,'A',0,'R',0,' ',0,'L',0,'P',0,'C',0,'4',0,'0',0,'8',0,'8',0,'-',0,'S',0,'K',0// Str
+};
+
+#pragma data_alignment=4
+const uint8_t SerialNumberStrLan1 [] =
+{
+  18, //length
+  UsbDescriptorString, // Descriptor
+  '0',0,'0',0,'0',0,'0',0,'0',0,'0',0,'0',0,'1',0, // Str
+};
+
+const uint8_t * const UsbLanguages1Strings[] =
+{
+  // iManufacturerStr
+  ManufacturerStrLan1,
+  // iProductStr
+  ProductStrLan1,
+  // iSerialNumberStr
+  SerialNumberStrLan1,
+  // Terminator
+  NULL
+};
+
+const uint8_t * const * const UsbFS_StringArray[] =
+{
+  UsbLanguages1Strings,
+  NULL,
+};
+
+const void * const UsbDescArray[] =
+{
+  UsbFS_CfgArray,
+  UsbFS_EPExtArray,
+  UsbLanguagesStr,
+  UsbFS_StringArray,
+  NULL,
+};
+

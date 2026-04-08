@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/ATIMER_WIC/EWARM/Atimer_Wic.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Atimer_Wic</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

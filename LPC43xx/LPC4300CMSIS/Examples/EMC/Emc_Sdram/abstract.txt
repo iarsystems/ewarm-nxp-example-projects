@@ -1,0 +1,58 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+
+@Example description:
+	Purpose:
+		This example describes how to use EMC to connect with external SDRAM
+	Process:
+		Set M4 Clock equal or lower than 120MHz by set mult<=10 in function CGU_Init()
+		Setup Pin for External Memory
+		Setup EMC timing on DYCS0
+		Fill RAM content
+		Check RAM content
+
+
+@Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	Emc_Sdram.c: Main program
+	SDRAM_Init.c: contains IS42S16400D SDRAM init function.
+
+
+@How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 board
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example
+
+

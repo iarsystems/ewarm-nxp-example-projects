@@ -1,0 +1,69 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to use GPDMA Link-list function
+	Process:
+		To test GPDMA link-list function, we initialize two source buffers at two different memory blocks
+		Set up two link-list DMA_LLI_Struct[0], DMA_LLI_Struct[1] structs and configure GPDMA peripheral 
+		to transfer data of two block to destination buffer.
+		After transferring completed, "Buffer_Verify()" will be called to compare data block in two
+		memory sources and destination. If not similar, program will enter infinite loop.
+		Open serial display to see DMA transfer result.
+					
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Gpdma_LinkList.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+				
+	Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 		- Use USB cable connect to board's UART1->USB port
+		
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+					
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+					
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, observe data on serial display 
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\GPDMA\GPDMA.eww project file to run example on IAR

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/CortexM3_Bitband/EWARM/CortexM3_Bitband.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM3_Mpu/EWARM/CortexM3_Mpu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM3_Privilege/EWARM/CortexM3_Privilege.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Mpu</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

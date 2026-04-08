@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<infocenter_data version="1.0">
+  <iar_template_variant>1</iar_template_variant>
+  <iar_name>NXP</iar_name>                             <!--Manufacturer-->
+  <iar_title>NXP examples
+  </iar_title>                  <!--Manufacturer-->
+  <iar_description>
+        &lt;h2&gt;&lt;a href="https://mcuxpresso.nxp.com/appcodehub" target="_blank" &gt;NXP MCUXpresso SDK &lt;/a&gt;&lt;/h2&gt;
+        &lt;br&gt;
+        &lt;h2&gt;More NXP examples can be found here:
+        &lt;br&gt;
+        - information site: https://mcuxpresso.nxp.com/appcodehub
+        &lt;br&gt;
+        - source code at: https://github.com/search?q=org%3Anxp-appcodehub+iar+in%3Areadme&type=Repositories
+        &lt;/h2&gt;
+        &lt;br&gt;
+        &lt;h2&gt;Installed example projects&lt;/h2&gt;
+  </iar_description>
+
+
+</infocenter_data>

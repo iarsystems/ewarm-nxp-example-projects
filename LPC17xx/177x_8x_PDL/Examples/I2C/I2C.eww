@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/I2c_Pca9532Drv/EWARM/I2c_Pca9532Drv.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>I2c_Pca9532Drv</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>I2c_Pca9532Drv</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

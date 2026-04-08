@@ -1,0 +1,75 @@
+/**********************************************************************
+* $Id: Abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to write a USB Composite(MassStorage, HID and DFU) 
+		application using USB ROM driver on LPC18xx.
+
+
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	usbd_dfu.c: contains USB DFU function
+	usbd_msd_mem.c : contains USB MSC function and memory device definition
+	usbd_hid.c : contains USB HID function
+	composite_usbdesc.c : contains usb device descriptor.
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: Testing HID interface
+  				- On PC launch C:\Keil\ARM\Utilities\HID_Client\Release\HIDClient.exe
+    			- Select the "LPC18xx" device in the drop down box
+    			- Now set check boxes next to "Outputs (LEDs)"
+    			- The out report recived by the device loop-backed to PC. Hence the checkbox 
+    			next to "Inputs (Buttons)" should look same a "Outputs".
+			- Testing Mass storage interface
+  				- On PC a new unformatted drive with 32KB size should appear.
+    			- Format the drive and copy images to the drive.
+			- Testing DFU interface
+			  - On PC launch DFU download utility.
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV_ROM > USBComposite"
+		for more details)
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV_ROM\USBDEV_ROM.eww project file to run example on IAR
+    

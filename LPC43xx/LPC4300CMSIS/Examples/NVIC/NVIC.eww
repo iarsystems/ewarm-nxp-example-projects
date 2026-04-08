@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Nvic_Priorities/IAR/Nvic_Priorities.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Nvic_VectorTableRelocation/IAR/Nvic_VectorTableRelocation.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Nvic_Priorities</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Nvic_Priorities</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Nvic_VectorTableRelocation</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Nvic_VectorTableRelocation</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

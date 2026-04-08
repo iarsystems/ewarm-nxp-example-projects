@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Emac_EasyWeb/EWARM/Emac_EasyWeb.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Emac_Raw/EWARM/Emac_Raw.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Emac_uIP/EWARM/Emac_uIP.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Emac_Raw</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Emac_Raw</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Emac_uIP</project>
+        <configuration>Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

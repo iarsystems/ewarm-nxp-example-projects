@@ -1,0 +1,26 @@
+########################################################################
+#
+#                           Blinky.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+DESCRIPTION
+===========
+   This example project shows how to use the IAR Embedded Workbench for ARM
+  to develop code for the NXP LPC11E1x evaluation board. It shows
+  basic use of GPIO, Timer16, Clock system and interrupt controller.
+   A program to implement LED blink code which include timer, GPIO initialization, and
+  clock monitoring on LPC11Exx. PIO0_7 is toggled.
+
+COMPATIBILITY
+=============
+   The Blinky example project is compatible with NXP LPC11E1x
+  evaluation board. By default, the project is configured to use the
+  J-Link JTAG/SWD interface.
+
+GETTING STARTED
+===============
+  1) Build and download the program.
+  2) Run the program.

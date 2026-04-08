@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/BasicLcd.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>BasicLcd</project>
+        <configuration>DebugRunFromFlash</configuration>
+      </member>
+      <member>
+        <project>BasicLcd</project>
+        <configuration>StandaloneRunFromxRam</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

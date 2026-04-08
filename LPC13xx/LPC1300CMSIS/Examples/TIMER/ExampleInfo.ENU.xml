@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>TIMER</iar_name>                                   <!--App-->
+  <iar_description>These examples show how to use TIMER in interrup and polling mode, and how to use TIMER Capture and Match functions</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_gint</iar_name>                                   <!--App-->
+  <iar_description>
+    The lpc_gint shows how to use SDK drivers to use the Group GPIO input interrupt peripheral
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

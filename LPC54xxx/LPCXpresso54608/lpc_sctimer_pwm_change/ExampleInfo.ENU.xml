@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_sctimer_pwm_change</iar_name>                                   <!--App-->
+  <iar_description>
+    The lpc_sctimer_pwm_change is a program of the SDK SCTimer driver's PWM generation.
+    It updates the PWM signals dutycycle.
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

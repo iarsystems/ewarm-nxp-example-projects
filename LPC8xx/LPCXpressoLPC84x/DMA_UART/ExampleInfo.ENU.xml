@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>FAIM_and_Clocks</iar_name>                                   <!--App-->
+  <iar_description>To demonstrate write and read of the FAIM memory using ROM API calls. !!!READ DISCLAIMER 
+  to be sure not to leave the device uncommunicative.
+  </iar_description>          <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

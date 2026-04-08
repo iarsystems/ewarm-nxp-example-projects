@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+EMAC Easy web example
+
+Example description:
+	Purpose:
+		This example describes how to implement an simple web application
+	Process:
+		This tiny web server was taken from the 'Design &amp; Elektronik'
+		extra issue 'Embedded Internet'. It can be downloaded from the
+		following web site: www.elektroniknet.de/extraheft.
+
+		This software was adapted to work with a LPC18xx Validation board
+		and IAR EWARM C Compiler with as few modifications as possible.
+
+		Note that modifications are not optimal, because ARM is a 32-bit
+		machine while the original software was written for 16-bit cpu.
+
+		The web page shows the values of two analog inputs (AN0 and AN1).
+		This tiny webserver needs very little resources and therefore has
+		some restrictions:
+		- only one active TCP session at any one time
+		- no support for fragmented IP datagrams
+		- no buffer for TCP datagrams received in wrong order
+		- only one web page. No GIF/JPG graphics possible.
+
+		The IP address can be modified in the module tcpip.h to
+		fit into your existing LAN (see MYIP_x).
+		The default IP address is: 192.168.0.100
+
+		MAC address can be changed from emac.h file
+		IP Address can be changed from tcpip.h file
+
+		Note: check correct settings for jumpers according the board's manual
+
+		Please order the extra issue 'Embedded Internet' of the
+		'Design &amp; Elektronik' magazine for a technical description.
+		It is only available in German language.
+
+Directory contents:
+	easyweb.c/.h: easy web application (Main program)
+	EMAC.h/.c: LPC43xx EMAC hardware driver functions
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Retarget.c: target-dependent low level functions
+	tcpip.h/.c: implement TCP/IP stack functions
+	webpage.h: webpage html source
+
+How to run:
+	Hardware configuration:
+		This example is tested on:
+			Hitex LPC4350 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Use CrossOver cable to connect from your PC to ETH port on eval board
+		- Step 3: Connect UART1 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Re-config IP address on PC:
+					+ IP address: 192.168.0.x (x != 100)
+					+ Subnet mask: 255.255.255.0
+		- Step 6: Run Debug the board
+		- Step 7: Open command prompt window, execute 'ping 192.168.0.100' command then wait until it replies
+		- Step 8: Open web browser, access to address "http://192.168.0.100" to display the content
+							of webserver. Turn potentiometer and see the update ADC value on this web
+
+		(Pls reference "LPC43xx Example Description" document - chapter "Examples > EMAC > Easy_Web"
+		for more details)
+
+   </pre>
+
+  </div>
+  </body>
+</html>
+

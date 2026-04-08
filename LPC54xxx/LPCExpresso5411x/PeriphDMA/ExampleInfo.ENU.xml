@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Periph DMA</iar_name>                                   <!--App-->
+  <iar_description>Demonstrates how to setup and use the DMA
+  controller for a limited software triggered memory to
+  memory transfer</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

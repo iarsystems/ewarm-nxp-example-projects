@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/uarttest.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>uarttest</project>
+        <configuration>Debug iFlash</configuration>
+      </member>
+      <member>
+        <project>uarttest</project>
+        <configuration>Debug iRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

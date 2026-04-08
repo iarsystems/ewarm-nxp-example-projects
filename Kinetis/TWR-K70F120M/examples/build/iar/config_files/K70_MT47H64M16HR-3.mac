@@ -1,0 +1,132 @@
+/*****************************************************************************/
+/* Setup macro determines time of execution. */
+__var reg, mcg_s, mcg_s2;
+
+_pll_Init()
+{
+//---------------------------------------------------------------
+// Clock
+    __writeMemory32(0x00047F82, 0x40048038, "Memory");  // SIM_SCGC5
+    __writeMemory32(0x01150000, 0x40048044, "Memory");  // SIM_CLKDIV1
+
+// PLL 1
+    __message "-- Setup PLL 0\n";
+    __writeMemory8(0x10, 0x40064001, "Memory");     // MCG_C2 tower can osc
+    __writeMemory8(0xA8, 0x40064000, "Memory");     // MCG_C1
+    __writeMemory8(0x04, 0x40064004, "Memory");     // MCG_C5 tower /5
+    __writeMemory8(0x68, 0x40064005, "Memory");     // MCG_C6 tower
+    reg  = __readMemory8(0x40064004, "Memory");     // MCG_C5
+    reg |= 0x40u;                                   // MCG_C5 PLL0 enable
+    __writeMemory8(reg, 0x40064004, "Memory");      // MCG_C5
+    reg  = __readMemory8(0x40064000, "Memory");     // MCG_C1
+    reg &= ~0xC0u;                                  // MCG_C1 CLKS = 00
+    __writeMemory8(reg, 0x40064000, "Memory");      // MCG_C1
+
+//---------------------------------------------------------------
+// PLL 2
+    __message "-- Setup PLL 1\n";
+    __writeMemory8(0x14, 0x4006400F, "Memory");     // MCG_C10  Tower osc
+    __writeMemory8(0x0E, 0x40064011, "Memory");     // MCG_C12  Tower x30
+    __writeMemory8(0x44, 0x40064010, "Memory");     // MCG_C11  Tower /5
+
+//---------------------------------------------------------------
+// trace clock - it is already initialized in DMAC file
+    //__message "-- Enable Trace clock\n";
+    //__writeMemory32(0x44001004, 0x40048004, "Memory");
+    //__writeMemory32(0x600, 0x4004E05C, "Memory"); //PORTF_PCR23
+}
+//---------------------------------------------------------------
+
+_ddr_Init()
+{
+    __message "-- Enabling external DDR\n";
+
+    /* Enable DDR controller clock */
+    //SIM_SCGC3 |= SIM_SCGC3_DDR_MASK;
+    reg  = __readMemory32(0x40048030u,"Memory");
+    reg |= 0x4000u;
+    __writeMemory32(reg, 0x40048030u, "Memory"); //System clock gating Register (SIM_SCGC3)
+
+    /* Enable DDR pads and set slew rate */
+    //SIM_MCR |= 0xC4;   // bits were left out of the manual so there isn't a macro right now
+    __writeMemory32(0xC4, 0x4004806Cu, "Memory"); // SIM_MCR
+
+    /*I/O Pad Control (PAD_CTRL) register.*/
+    __writeMemory16(0x01030203u, 0x400Ae1acu, "Memory");
+    __writeMemory32(0x00000400, 0x400AE000u, "Memory"); //DDR Control Register 0 (DDR_CR00)
+
+    __writeMemory32(0x02000031, 0x400AE008u, "Memory"); //DDR Control Register 2 (DDR_CR02)
+    __writeMemory32(0x02020506, 0x400AE00Cu, "Memory"); //DDR Control Register 3 (DDR_CR03)
+    __writeMemory32(0x06090202, 0x400AE010u, "Memory"); //DDR Control Register 4 (DDR_CR04)
+    __writeMemory32(0x02020302, 0x400AE014u, "Memory"); //DDR Control Register 5 (DDR_CR05)
+    __writeMemory32(0x02904002, 0x400AE018u, "Memory"); //DDR Control Register 6 (DDR_CR06)
+    __writeMemory32(0x01000303, 0x400AE01Cu, "Memory"); //DDR Control Register 7 (DDR_CR07)
+    __writeMemory32(0x05030201, 0x400AE020u, "Memory"); //DDR Control Register 8 (DDR_CR08)
+    __writeMemory32(0x020000c8, 0x400AE024u, "Memory"); //DDR Control Register 9 (DDR_CR09)
+    __writeMemory32(0x03003207, 0x400AE028u, "Memory"); //DDR Control Register 10 (DDR_CR10)
+    __writeMemory32(0x01000000, 0x400AE02Cu, "Memory"); //DDR Control Register 11 (DDR_CR11)
+    __writeMemory32(0x04920031, 0x400AE030u, "Memory"); //DDR Control Register 12 (DDR_CR12)
+    __writeMemory32(0x00000005, 0x400AE034u, "Memory"); //DDR Control Register 13 (DDR_CR13)
+    __writeMemory32(0x00C80002, 0x400AE038u, "Memory"); //DDR Control Register 14 (DDR_CR14)
+    __writeMemory32(0x00000032, 0x400AE03Cu, "Memory"); //DDR Control Register 15 (DDR_CR15)
+    __writeMemory32(0x00000001, 0x400AE040u, "Memory"); //DDR Control Register 16 (DDR_CR16)
+
+    __writeMemory32(0x00030300, 0x400AE050u, "Memory"); //DDR Control Register 20 (DDR_CR20)
+    __writeMemory32(0x00040232, 0x400AE054u, "Memory"); //DDR Control Register 21 (DDR_CR21)
+    __writeMemory32(0x00000000, 0x400AE058u, "Memory"); //DDR Control Register 22 (DDR_CR22)
+    __writeMemory32(0x00040302, 0x400AE05Cu, "Memory"); //DDR Control Register 23 (DDR_CR23)
+
+    __writeMemory32(0x0A010201, 0x400AE064u, "Memory"); //DDR Control Register 25 (DDR_CR25)
+    __writeMemory32(0x0101FFFF, 0x400AE068u, "Memory"); //DDR Control Register 26 (DDR_CR26)
+    __writeMemory32(0x01010101, 0x400AE06Cu, "Memory"); //DDR Control Register 27 (DDR_CR27)
+    __writeMemory32(0x00000003, 0x400AE070u, "Memory"); //DDR Control Register 28 (DDR_CR28)
+    __writeMemory32(0x00000000, 0x400AE074u, "Memory"); //DDR Control Register 29 (DDR_CR29)
+    __writeMemory32(0x00000001 , 0x400AE078u, "Memory"); //DDR Control Register 30 (DDR_CR30)
+
+    __writeMemory32(0x02020101, 0x400AE088u, "Memory"); //DDR Control Register 34 (DDR_CR34)
+
+    __writeMemory32(0x01010201, 0x400AE090u, "Memory"); //DDR Control Register 36 (DDR_CR36)
+    __writeMemory32(0x00000200, 0x400AE094u, "Memory"); //DDR Control Register 37 (DDR_CR37)
+    __writeMemory32(0x00200000, 0x400AE098u, "Memory"); //DDR Control Register 38 (DDR_CR38)
+    __writeMemory32(0x01010020, 0x400AE09Cu, "Memory"); //DDR Control Register 39 (DDR_CR39)
+    __writeMemory32(0x00002000, 0x400AE0A0u, "Memory"); //DDR Control Register 40 (DDR_CR40)
+    __writeMemory32(0x01010020, 0x400AE0A4u, "Memory"); //DDR Control Register 41 (DDR_CR41)
+    __writeMemory32(0x00002000, 0x400AE0A8u, "Memory"); //DDR Control Register 42 (DDR_CR42)
+    __writeMemory32(0x01010020, 0x400AE0ACu, "Memory"); //DDR Control Register 43 (DDR_CR43)
+    __writeMemory32(0x00000000, 0x400AE0B0u, "Memory"); //DDR Control Register 44 (DDR_CR44)
+    __writeMemory32(0x03030303, 0x400AE0B4u, "Memory"); //DDR Control Register 45 (DDR_CR45)
+    __writeMemory32(0x02006401, 0x400AE0B8u, "Memory"); //DDR Control Register 46 (DDR_CR46)
+    __writeMemory32(0x01020202, 0x400AE0BCu, "Memory"); //DDR Control Register 47 (DDR_CR47)
+    __writeMemory32(0x01010064, 0x400AE0C0u, "Memory"); //DDR Control Register 48 (DDR_CR48)
+    __writeMemory32(0x00020101, 0x400AE0c4u, "Memory"); //DDR Control Register 49 (DDR_CR49)
+    __writeMemory32(0x00000064, 0x400AE0C8u, "Memory"); //DDR Control Register 50 (DDR_CR50)
+
+    __writeMemory32(0x02000602, 0x400AE0D0u, "Memory"); //DDR Control Register 52 (DDR_CR52)
+    __writeMemory32(0x03c80000, 0x400AE0D4u, "Memory"); //DDR Control Register 53 (DDR_CR53)
+    __writeMemory32(0x03c803c8, 0x400AE0D8u, "Memory"); //DDR Control Register 54 (DDR_CR54)
+    __writeMemory32(0x03c803c8, 0x400AE0DCu, "Memory"); //DDR Control Register 55 (DDR_CR55)
+    __writeMemory32(0x020303c8, 0x400AE0E0u, "Memory"); //DDR Control Register 56 (DDR_CR56)
+    __writeMemory32(0x01010002, 0x400AE0E4u, "Memory"); //DDR Control Register 57 (DDR_CR57)
+    __writeMemory32(0x00000401, 0x400AE000, "Memory");  //DDR_CR00  start
+    __writeMemory32(0x00100000, 0xE008000C, "Memory");  //MCM_CR    128MB
+
+    __writeMemory32(0x0,0xE0082800, "Memory"); //Disable cache
+
+    __message "-- DDR ready\n";
+
+}
+
+execUserPreload()
+{
+    __message "execUserPreload() called.\n";
+    _pll_Init();
+    _ddr_Init();
+    __message "WDOG_STCTRLH =", reg:%x;
+}
+
+execUserReset()
+{
+    __message "execUserReset() called.\n";
+    _pll_Init();
+    _ddr_Init();
+}

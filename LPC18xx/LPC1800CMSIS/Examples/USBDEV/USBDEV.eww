@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Usb_Cdc/EWARM/Usb_Cdc.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Usb_MassStorage/EWARM/Usb_MassStorage.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Usb_Cdc</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Usb_MassStorage</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+Deep PowerDown example
+
+Example description:
+	Purpose:
+		This example describes how to enter system in Deep PowerDown mode and wake-up
+		by using RTC (Real-time clock) interrupt
+	Process:
+		When system enter in Deep PowerDown mode, it just can be waked up when an external
+		reset signal is applied, or the RTC interrupt is enabled and an RTC interrupt is
+		generated.
+		In this case, we can use both RTC interrupt or hit RESET button to wake-up system
+		RTC configure:
+			- Alarm time: 5s
+		So, after each 5s, RTC will generate Alarm interrupt to wake up system.
+
+		After flash code, press reset button and wait.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Pwr_DeepPowerDown.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Use USB cable connect to board's UART1->USB port
+
+	Running mode:
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example and observe on serial display
+
+-----------------------------------------------------------------------------------
+DeepSleep example
+
+Example description:
+	Purpose:
+		This example describes how to enter system in DeepSleep mode and wake up it
+		by using WIC Interrupt
+	Process:
+		Configure WIC to receive interrupt from WAKEUP0 pin
+		Enter system in DeepSleep by using CLKPWR_DeepSleep function (call __WFI())
+		Connect WAKEUP0 to 3.3V to generate interrupt and wake up the system.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Pwr_DeepSleep.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Use USB cable connect to board's UART1->USB port
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example and observe on serial display
+
+-----------------------------------------------------------------------------------
+PowerDown example
+
+Example description:
+	Purpose:
+		This example describes how to enter system in PowerDown mode and wake up it
+		by using EVRT Interrupt
+	Process:
+		Configure EVRT to receive interrupt from WAKEUP0 pin
+		Enter system in PowerDown by using PWR_PowerDown function (call __WFI())
+		Connect WAKEUP0 to 3.3V to generate interrupt and wake up the system.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Pwr_PowerDown.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Run example and observe the LEDs
+		- Step 4: Connect WAKEUP0 pin to 3.3V to let the LEDs continue running
+
+-----------------------------------------------------------------------------------
+Sleep example
+
+Example description:
+	Purpose:
+		This example describes how to enter system in sleep mode and wake-up by using
+		WIC interrupt
+	Process:
+		Configure WIC to receive interrupt from WAKEUP0 pin
+		Enter system in Sleep by using CLKPWR_Sleep function (call __WFI())
+		Connect WAKEUP0 to 3.3V to generate interrupt and wake up the system.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	Pwr_Sleep.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Use USB cable connect to board's UART1->USB port
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example and observe on serial display
+
+</pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

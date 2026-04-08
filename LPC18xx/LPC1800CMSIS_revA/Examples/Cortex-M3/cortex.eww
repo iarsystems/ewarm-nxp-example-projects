@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/CortexM3_Bitband/EWARM/CortexM3_Bitband.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM3_Mpu/EWARM/CortexM3_Mpu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM3_Privilege/EWARM/CortexM3_Privilege.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Bitband</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Mpu</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Mpu</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Mpu</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Mpu</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>CortexM3_Privilege</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

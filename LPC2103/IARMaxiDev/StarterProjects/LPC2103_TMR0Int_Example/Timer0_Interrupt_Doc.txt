@@ -1,0 +1,49 @@
+This example shows a "bare bones" program to set up an interrupt on Timer0 match compare on
+channel 0, and how to install the ISR, and configure the VIC for it to interrupt as an IRQ.
+
+Specifications:
+1. Configure Timer0 to interrupt on matching value 3,680 in MR0, generating 1000Hz intrpt rate.
+2. Set up IRQ isrs to execute directly, this requires instruction at address 0x18
+   to be ldr pc,[pc,#-0xFF0]. ISRs must be written in ARM mode and have __irq
+   keyword in declaration and definition
+3. increment a counter in timer isr
+4. when counter in isr = 500, set a flag in foreground loop to signal .1 second elapsed
+5. clear flag in foreground loop when set
+6. Toggle the state of port pin P0.6 to blink LED6 on row of LEDs
+7. Configure External Interrupt 1 and 2 to interrupt when buttons on the LPC2103 board pushed
+8. Do not make provision for nesting of interrupts, timer interrupt is higher priority than
+   EXTINT1 and EXTINT2. If EXTINT1 or EXTINT22 happens while timer isr is executing, it will
+   PEND.
+9. Application should run out of flash or RAM
+10. Ensure that PLL is disengaged by clearing PLLE and PLLC and giving PLL feed
+   sequence
+11.Use .ddf file iolpc2103MM.ddf instead of iolpc2103.ddf which is provided as
+   as a default when the LPC2103 part is chosen in Project\Options\General.
+   This is because displaying the register VICVectAddr in C-SPY debugger's
+   register window can affect the state machine og the VIC, and under certain
+   circumstances disable interrupts. If the content of VICVectAddr must be
+   known, copy it into a register at read time for later display.
+
+12. Count the number of times buttons connected to EXTINT1 and EXTINT2 are pressed and light
+    leds 8 and 10 respectively when these buttons pressed.
+13. Handle undefined instruction, instruction prefetch and data abort by C functions that
+    spin in a while(1); loop.
+
+Author: Mark Moran
+
+Last Date Modified: 30 Dec 2005
+Status:
+- Works as specified from RAM with JLINK.
+- Temporarily using LPC2148 header and .ddf files
+
+Copyright: IAR Systems Software Inc. 2005
+Disclaimer: This code is furnished "as is" solely for the purpose of
+illustrating how to use the IAR Embedded Workbench integrated development
+environment to create code for NXP LPC2xxx ARM7 microcontrollers, and to
+illustrate the use of peripherals of that part. Every effort has been made to
+ensure that this example works according to the above specifications. Code in
+this example may be used freely for any purpose with the understanding that
+IAR Systems Software assumes no further responsibility for accuracy or
+reliability once it has been partly or fully copied into another application.
+By using any portion of this code in other applications,the user takes full
+responsibility for code at that time.

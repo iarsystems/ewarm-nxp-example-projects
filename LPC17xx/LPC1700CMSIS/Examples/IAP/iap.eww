@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/IAP_Demo/EWARM/IAP_Demo.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>IAP_Demo</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>IAP_Demo</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

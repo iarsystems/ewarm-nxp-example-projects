@@ -1,0 +1,37 @@
+
+Specifications:
+1. Create a 1Hz interrupt using RTC second interrupt
+2. Configure RTC as IRQ interrupt
+3. Toggel LED 4 at 0.5Hz rate
+4. Ensure that PLL is disengaged by clearing PLLE and PLLC and giving PLL feed
+   sequence
+5. Use .ddf file iolpc2103MM.ddf
+   This is because displaying the register VICVectAddr in C-SPY debugger's
+   register window can affect the state machine og the VIC, and under certain
+   circumstances disable interrupts. If the content of VICVectAddr must be
+   known, copy it into a register at read time for later display.
+6. Locate instruction ldr pc,[pc,#-0xFF0] at 0x18 so that control will jump directly
+   to isr for interrupt in question
+7. Make a 350Hz, 30% duty cycle square wave using PWMCON from Timer0. Route this
+   to pin P0.5
+8. Trap instruction prefetch abort, undefined instruction abortand data fetch
+   abort exceptions in handlers that execute infinite loops.
+
+Author: Mark Moran
+Last Date Changed: 14 Jan 06 - tested with new headers from IAR for LPC2101,2,3
+Status:
+- Works running out of RAM with JLINK.
+- Works running out of flash with JLINK.
+- Works running out of flash without JLINK.
+
+Copyright: IAR Systems Software Inc. 2005
+Disclaimer: This code is furnished "as is" solely for the purpose of
+illustrating how to use the IAR Embedded Workbench integrated development
+environment to create code for NXP LPC2xxx ARM7 microcontrollers, and to
+illustrate the use of peripherals of that part. Every effort has been made to
+ensure that this example works according to the above specifications. Code in
+this example may be used freely for any purpose with the understanding that
+IAR Systems Software assumes no further responsibility for accuracy or
+reliability once it has been partly or fully copied into another application.
+By using any portion of this code in other applications,the user takes full
+responsibility for code at that time.

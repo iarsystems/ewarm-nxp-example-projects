@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Img Loader</iar_name>                                   <!--App-->
+  <iar_description>The example is intended to load the bmp images used by the other
+  IAR-LPC4088-SK demos into the SPI flash memory.</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

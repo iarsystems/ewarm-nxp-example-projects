@@ -1,0 +1,8 @@
+execUserPreload()
+{
+  __writeMemory32(0x20003CE3, 0xFFE00000, "Memory");
+  __writeMemory32(0x20003CE3, 0xFFE00004, "Memory");
+  __writeMemory32(0x20003CE3, 0xFFE00008, "Memory");
+  __writeMemory32(0x20003CE3, 0xFFE0000C, "Memory");
+  __writeMemory32(0x0E6149E4, 0xE002C014, "Memory");  // PINSEL2: CS0, CS1, CS2, OE, WE, BLS0..3, D0..31, A2..23, JTAG
+}

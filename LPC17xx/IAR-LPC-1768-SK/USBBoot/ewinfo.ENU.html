@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+DESCRIPTION
+===========
+
+  This example project shows how to use the IAR Embedded Workbench for ARM
+ to develop code for IAR-LP1768-SK board.
+  The USB Bootloader example implements USB Mass Storage Device on the
+ microcontroller's flash memory. This enables the whole microcontroller's flash
+ to be accessed by PC via USB. The first 16KB are used by the USB bootloader.
+ The rest of the flash can be used by user program.
+  On start up the USB bootloader will check for valid user program at address 
+ 0x00004000. If there is no user code or WAKE-UP button is pressed (if CRP3 is 
+ selected the bootloader will not check for pressed WAKE-UP button) the USB Mass
+ Storage is starded. Else the User program is started.
+  
+ User Program Build:
+  In order to be able to load user program with the USB bootloader you should do:
+  1. Link the user program at start address 0x4000. You can do this by simply
+     using the <installation-root>\arm\examples\NXP\LPC17xx\IAR-LPC-1768-SK
+     \USBBoot\config\LPC1768_UserFlash.icf file.
+  2. Build a binary image of the user program: Select Project\Options\Output Converter
+     Check the "Generate additional output" box and select "binary"
+
+ To download a user program:
+  1. Program the USB Bootloader example on the target board (IAR-LP1768-SK). 
+  2. Reset the board with WAKE_UP button pressed.
+  3. Connect the board to PC with USB cable. A disk drive will appear on your PC.
+    If you connect it for a first time Windows will automatically load the proper
+    device driver. Device name depends of the Code Read Protection level (CPR) you
+    have selected for USB Bootloader example (defined in DiskImg.h).
+  4. The disk drive contains two files USBOOT.BIN and FIRMWARE.BIN. Delete the 
+    FIRMWARE.BIN file (this will erase the user flash array).
+  6. Copy the user program bin file to the "CRP " disk. 
+  
+  7. Reset the board. The user program should start.
+  
+  To load new user program repeat from step 2.
+
+You can find some ot the IAR-LPC1768-SK examples bin files at
+    <installation-root>\arm\examples\NXP\LPC17xx\IAR-LPC-1768-SK\USBBoot\bin
+  
+Note: The USBBOOT.BIN can be also delited from the disk. This will erase the first
+16KB flash (if CRP is disabled) or the whole flash memory (if CRP1, CPR2 or CRP3 
+is enalbed). Since the USB Bootloader resides in the first 16KB flash the demo will
+hang. This however can be used to disable CRP if it was previously enabled. The other
+way is to use ISP.
+
+Note: If CRP3 is selected, no future factory testing can be performed on the device
+
+COMPATIBILITY
+=============
+
+  The USB Bootloader project is compatible with IAR-LP1768-SK evaluation board. 
+  By default the project is configured to use the J-Link SWO interface.
+
+CONFIGURATION
+=============
+
+   After power-up the controller get clock from internal RC oscillator that
+  is unstable and may fail with J-Link auto detect. In this canse adaptive
+  clocking should be used. The adaptive clock can be select from menu:
+  Project->Options..., section Debugger->J-Link/J-Trace  JTAG Speed - Adaptive.
+
+   Make sure that the following jumpers are correctly configured on the
+  IAR LPC-1768-SK evaluation board:
+
+  PWR_SEL     - depending of power source
+  USBD-       - USB Device (1-2)  
+  USBD+       - USB Device (1-2)  
+  RST_E       - unfilled
+  ISP_E       - unfilled
+
+GETTING STARTED
+===============
+
+  1) Start the IAR Embedded Workbench for ARM.
+
+  2) Select File->Open->Workspace...
+     Open the following workspace:
+
+     <installation-root>\arm\examples\NXP\LPC17xx\IAR-LPC-1768-SK\
+     USBBoot\USBBoot.eww
+
+  3) Run the program.
+   </pre>
+
+  </div>
+  </body>
+</html>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/adc.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>adc</project>
+        <configuration>Flash_Debug_2468</configuration>
+      </member>
+      <member>
+        <project>adc</project>
+        <configuration>RAM_Debug_2468</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

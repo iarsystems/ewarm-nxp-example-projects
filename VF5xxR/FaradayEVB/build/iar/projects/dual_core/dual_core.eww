@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/dual_core.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/../dual_core_m4/dual_core_m4.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>dual_core_m4</project>
+        <configuration>SRAM</configuration>
+      </member>
+      <member>
+        <project>dual_core</project>
+        <configuration>SRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

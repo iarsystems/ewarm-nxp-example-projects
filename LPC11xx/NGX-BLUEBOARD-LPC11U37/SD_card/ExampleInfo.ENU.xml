@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>SD_card</iar_name>                                   <!--App-->
+  <iar_description>Basic use of the I/O and SPI. Connects to a SD Card.</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

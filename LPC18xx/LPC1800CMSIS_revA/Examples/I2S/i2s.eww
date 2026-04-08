@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/I2s_Audio/EWARM/I2s_Audio.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>I2s_Audio</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>I2s_Audio</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>I2s_Audio</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>I2s_Audio</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

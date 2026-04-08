@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/INTERRUPT/EWARM/wdt_int.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/RESET/EWARM/wdt_reset.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>wdt_int</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>wdt_int</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>wdt_reset</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>wdt_reset</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

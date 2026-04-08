@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GPIO_Interrupt/EWARM/GPIO_Interrupt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/LedBlinky/EWARM/LedBlinky.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GPIO_Interrupt</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>GPIO_Interrupt</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>LedBlinky</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>LedBlinky</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

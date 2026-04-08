@@ -1,0 +1,70 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+
+@Example description:
+	Purpose:
+		This example describes how to use UART in polling mode
+	Process:
+		UART1 configuration:
+			– 9600bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Receive and transmit enable
+
+		UART1 will print welcome screen first, then:
+			- press any key to have it read in from the terminal and returned back to the terminal.
+			- Press ESC to exit.
+			- Press 'r' to print welcome screen menu again.
+
+@Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Uart_Polling.c: Main program
+
+@How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 9600bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Use USB cable connect to board's UART1->USB port
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example, use serial display to control UART0 as the guide on screen

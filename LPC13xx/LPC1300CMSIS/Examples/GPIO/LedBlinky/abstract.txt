@@ -1,0 +1,23 @@
+
+Purpose:
+	A simple program to test GPIO functionality to drive LED
+
+Hardware configuration:
+	This example tested on IAR-LPC1343 Rev.B board
+	Red Led: 	P1.9
+	Green Led: 	P3.0
+		These jumpers must be configured as following:
+		J_Link_D: 		OFF
+		3.3V_IO_E: 		ON
+		3.3V_CORE_E: 	ON
+		PIO1_LOW:		OFF
+		PIO3_E:			ON
+		PIO3_HIGH:		OFF
+		PIO1_RS:		OFF
+		RST_E:			OFF
+
+Running mode:
+	This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+Note:
+	None

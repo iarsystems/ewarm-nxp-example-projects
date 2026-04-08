@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/pwrman.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>pwrman</project>
+        <configuration>RAM_Debug_2468</configuration>
+      </member>
+      <member>
+        <project>pwrman</project>
+        <configuration>RAM_Debug_P2468-SK</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

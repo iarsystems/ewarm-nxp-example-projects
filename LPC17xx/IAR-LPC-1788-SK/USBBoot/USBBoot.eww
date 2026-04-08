@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/USBBoot.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>USBBoot</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

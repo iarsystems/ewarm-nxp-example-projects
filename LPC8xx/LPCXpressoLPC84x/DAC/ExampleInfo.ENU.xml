@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>DAC</iar_name>                                   <!--App-->
+  <iar_description>Configuration and use of the DAC to produce an arbitrary, user-
+  defined waveform of selectable frequency
+  </iar_description>          <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

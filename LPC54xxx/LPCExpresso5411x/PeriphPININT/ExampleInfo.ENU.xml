@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Periph PININT</iar_name>                                   <!--App-->
+  <iar_description>Demonstrates how to configure pin interrupts to generate an interrupt and
+  wake up from sleep, deep sleep, and power down state</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

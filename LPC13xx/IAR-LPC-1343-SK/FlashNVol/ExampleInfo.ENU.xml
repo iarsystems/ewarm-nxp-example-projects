@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>FlashNVol</iar_name>                                                                  <!--App-->
+  <iar_description>Implementation and use of a library that allows on-chip flash memory to be used for non-volatile storage,
+in a similar manner to EEPROM. It is based on NXP AN11008.</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

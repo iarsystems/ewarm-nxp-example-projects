@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+MCPWM Simple example
+
+Example description:
+	Purpose:
+		This example describes how to test Motor Control PWM module in LPC18xx.
+	Process:
+		Tested function on MCPWM could be: 
+			- 3-phase AC mode: inverted output is enable, A0 and A1 output pin is internally routed to A0 signal
+			- 3-phase DC mode: inverted output is enable
+			- capture on Motor Control: in this case is used to detect the falling edge on MCOB_0 output pin.
+		  		The MCI_0 input pin therefore must be connected to MCOB_0.
+					+ Capture Channel 0.
+					+ Capture falling edge on MCI_0 input pin.
+					+ Interrupt enabled on capture event.
+		
+		Channel 0,1,2 will be configured as follows:
+			- edge aligned operation 
+			- polarity pin: Passive state is LOW, active state is HIGH
+			- disable dead time
+			- enable update value
+			- period time = 300
+			- pulse width value:
+				+ channel 0 = 0
+				+ channel 1 = 100
+				+ channel 2 = 200
+		The program will update the value for pulse width for 3 channel continuously from 0 to 300, increase 20 
+		each update time. After each update, the serial will write "Update!" into screen.
+		After that, 'CapFlag' will be checked if detect falling edge on MCI_0 or not.
+		If yes, the program will print the current capture value into screen.
+		
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	Mcpwm_Simple.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Embedded Artists LPC1800 Evaluation board version 2.3
+				
+		MCPWM connection:
+			- For the capture function, pin MCI_0 must be connected with pin MCOB_0
+			to capture the pulse-width of signal output of MC0B_0 from the beginning to
+			the falling edge.			
+			- The output signal can be observed by oscilloscope on these pins below:
+				+ P9.3 - MCOA_0
+				+ P9.4 - MCOB_0
+				+ P9.5 - MCOA_1
+				+ P9.6 - MCOB_1
+				+ P9.1 - MCOA_2
+				+ P9.2 - MCOB_2
+				
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port		
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+
+	
+	Step to run:
+		- Step 1: Chose MCPWM mode that want to test
+			+ If want to test 3-phase DC mode, setting: 
+					#define MCPWM_WORKING_MODE	DC_MODE_TEST
+					
+			+ If want to test 3-phase AC mode, setting:
+					#define MCPWM_WORKING_MODE	AC_MODE_TEST
+					
+			+ If want to test Capture MCPWM mode, setting:
+					#define CAPTURE_MODE_TEST	1
+					
+		- Step 2: Build example.
+		- Step 3: Burn hex file into board (if run on ROM mode)
+		- Step 4: Connect UART1->USB port on this board to USB port on your computer
+		- Step 5: Configure hardware and serial display as above instruction 
+		- Step 6: Run example. See capture result on serial display (if use Capture mode)
+				  And use oscilloscope to monitor the wave form.
+
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\MCPWM\MCPWM.eww project file to run example on IAR	
+
+	</pre>
+
+  </div>
+  </body>
+</html>
+

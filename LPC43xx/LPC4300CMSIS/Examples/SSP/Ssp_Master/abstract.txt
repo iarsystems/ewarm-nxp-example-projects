@@ -1,0 +1,83 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+
+@Example description:
+	Purpose:
+		This example describes how to use SSP peripheral as master to connect with SSP slave
+		Note that: this example will run combinate with slave example at folder \Slave.
+		(Pls see "Step to run" part in this file for more information)
+	Process:
+		SSP configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- DSS = 8: 8 bits per transfer
+			- MSTR = 1: SSP operates in Master mode
+			- FRF= 0: SPI Frame format
+		After initialize buffer, SPI master will transfer/receive data to/from SSP slave
+		in POLLING mode by calling 'SPI_ReadWrite( )' function.
+		After transmittion completed, receive and transmit buffer will be compared, if they
+		are not similar, the program will enter infinite loop and a error notice will
+		be displayed.
+
+@Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	Ssp_Master.c: Main program
+
+@How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+		SSP Connection:
+			- P3.3 - SCK on master connects to PF.4 - SCK on slave board;
+			- P3.6 - SSEL on master connects to PF.5 - SSEL on slave board
+			- P3.7 - MISO on master connects to PF.6 - MISO on slave board
+			- P3.8 - MOSI on master connects to PF.7 - MOSI on slave board
+			Common ground must be connected together between two board.
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+			- Use USB cable connect to board's UART1->USB port
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into master board (if run on ROM mode)
+		- Step 3: Build "Slave\ssp_slave" example
+		- Step 4: Burn this hex file into slave board.
+		- Step 5: Connect UART1->USB port on this board to USB port on your computer
+		- Step 6: Configure hardware, connect master board and slave board as above instruction
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and observe SPI slave transfer result from serial display
+			Note that: Press '1' to start SSP operation on master board first.

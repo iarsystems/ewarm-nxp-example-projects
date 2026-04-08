@@ -1,0 +1,81 @@
+/**********************************************************************
+* $Id: Abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to write a simple USB Mass Storage application on LPC18xx.
+	Process:
+             *Set CPU Frequency to 120Mhz by Change PLL1 multiply value in CGU_Init function to 10.
+		The MassStorage project is a Mass Storage simple demo run on LPC18xx
+		
+		It demonstrates an USB Memory based on USB Mass Storage Class.		
+		The USB Memory is automatically recognized by the host PC
+		running Windows which will load a generic Mass Storage driver.
+
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	DiskImg.c: 		Disk Image (LPC18xx) data
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	memory.h/.c: 	USB Memory Storage
+	msc.h: 			USB Mass Storage Class Definition
+	mscuser.h/.c: 	Mass Storage Class Custom User
+	usb.h: 			USB Definitions
+	usbcfg.h: 		USB Configurate Definition
+	usbcore.h/.c:	USB Core Module
+	usbdesc.h/.c: 	USB Descriptors
+	usbhw.h/.c: 	USB Hardware Layer
+	usbreg.h: 		USB Hardware Layer Definitions for NXP Semiconductors LPC 
+	usbuser.h/.c: 	USB Custom User Module
+	memory.h/.c: 	USB Memory Storage Demo (main program)
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+
+		
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Hit reset button to run example.
+		- Step 5: After see UGL(USB Good Link). Open My Computer, you will see 'LPC18xx' disk.
+		- Step 6: Open this disk, you will see 'Readme.txt' file (it has read-only attribute)
+		- Step 7: Try to copy/delete another file into disk to test if Mass Storage is work well or not
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV > USBMassStorage"
+		for more details)
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV\USBDEV.eww project file to run example on IAR

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/lpc_sctimer_simple_pwm.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>lpc_sctimer_simple_pwm</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>lpc_sctimer_simple_pwm</project>
+        <configuration>Release</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

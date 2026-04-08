@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Easy_Web/EWARM/emac_easyweb.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/EmacRaw/EWARM/raw.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/uIP/EWARM/uip_webserver.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>raw</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>uip_webserver</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>emac_easyweb</project>
+        <configuration>Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

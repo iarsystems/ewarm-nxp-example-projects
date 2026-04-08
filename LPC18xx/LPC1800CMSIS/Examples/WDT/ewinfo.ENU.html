@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+WDT interrupt mode example
+
+Example description:
+	Purpose:
+		This example describes how to use WDT to generate interrupt after a specific time.
+	Process:
+		In this example, WDT disables reset function, WDT just generates interrupt when the 
+		Watchdog times out. 
+		WDT value is frequently fed by Systick_Handler().
+		Open Terminal screen, press 1 to disable feeding, press 2 to enable feeding.
+		If 1 is pressed, after WDT time out, "Warning...watchdog timeout!" is frequently displayed.
+		
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	Wdt_Interrupt.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on RAM mode with debugger. 
+					
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, using Serial display to monitor the message and to send a charater to UART
+
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\WDT\WDT.eww project file to run example on IAR
+		
+		    </pre>
+
+  </div>
+  </body>
+</html>

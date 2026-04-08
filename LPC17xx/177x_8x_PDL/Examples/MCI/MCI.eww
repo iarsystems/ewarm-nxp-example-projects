@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Mci_CidCard/EWARM/Mci_CidCard.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Mci_CidCard</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Mci_CidCard</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

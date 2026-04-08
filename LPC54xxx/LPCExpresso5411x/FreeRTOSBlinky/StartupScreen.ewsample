@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\chip_5411x</copyDir>
+  <copyDir>..\lpcxpresso_54114</copyDir>
+  <copyDir>..\lib_chip_5411x</copyDir>
+  <copyDir>..\lib_board_lpcxpresso_54114</copyDir>
+  <copyDir>..\config</copyDir>
+  <copyDir>..\freertos</copyDir>
+</exampleInfo>
+

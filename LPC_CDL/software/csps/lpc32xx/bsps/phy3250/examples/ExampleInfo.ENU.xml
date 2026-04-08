@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>NXP CDL examples</iar_name>                                   <!--App-->
+  <iar_description>This example projects show how to use the IAR Embedded Workbench for ARM and NXP Common Driver Library (CDL) Package to develop code for Phytec LPC3250 evaluation board</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

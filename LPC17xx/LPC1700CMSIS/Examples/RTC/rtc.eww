@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/AlarmCntIncrInterrupt/EWARM/rtc_alarm.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Calibration/EWARM/rtc_calibration.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>rtc_alarm</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>rtc_alarm</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>rtc_calibration</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>rtc_calibration</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

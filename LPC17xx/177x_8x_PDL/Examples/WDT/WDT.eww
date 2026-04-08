@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Wdt_Interrupt/EWARM/Wdt_Interrupt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Wdt_Reset/EWARM/Wdt_Reset.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Wdt_WindowMode/EWARM/Wdt_WindowMode.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Wdt_Interrupt</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Wdt_Interrupt</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Wdt_Reset</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Wdt_Reset</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Wdt_WindowMode</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Wdt_WindowMode</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

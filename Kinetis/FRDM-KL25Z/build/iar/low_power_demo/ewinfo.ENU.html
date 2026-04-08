@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+                    LOW POWER DEMO CODE README
+
+The low power demo project supports the following boards:
+
+For FRDM-KL25Z
+
+In order to run the project:
+
+1. Connect the USB cable between your computer and the FRDM-KL25Z SDA board's mini USB connector. Allow the drivers to install. 
+
+
+2. Open the low_power_demo.eww workspace with the IAR IDE tool.  
+   Locate this in the ..build\iar\low_power_demo folder.
+
+3. Under the workspace window pull down select the configuration low_power_demo_tower-FLASH_128KB
+
+4. Select Project --> Clean
+
+5. Select Project --> Build All
+
+6. Select Project --> Download and Debug or the debug icon to program the demo code into the flash of the MCU.
+
+7. Open a terminal utility like Hyperterminal or Putty to communicate with the UART of the MCU. Configure for 115200 baud no 
+
+Parity, No Flow Control.
+
+8. Hit the Run button or F5 to start code execution or if no debug is needed select the X to close the debugger.
+
+9. For some of the low power mode current measurements you must disconnect the JTAG(SWD) cable and Power Cycle the Tower kit.  
+
+Do this using the switch on the side of the primary elevator.
+
+10. Observe the menu options on the terminal window and enter the letter or number of the desired option.
+
+
+
+
+This banner is referred to the "..... RESET BANNER ......"" below
+-----------------------------------------------------------------------
+External Pin Reset
+KL25
+Unrecognized Kinetis package code.
+Low Power Line with Cortex M0+
+
+SRAM Size:  16 KB
+Silicon rev 15
+ Flash parameter version 0.0.8.0
+Flash version ID 6.0.1.0
+Flash size:  128 KB program flash, 4 KB protection region
+
+*------------------------------------------------------------*
+*                    KL Low Power DEMO                       *
+*                    Sep 12 2012 11:47:23                    *
+*------------------------------------------------------------*
+  in Run Mode  !   in PEE mode now at 48000000 Hz
+
+
+Select the desired operation
+0 for CASE 0: Enter VLLS0 with POR disabled (Very Low Leakage STOP 0) NO POR
+1 for CASE 1: Enter VLLS0 with POR enabled (Very Low Leakage STOP 0) with POR
+2 for CASE 2: Enter VLLS1 (Very Low Leakage STOP 1)
+3 for CASE 3: Enter LLS with LPTMR 1 second wakeup loop (Low Leakage Stop)
+4 for CASE 4: Enter VLLS3 (Very Low Leakage STOP 3)
+5 for CASE 5: Enter LLS(Low Leakage Stop)
+6 for CASE 6: Enter VLPS(Very Low Power Stop)
+7 for CASE 7: Enter VLPR(Very Low Power RUN) in BLPE (8 MHz Crystal)
+8 for CASE 8: Exit VLPR(Very Low Power RUN)
+9 for CASE 9: Enter VLPW(Very Low Power WAIT)
+A for CASE 10: Enter WAIT
+B for CASE 11: Enter Normal STOP
+C for CASE 12: Enter PARTIAL STOP 1 with both system and bus clocks disabled
+D for CASE 13: Enter PARTIAL STOP 2 with system clock disabled and bus clock enabled
+E for CASE 14: Running coremark 2 times in RUN  with CPO then without CPO
+F for CASE 15: Running coremark 2 times in VLPR with CPO then without CPO
+G for CASE 16: Enable LPTMR to wakeup every 5 seconds from any mode except VLLS0
+H for CASE 17: Disable LPTMR wakeup
+I for CASE 18: Enter VLPR in BLPI at Core Frequency of 4 MHz
+J for CASE 19: Enter VLPR in BLPI at Core Frequency of 2 MHz
+K for CASE 20: Enter Compute Mode run for(i=0;i<wait_count;i++)
+L for CASE 21: To enable DEBUG
+ >
+-----------------------------------------------------------------------
+NOTES: 
+1. Note that the banner displays some significant information including the operational mode and the clock frequency of the 
+
+system clock.
+
+2. Do not remove the "IAR" or platform define ("FREEDOM") from the defined symbols list.
+
+3. If you have the debugger connected and have started by hitting the "Go" button, entering some low power modes will cause you 
+
+to exit debug mode.  If this happens just abort the debug session.
+
+---------------------------------------------------------------------
+
+INTRODUCTION: 
+-------------
+CLOCKING: The MCU always comes up out of reset in FEI mode. During the system initialization, the software in start.c and 
+
+sysinit.c sets up the basic I/O and clocks to execute code in RUN mode with the clock mode  PEE (PLL Engaged External).  This 
+
+clock mode is using the external 8 MHz crystal to clock the MCU.  The on-chip PLL is set to generate the 48 MHz clock for MCU 
+
+operation.
+
+I/O: 
+----
+UART0, the low power uart is being used to communicate with the terminal.  The clock for the UART is the system clock.  
+   </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

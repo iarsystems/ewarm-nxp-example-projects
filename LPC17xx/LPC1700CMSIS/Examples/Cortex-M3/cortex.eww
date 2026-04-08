@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Bit-banding/EWARM/bitband.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/MPU/EWARM/mpu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Privilege_mode/EWARM/privilege.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>bitband</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>bitband</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>mpu</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>mpu</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>privilege</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>privilege</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

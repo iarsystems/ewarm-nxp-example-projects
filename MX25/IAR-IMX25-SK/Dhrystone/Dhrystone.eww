@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/dhrystone.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>dhrystone</project>
+        <configuration>SDRAM Debug</configuration>
+      </member>
+      <member>
+        <project>dhrystone</project>
+        <configuration>SDRAM High optimization by speed</configuration>
+      </member>
+      <member>
+        <project>dhrystone</project>
+        <configuration>SRAM Debug</configuration>
+      </member>
+      <member>
+        <project>dhrystone</project>
+        <configuration>SRAM High optimization by speed</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

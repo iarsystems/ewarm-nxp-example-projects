@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+I2S example
+
+Example description:
+	Purpose:
+		This example describes how to use I2S to transfer audio data through I2S port
+		to play a short music sound.
+	Process:
+		To run on ex flash, be careful on setting Core Clock which will relate to Flash Timing
+		I2S setup:
+			- wordwidth: 16 bits
+			- stereo mode
+			- master mode for TX
+			- frequency = 48Khz (maximum is 96kHz)
+			- enable transmit interrupt mode
+			- Irq TXFIFO depth = 4
+		Audio data will be copy in tx_buffer to send to TXFIFO register, after half of
+		buffer have been sent already, call I2S_Callback() function to re-fill data.
+
+Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	audiodata.c: store audio data
+	I2s_Audio.c: Main program
+
+How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Board
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 4: Configure hardware and serial display as above instruction
+		- Step 5: Run example and hear short music via headphone
+
+I2S_audio -> set freq = 441000
+lpc43xx_i2s.c -> func i2s_GetChannel: havent shift value >> 2 yet;
+
+</pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

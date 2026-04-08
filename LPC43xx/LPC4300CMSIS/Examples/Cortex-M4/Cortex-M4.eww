@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/CortexM4_Bitband/IAR/CortexM4_Bitband.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM4_Mpu/IAR/CortexM4_Mpu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CortexM4_Privilege/IAR/CortexM4_Privilege.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>CortexM4_Bitband</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>CortexM4_Bitband</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>CortexM4_Mpu</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>CortexM4_Privilege</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>CortexM4_Privilege</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

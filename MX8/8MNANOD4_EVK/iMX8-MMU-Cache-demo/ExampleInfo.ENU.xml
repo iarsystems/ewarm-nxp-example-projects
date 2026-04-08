@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>IMX8M Nano MMU Cache Demo</iar_name>                                                                  <!--App-->
+  <iar_description>The example project shows a basic use of the MMU, PMU and Cache of Cortex-A53 core</iar_description>    <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

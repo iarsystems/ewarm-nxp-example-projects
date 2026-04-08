@@ -1,0 +1,39 @@
+This example demonstrates the ability of FIQ interrupts to interrupt the excut-
+ing isr of an IRQ interrupt
+
+Specifications:
+1. This example runs on an IAR LPC2103 evaluation board
+2. Developed using EWARM ver 4.20/4.30
+3. Set up IRQ isrs to execute directly, this requires instruction at address 0x18
+   to be ldr pc,[pc,#-0xFF0]. ISRs must be written in ARM mode and have __irq
+   and __arm keywords in declaration and definition
+4. Set up Timer0 to interrupt at approximately six second intervals
+5. ISR for Timer0 will transmit blink leds 4-8 in the forward direction
+6. Configure External Interrupt 2, which is connected to a button on the IAR LPC2103
+   evaluation board, as a FIQ
+7. EXTINT2 ISR will blink LEDs 10-13 in the backward direction
+8. When Timer0 ISR is executing, the button connected to EXTINT2 can be
+   pressed, demonstrating that EXTINT2 will interrupt the execution of Timer0
+   ISR, and will execute to completion. Afer EXTINT2 ISR completes execution,
+   Timer0 ISR will continue execution until completion
+9. foreground task is while(TRUE);
+10.Trap other exceptions with exception handler while(TRUE)
+
+Author: Mark Moran
+Last Date Modified: 30 Dec 05
+Status: Works as specified when running out of RAM
+Status:
+- Works when running out of RAM with JLINK.
+
+Copyright: IAR Systems Software Inc. 2005
+Disclaimer: This code is furnished "as is" solely for the purpose of
+illustrating how to use the IAR Embedded Workbench integrated development
+environment to create code for NXP LPC2xxx ARM7 microcontrollers, and to
+illustrate the use of peripherals of that part. Every effort has been made to
+ensure that this example works according to the above specifications. Code in
+this example may be used freely for any purpose with the understanding that
+IAR Systems Software assumes no further responsibility for accuracy or
+reliability once it has been partly or fully copied into another application.
+By using any portion of this code in other applications,the user takes full
+responsibility for code at that time.
+

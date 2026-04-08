@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_i2c_interrupt</iar_name>                                   <!--App-->
+  <iar_description>
+    In this example , one i2c instance is used as I2C master and another i2c instance used as I2C slave.
+    Tx and Rx events of master are processed in an I2C handler.
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

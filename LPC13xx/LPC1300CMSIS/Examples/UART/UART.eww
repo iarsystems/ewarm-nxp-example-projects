@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Autobaud/EWARM/Autobaud.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Interrupt/EWARM/Interrupt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Polling/EWARM/Polling.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Autobaud</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Autobaud</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Interrupt</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Interrupt</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Polling</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Polling</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

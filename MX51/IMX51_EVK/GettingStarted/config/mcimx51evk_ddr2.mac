@@ -1,0 +1,143 @@
+__configureDDR()
+{
+  __message("Configuring DDR...");
+// IOMUX DDR Config
+  __writeMemory32(0x00000004,0x73FA83F4,"Memory"); // EIM_D17
+  __writeMemory32(0x00000004,0x73FA83F0,"Memory"); // EIM_D16
+  __writeMemory32(0x00000200,0x73FA88A0,"Memory"); // GRP_INMODE1
+  __writeMemory32(0x000020C5,0x73FA850C,"Memory"); // EIM_SDODT1
+  __writeMemory32(0x000020C5,0x73FA8510,"Memory"); // EIM_SDODT0
+  __writeMemory32(0x00000002,0x73FA883C,"Memory"); // GRP_DDR_A0
+  __writeMemory32(0x00000002,0x73FA8848,"Memory"); // GRP_DDR_A1
+  __writeMemory32(0x000000E3,0x73FA84D4,"Memory"); // DRAM_DQM0
+  __writeMemory32(0x000000E3,0x73FA84D8,"Memory"); // DRAM_DQM1
+  __writeMemory32(0x000000E3,0x73FA84DC,"Memory"); // DRAM_DQM2
+  __writeMemory32(0x000000E3,0x73FA84E0,"Memory"); // DRAM_DQM3
+  __writeMemory32(0x000000E7,0x73FA84B8,"Memory"); // DRAM_SDCLK
+  __writeMemory32(0x00000045,0x73FA84BC,"Memory"); // DRAM_SDQS0
+  __writeMemory32(0x00000045,0x73FA84C0,"Memory"); // DRAM_SDQS1
+  __writeMemory32(0x00000045,0x73FA84C4,"Memory"); // DRAM_SDQS2
+  __writeMemory32(0x00000045,0x73FA84C8,"Memory"); // DRAM_SDQS3
+  __writeMemory32(0x00000000,0x73FA8820,"Memory"); // DRAM_GRP_DDRPKS
+  __writeMemory32(0x00000003,0x73FA84A4,"Memory"); // DRAM_RAS
+  __writeMemory32(0x00000003,0x73FA84A8,"Memory"); // DRAM_CAS
+  __writeMemory32(0x000000E3,0x73FA84AC,"Memory"); // DRAM_SDWE
+  __writeMemory32(0x000000E3,0x73FA84B0,"Memory"); // DRAM_SDCKE0
+  __writeMemory32(0x000000E3,0x73FA84B4,"Memory"); // DRAM_SDCKE1
+  __writeMemory32(0x000000E3,0x73FA84CC,"Memory"); // DRAM_CS0
+  __writeMemory32(0x000000E2,0x73FA84D0,"Memory"); // DRAM_CS1
+
+  __writeMemory32(0x00000004,0x73FA882C,"Memory"); //  DRAM_B4 D31-24
+  __writeMemory32(0x00000004,0x73FA88A4,"Memory"); //  DRAM_B0 D0-7
+  __writeMemory32(0x00000004,0x73FA88AC,"Memory"); //  DRAM_B1 D8-15
+  __writeMemory32(0x00000004,0x73FA88B8,"Memory"); //  DRAM_B2 D16-23
+
+  __writeMemory32(0x82a20000,0x83fd9000,"Memory"); // ESDCTL_ESDCTL0
+  __writeMemory32(0x82a20000,0x83fd9008,"Memory"); // ESDCTL_ESDCTL1
+
+  __writeMemory32(0x000ad0d0,0x83fd9010,"Memory"); // ESDCTL_ESDMISC
+  
+// Timing configration for Elpida EDE1116AEBG-6E-P DDR2 memories
+  __writeMemory32(0xCF3574A9,0x83fd9004,"Memory"); // ESDCTL_ESDCFG0
+  __writeMemory32(0xCF3574A9,0x83fd900c,"Memory"); // ESDCTL_ESDCFG1
+
+// Init DRAM @ CS0
+  __writeMemory32(0x04008008,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0000801a,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0000801b,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00448019,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x07328018,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x04008008,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008010,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008010,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x06328018,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x03808019,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00408019,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008000,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+
+// Init DRAM @ CS1
+  __writeMemory32(0x0400800c,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0000801e,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0000801f,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0000801d,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0732801c,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0400800c,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008014,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008014,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0632801c,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0380801d,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x0040801d,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0x00008004,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+  __writeMemory32(0xb2a20000,0x83fd9000,"Memory"); // ESDCTL_ESDCTL0
+  __writeMemory32(0xb2a20000,0x83fd9008,"Memory"); // ESDCTL_ESDCTL1
+  __writeMemory32(0x000ad6d0,0x83fd9010,"Memory"); // ESDCTL_ESDMISC
+  __writeMemory32(0x90000000,0x83fd9034,"Memory"); // ESDCTL_ESDCDLYGD
+  __writeMemory32(0x00000000,0x83fd9014,"Memory"); // ESDCTL_ESDSCR
+}
+
+__configureClocks()
+{
+  __message("Configuring Clocks...");
+  __writeMemory32(0x00000004,0x73FD400C,"Memory"); // CCM_CCSR = 4, Switch ARM to step clock
+// Set PLL's
+  __writeMemory32(0x00000000,0x83F80004,"Memory"); // DPLLIP1_DP_CONFIG, AREN=0, LDREQ=0
+  __writeMemory32(0x00000000,0x83F84004,"Memory"); // DPLLIP2_DP_CONFIG
+  __writeMemory32(0x00000000,0x83F88004,"Memory"); // DPLLIP3_DP_CONFIG
+//PLL1 = 800MHz
+  __writeMemory32(0x00001232,0x83F80000,"Memory"); // DPLLIP1_DP_CTL, DPDCK0_2_EN, int osc sel, DPLL en, BRMO sec ord
+  __writeMemory32(0x00000080,0x83F80008,"Memory"); // DPLLIP1_DP_OP, MFI=8, PDF=0 (actually 1)
+  __writeMemory32(0x000000B3,0x83F8000C,"Memory"); // DPLLIP1_DP_MFD = 179 (actually 180)
+  __writeMemory32(0x0000003C,0x83F80010,"Memory"); // DPLLIP1_DP_MFN = 60
+  __writeMemory32(0x00001232,0x83F80000,"Memory"); // DPLLIP1_DP_CTL, DPDCK0_2_EN, int osc sel, DPLL en, BRMO sec ord
+
+//PLL3 = 216MHz
+  __writeMemory32(0x00001232,0x83F88000,"Memory"); // DPLLIP3_DP_CTL, DPDCK0_2_EN,int osc sel, DPLL en, BRMO sec ord
+  __writeMemory32(0x00000062,0x83F88008,"Memory"); // DPLLIP3_DP_OP, MFI=6, PDF=2 (actually 3)
+  __writeMemory32(0x00000003,0x83F8800C,"Memory"); // DPLLIP3_DP_MFD = 3 (actually 4)
+  __writeMemory32(0x00000003,0x83F88010,"Memory"); // DPLLIP3_DP_MFN = 3
+  __writeMemory32(0x00001232,0x83F88000,"Memory"); // DPLLIP3_DP_CTL, DPDCK0_2_EN,int osc sel, DPLL en, BRMO sec ord
+
+//PLL2 = 665MHz
+  __writeMemory32(0x00001232,0x83F84000,"Memory"); // DPLLIP2_DP_CTL, DPDCK0_2_EN, int osc sel, DPLL en, BRMO sec ord
+  __writeMemory32(0x00000060,0x83F84008,"Memory"); // DPLLIP2_DP_OP, MFI=6, PDF=0 (actually 1)
+  __writeMemory32(0x0000005F,0x83F8400C,"Memory"); // DPLLIP2_DP_MFD = 95 (actually 96)
+  __writeMemory32(0x00000059,0x83F84010,"Memory"); // DPLLIP2_DP_MFN = 89
+  __writeMemory32(0x00001232,0x83F84000,"Memory"); // DPLLIP2_DP_CTL, DPDCK0_2_EN,int osc sel, DPLL en, BRMO sec ord
+
+  __delay(2);
+  __writeMemory32(0x00000002,0x83F80004,"Memory"); // DPLLIP1_DP_CONFIG, AREN=1 auto restart
+  __writeMemory32(0x00000002,0x83F84004,"Memory"); // DPLLIP2_DP_CONFIG
+  __writeMemory32(0x00000002,0x83F88004,"Memory"); // DPLLIP3_DP_CONFIG
+
+// Set CCM
+  __writeMemory32(0x00000000,0x73FD400C,"Memory"); // CCM_CCSR = 4, Switch ARM to PLL1 clock
+  __writeMemory32(0x192B9100,0x73fd4014,"Memory"); // CCM_CBCDR, perclk_pred=0, perclk_podf=0
+  __writeMemory32(0x000020C2,0x73fd4018,"Memory"); // CCM_CBCMR, perclk_lp_apm_sel=1
+  __writeMemory32(0x01E900F1,0x73fd4060,"Memory"); // CCM_CCOSR, cko2_sel=ddr_clk_root, cko_div=div/8
+}
+
+__disableMMU()
+{
+__var Reg;
+  __message("Disabling MMU...");
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+}
+
+execUserPreload()
+{
+  __hwReset(0);
+  __disableMMU();
+  __configureClocks();
+  __configureDDR();
+}
+
+execUserReset()
+{
+  __disableMMU();
+}
+

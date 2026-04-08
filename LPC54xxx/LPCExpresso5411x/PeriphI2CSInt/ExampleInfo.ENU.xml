@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Periph I2CSInt</iar_name>                                   <!--App-->
+  <iar_description>Demonstrates how to
+  configure I2C as a bus slave in interrupt mode using the I2CS driver.
+  The example also provides the master interface on the same I2C bus as
+  the slave to communicate with the emulated EEPROMs without requiring
+  an external I2C master.</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

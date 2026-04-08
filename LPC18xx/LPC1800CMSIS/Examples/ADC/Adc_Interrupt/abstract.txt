@@ -1,0 +1,67 @@
+ ******************** (C) COPYRIGHT 2010 NXPSemiconductors *******************
+ * @file    ADC\Adc_Interrupt\abstract.txt 
+ * @author  NXP MCU SW Application Team
+ * @version 1.0
+ * @date 	   
+ * @brief   Description of the ADC Interrupt example.
+ ******************************************************************************
+ * Software that is described herein is for illustrative purposes only
+ * which provides customers with programming information regarding the
+ * products. This software is supplied "AS IS" without any warranties.
+ * NXP Semiconductors assumes no responsibility or liability for the
+ * use of the software, conveys no license or title under any patent,
+ * copyright, or mask work right to the product. NXP Semiconductors
+ * reserves the right to make changes in the software without
+ * notification. NXP Semiconductors also make no representation or
+ * warranty that such application will be suitable for the specified
+ * use without further testing or modification.
+ ******************************************************************************
+  
+@Example description:
+	Purpose:
+		This example describes how to use ADC conversion in interrupt mode.
+	Process:
+		Because their is no potentiometer on EA board, so we have to connect ADC port to external potentiometer module
+		The ADC conversion rate is 200KHz. A fully A fully accurate conversion requires 11 of these clocks. 
+		So ADC clock = 200KHz * (number of clocks for 1 measure = 11 clocks).
+		Note that maximum ADC clock input is 4.5MHz.  
+		
+		ADC will generate interrupt at the end of each conversion. ADC service routine will be invoked 
+		to check ADC status, if "DONE bit" is set, ADC converted data will be stored in "adc_value".
+		ADC interrupt is disabled and re-enabled for the next conversion.
+		ADC converted data are displayed via UART1.
+		
+		Turn potentiometer to change ADC signal input.
+
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Adc_Interrupt.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+				
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+		RAM mode :	This example can run on RAM mode.
+		ROM mode: 	This example can run on EXFLASH mode.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Start Debug example, Run it, turn potetiometer and observe data on serial display
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > ADC > INTERRUPT"
+		for more details)
+		
+@Tip:
+	- Open  <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\ADC\ADC.eww project file to run example on IAR

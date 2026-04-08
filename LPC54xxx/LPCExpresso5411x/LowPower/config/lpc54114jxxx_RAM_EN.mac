@@ -1,0 +1,12 @@
+
+execUserReset()
+{
+  
+  //Enable clocks to SRAM1 and SRAM2 via AHBCLOCKCTRLSET0
+  __writeMemory32(0x18, 0x40000220, "Memory");
+  
+  //VTOR is writen to point to 0x04000000 (SRAMX)
+  __writeMemory32(0x04000000, 0xE000ED08, "Memory");
+  
+  __message "--- execUserReset ---";
+}

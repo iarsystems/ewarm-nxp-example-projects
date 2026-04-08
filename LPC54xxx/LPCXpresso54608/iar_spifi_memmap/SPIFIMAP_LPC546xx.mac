@@ -1,0 +1,255 @@
+/*************************************************************************
+ *
+ *    Used with IAR EWARM.
+ *
+ *    (c) Copyright IAR Systems 2017
+ *
+ *    File name   : SPIFIMAP_LPC546xx.mac
+ *    Description : 
+ *
+ *    1. Date        : January 2017
+ *       Author      : Dimitar Nikolov
+ *       Description : Initial Revision
+ *
+ *      This file is intended to demonstrate how to use a .mac file 
+ *      to map the attached to the MCU SPIFI controller external spi
+ *      flash memory. This permits the verification of the programmed memory.
+ * 
+ *
+ *    $Revision: 4206 $
+ **************************************************************************/
+ 
+__param spifi_mode = 1;
+__param dummy_cycles = 8;
+__param inter_data = 0xAF;
+__param inter_len_bytes = 0;
+__param use_no_opcode = 0;
+__param spifi_div = 11;
+__param number_of_addr_bytes = 3;
+
+/*
+*    __Setup() aims at setting up the CPU at 96MHz by IRC
+*    and clocks SPIFI at 8Mhz by default because of possible
+*    MX25R6435's low power mode. 
+*/
+__Setup()
+{
+   __var tempReg;
+   // MAP flash at 0
+  __writeMemory32(0x2, 0x40000000, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: Flash is mapped at 0.";
+  
+  //Enable clocks to SRAM1 and SRAM2 and SRAM3 via AHBCLOCKCTRLSET0
+  __writeMemory32(0x38, 0x40000220, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: SRAM1, SRAM2 and SRAM3 are enabled.";
+   
+  /* 
+    fro_hf = 96Mhz by default
+    MAINCLKSELA[1:0] = 0b11      == fro_hf
+    MAINCLKSELB[1:0] = 0         == MAINCLKSELA (default)
+    AHBCLKDIV[7:0]   = 0         == /1 (default)
+    AHBCLKCTRL[10]   = 1         == Enable
+    SPIFICLKSEL[2:0] = 0         == main_clk
+    SPIFICLKDIV[7:0] = spifi_div == /12 (default macro param)
+  */
+  
+  /*MAINCLKSELA[1:0] = 0b11 == fro_hf*/
+  __writeMemory32(0x00000003, 0x40000280, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: CPU is running at 96Mhz by fro_hf (div 1:1)";
+  
+  /*SPIFICLKSEL[2:0] = 0    == main_clk*/
+  __writeMemory32(0x00000000, 0x400002A0, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: SPIFI clock source is main_clk (96Mhz)";
+  
+  /*SPIFICLKDIV[7:0] = 0hB  == /12 and Enable devider*/
+  __writeMemory32(spifi_div, 0x40000390, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: SPIFI devider is set to",(spifi_div+1);
+  
+  /*AHBCLKCTRLSET0[10] = 1    == SPIFI Enable*/
+  __writeMemory32(  (1<<10) , 0x40000220, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: SPIFI is enabled";
+  
+  /*AHBCLKCTRLSET0[13] = 1    == IOCON Enable*/
+  __writeMemory32(  (1<<13) , 0x40000220, "Memory");
+  
+  __message "SPIFIMAP_LPC546xx: IOCON is enabled";
+  
+  /*Config IO pins */
+  tempReg = __readMemory32(0x40001060, "Memory");
+  tempReg &= ~(0xFF); 
+  tempReg |=  (0x26);
+  /*PIO0_24 -> SPIFI_IO0*/
+  __writeMemory32(tempReg, 0x40001060, "Memory");  /*SPIFI_IO[0]*/
+  /*PIO0_25 -> SPIFI_IO1*/
+  __writeMemory32(tempReg, 0x40001064, "Memory");  /*SPIFI_IO[1]*/
+    /*PIO0_28 -> SPIFI_IO2*/
+  __writeMemory32(tempReg, 0x40001070, "Memory");  /*SPIFI_IO[2]*/
+  /*PIO0_27 -> SPIFI_IO3*/
+  __writeMemory32(tempReg, 0x4000106C, "Memory");  /*SPIFI_IO[3]*/
+  /*PIO0_26 -> SPIFI_CLK*/
+  __writeMemory32(tempReg, 0x40001068, "Memory");  /*SPIFI_CLK*/
+  /*PIO0_23 -> SPIFI_CSN*/
+  __writeMemory32(tempReg, 0x4000105C, "Memory");  /*SPIFI_CS*/
+  
+  __message "SPIFIMAP_LPC546xx: SPIFI pins should be configured";
+}
+
+execUserReset()
+{
+  __message "------ execUserReset\n";
+  __Setup();
+}
+
+prepareMCMD(numbOfAddressBytes, SPIFIMode, dummyCycles, intLen, noOPCode)
+{   
+    __var MCMD; 
+    __var CMD_OPCODE;
+    __var CMD_DOUT;
+    __var CMD_INTLEN;
+    __var CMD_FIELDFORM;
+    __var CMD_FRAMEFORM;
+    
+    __message "SPIFIMAP_LPC546xx: Preparing a CMD.";
+    
+    if(SPIFIMode==4)
+	{
+		CMD_OPCODE = 0xEB<<24;
+        CMD_FIELDFORM = 0x2<<19;
+        __message "SPIFIMAP_LPC546xx: Prepares CMD_OPCODE = 0xEB (Quad), CMD_FIELDFORM = 0x2 (1-4-4)";
+	}else if(spifi_mode==2)
+	{
+		CMD_OPCODE = 0xBB<<24;
+        CMD_FIELDFORM = 0x2<<19;
+		__message "SPIFIMAP_LPC546xx: Prepares CMD_OPCODE = 0xBB (Dual), CMD_FIELDFORM = 0x2 (1-2-2)";
+    }else if(spifi_mode==1)
+	{	
+        CMD_OPCODE = 0x0B<<24;
+        CMD_FIELDFORM = 0x0<<19;
+		__message "SPIFIMAP_LPC546xx: Prepares CMD_OPCODE = 0x0B (Serial), CMD_FIELDFORM = 0x0 (1-1-1)";
+	}else
+	{
+		__message "SPIFIMAP_LPC546xx: Unsupported SPI IO mode!\n";
+		return 0;
+	}
+    CMD_DOUT = (0x0<<15);
+    CMD_INTLEN = (dummyCycles * SPIFIMode)/8;
+    if(intLen!=0&&intLen>0)
+    {
+        CMD_INTLEN += intLen;
+    }
+    __message "SPIFIMAP_LPC546xx: CMD_INTLEN = ",CMD_INTLEN ;
+    CMD_INTLEN = CMD_INTLEN << 16;
+    if(noOPCode)
+    {
+      if(numbOfAddressBytes==3)
+      {
+        CMD_FRAMEFORM = 0x6;
+        __message "SPIFIMAP_LPC546xx: Prepares CMD_FRAMEFORM = 0x6 (Addr B = 3, No OP Code)";
+      }else if(numbOfAddressBytes==4)
+      {
+        CMD_FRAMEFORM = 0x7;
+        __message "SPIFIMAP_LPC546xx: Prepares CMD_FRAMEFORM = 0x7 (Addr B = 4, No OP Code)";
+      }else
+      {
+        __message "SPIFIMAP_LPC546xx: Error! Unsupported number of adress bytes!";
+        return 0;
+      }
+    }else
+    {
+      if(numbOfAddressBytes==3)
+      {
+        CMD_FRAMEFORM = 0x4;
+        __message "SPIFIMAP_LPC546xx: Prepares CMD_FRAMEFORM = 0x4 (Addr B = 3, With OP Code)";
+      }else if(numbOfAddressBytes==4)
+      {
+        CMD_FRAMEFORM = 0x5;
+        __message "SPIFIMAP_LPC546xx: Prepares CMD_FRAMEFORM = 0x5 (Addr B = 4, With OP Code)";
+      }else
+      {
+        __message "SPIFIMAP_LPC546xx: Error! Unsupported number of adress bytes!";
+        return 0;
+      }
+    }
+    CMD_FRAMEFORM = CMD_FRAMEFORM << 21;
+    
+    MCMD = CMD_OPCODE | CMD_DOUT | CMD_INTLEN | CMD_FIELDFORM | CMD_FRAMEFORM;
+    
+    return MCMD;
+}
+
+execUserPreload() {
+	__message "----- execUserPreload -----\n";
+	/*
+		spifi_mode = 1 -> serial mode
+		spifi_mode = 2 -> dual   mode
+		spifi_mode = 4 -> quad   mode
+	*/
+
+	/*
+		numbOfAddressBytes = 3 -> SPI Flash needs 3 address bytes
+		numbOfAddressBytes = 4 -> SPI Flash needs 4 address bytes
+	*/
+	__var numbOfAddressBytes;
+        numbOfAddressBytes = 3;
+
+	
+	__Setup();
+	
+	__var MCMD;
+    __var CMD;
+	MCMD = prepareMCMD(number_of_addr_bytes,spifi_mode,dummy_cycles,inter_len_bytes,use_no_opcode);
+	if(MCMD==0)
+	{
+        __message "SPIFIMAP_LPC546xx: Error! MCMD couldn't be prepared!";
+		return;
+	}
+	
+	/* Write 1 to SPIFI RESET bit in STAT register, address 0x2009401C */
+	__writeMemory32( (1<<4), 0x4008001C, "Memory");
+	
+	
+	/* Wait until RESET bit goes to 0 */
+	while(__readMemory32(0x4008001C,"Memory") & (1<<4));
+    
+    if(spifi_mode==2)
+    {
+        /*Puts SPIFI controller in dual mode*/
+		__writeMemory32( (1<<28), 0x40080000, "Memory");
+    }
+	
+	
+	/* Write Intermediar data register IDATA*/
+    if(inter_len_bytes>0){
+        __writeMemory32(inter_data, 0x4008000C, "Memory");
+    }else{
+        __writeMemory32(0xFF, 0x4008000C, "Memory");
+    }
+    
+    if(use_no_opcode){
+        CMD = prepareMCMD(number_of_addr_bytes,spifi_mode,dummy_cycles,inter_len_bytes,0);
+        if(CMD==0){
+            __message "SPIFIMAP_LPC546xx: Error! CMD couldn't be prepared!";
+            return;
+        }
+        __writeMemory32(CMD, 0x40080004, "Memory");
+    }
+    
+    if(__readMemory32(0x4008001C,"Memory")& 1)
+    {
+        __message "SPIFIMAP_LPC546xx:MCINIT is already high!";
+    }
+	__message "MCMD Is ", MCMD;
+	/* Write memory command register MCMD 0x40080018 */
+	__writeMemory32(MCMD, 0x40080018, "Memory");
+    __delay(20);
+    if(__readMemory32(0x4008001C,"Memory")& 1 )
+    {
+        __message "SPIFIMAP_LPC546xx:Memory mode should be enabled!";
+    }
+}

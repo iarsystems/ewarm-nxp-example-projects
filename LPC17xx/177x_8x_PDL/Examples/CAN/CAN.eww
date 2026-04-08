@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Can_Aflut/EWARM/Can_Aflut.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Can_Bypass/EWARM/Can_Bypass.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Can_Selftest/EWARM/Can_Selftest.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Can_Aflut</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Can_Aflut</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Can_Bypass</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Can_Bypass</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Can_Selftest</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Can_Selftest</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

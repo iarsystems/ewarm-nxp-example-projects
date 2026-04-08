@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Gpdma_Flash2Ram/EWARM/Gpdma_Flash2Ram.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpdma_LinkList/EWARM/Gpdma_LinkList.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpdma_Ram2Ram/EWARM/Gpdma_Ram2Ram.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Gpdma_Flash2Ram</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Flash2Ram</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Flash2Ram</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Flash2Ram</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

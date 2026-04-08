@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_i2c_polling</iar_name>                                   <!--App-->
+  <iar_description>
+    In this example , one i2c instance is used as I2C master and another i2c instance used as I2C slave.
+    Master writes using blocking mode functions (by polling statuses).
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Interrupt/EWARM/i2c_int.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Polling/EWARM/i2c_polling.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>i2c_int</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>i2c_int</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>i2c_polling</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>i2c_polling</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

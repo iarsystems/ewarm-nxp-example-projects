@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Emc_NandFlashDemo/EWARM/Emc_NandFlashDemo.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Emc_NorFlashDemo/EWARM/Emc_NorFlashDemo.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Emc_SdramDemo/EWARM/Emc_SdramDemo.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Emc_NandFlashDemo</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Emc_NandFlashDemo</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Emc_NorFlashDemo</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Emc_NorFlashDemo</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Emc_SdramDemo</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Emc_SdramDemo</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

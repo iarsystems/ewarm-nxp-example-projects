@@ -1,0 +1,65 @@
+execUserPreload()
+{
+__var Reg;
+  __hwReset(0);
+  
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+
+	__writeMemory32(0x00300000,0x53fa8554,"Memory");
+	__writeMemory32(0x00300040,0x53fa8558,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8560,"Memory"); 
+	__writeMemory32(0x00300040,0x53fa8564,"Memory"); 
+	__writeMemory32(0x00300040,0x53fa8568,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8570,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8574,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8578,"Memory"); 
+	__writeMemory32(0x00300040,0x53fa857c,"Memory"); 
+	__writeMemory32(0x00300040,0x53fa8580,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8584,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8588,"Memory"); 
+	__writeMemory32(0x00300040,0x53fa8590,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8594,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa86f0,"Memory"); 
+	__writeMemory32(0x00000000,0x53fa86f4,"Memory"); 
+	__writeMemory32(0x00000000,0x53fa86fc,"Memory"); 
+	__writeMemory32(0x00000000,0x53fa8714,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8718,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa871c,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8720,"Memory"); 
+	__writeMemory32(0x04000000,0x53fa8724,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa8728,"Memory"); 
+	__writeMemory32(0x00300000,0x53fa872c,"Memory"); 
+	__writeMemory32(0x35343535,0x63fd9088,"Memory"); 
+	__writeMemory32(0x4d444c44,0x63fd9090,"Memory"); 
+	__writeMemory32(0x01370138,0x63fd907c,"Memory"); 
+	__writeMemory32(0x013b013c,0x63fd9080,"Memory"); 
+	__writeMemory32(0x00011740,0x63fd9018,"Memory"); 
+	__writeMemory32(0xc3190000,0x63fd9000,"Memory"); 
+	__writeMemory32(0x9f5152e3,0x63fd900c,"Memory"); 
+	__writeMemory32(0xb68e8a63,0x63fd9010,"Memory"); 
+	__writeMemory32(0x01ff00db,0x63fd9014,"Memory"); 
+	__writeMemory32(0x000026d2,0x63fd902c,"Memory"); 
+	__writeMemory32(0x009f0e21,0x63fd9030,"Memory"); 
+	__writeMemory32(0x12273030,0x63fd9008,"Memory"); 
+	__writeMemory32(0x0002002d,0x63fd9004,"Memory"); 
+	__writeMemory32(0x00008032,0x63fd901c,"Memory"); 
+	__writeMemory32(0x00008033,0x63fd901c,"Memory"); 
+	__writeMemory32(0x00028031,0x63fd901c,"Memory"); 
+	__writeMemory32(0x092080b0,0x63fd901c,"Memory"); 
+	__writeMemory32(0x04008040,0x63fd901c,"Memory"); 
+	__writeMemory32(0x0000803a,0x63fd901c,"Memory"); 
+	__writeMemory32(0x0000803b,0x63fd901c,"Memory"); 
+	__writeMemory32(0x00028039,0x63fd901c,"Memory"); 
+	__writeMemory32(0x09208138,0x63fd901c,"Memory"); 
+	__writeMemory32(0x04008048,0x63fd901c,"Memory"); 
+	__writeMemory32(0x00001800,0x63fd9020,"Memory"); 
+	__writeMemory32(0x04b80003,0x63fd9040,"Memory"); 
+	__writeMemory32(0x00022227,0x63fd9058,"Memory"); 
+	__writeMemory32(0x00000000,0x63fd901c,"Memory"); 
+
+}

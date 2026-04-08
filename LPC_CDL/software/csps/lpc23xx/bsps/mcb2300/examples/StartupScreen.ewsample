@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\</copyDir>
+  <copyDir>..\..\..\include</copyDir>
+  <copyDir>..\..\..\source</copyDir>
+  <copyDir>..\..\..\lib</copyDir>
+  <copyDir>..\..\..\..\..\lpc</copyDir>
+</exampleInfo>
+

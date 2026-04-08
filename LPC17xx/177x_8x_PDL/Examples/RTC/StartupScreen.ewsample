@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\LPC1700CMSIS\Core\Device\NXP\LPC17xx</copyDir>
+  <copyDir>..\..\linker</copyDir>
+  <copyDir>..\..\Drivers</copyDir>
+  <copyDir>..\..\BoardSupport</copyDir>
+</exampleInfo>
+

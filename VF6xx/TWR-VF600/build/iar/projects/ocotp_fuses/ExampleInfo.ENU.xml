@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>OCOTP fuses blowing</iar_name>                                                       <!--App-->
+  <iar_description>By default the project will set the fuses to boot from SD Card. FUSE CHANGES ARE PERMANENT. ENSURE YOU ARE BLOWING THE CORRECT FUSES!</iar_description>    <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>
