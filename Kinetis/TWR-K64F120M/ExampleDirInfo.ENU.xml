@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
-<infocenter_data version="1.0">
-  <iar_template_variant>1</iar_template_variant>
-  <iar_name>NXP TWR-K64F120M</iar_name>                             <!--Family-->
-  <iar_title>Examples for NXP TWR-K64F120M board</iar_title>                  <!--Manufacturer Family-->
-</infocenter_data>

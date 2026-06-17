@@ -296,6 +296,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..\apps\webserver</state>
           <state>$PROJ_DIR$\..\lpc177x_8x_port</state>
           <state>$PROJ_DIR$\..\uIP</state>

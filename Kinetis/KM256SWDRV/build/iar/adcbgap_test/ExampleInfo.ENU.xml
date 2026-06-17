@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>ADC Bandgap VREF</iar_name>                                                   <!--App-->
-  <iar_description>ADC Operation from Internal 1.0 V PMC Bandgap VREF</iar_description>   <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

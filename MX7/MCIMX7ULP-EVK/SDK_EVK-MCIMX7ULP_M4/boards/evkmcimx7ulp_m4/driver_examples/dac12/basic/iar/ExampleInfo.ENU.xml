@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>dac12_basic</iar_name>               <!--App-->
-  <iar_description>The example shows how to use DAC12 module simply as the general DAC12 converter.</iar_description>  <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

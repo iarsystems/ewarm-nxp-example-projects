@@ -312,6 +312,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$/../board</state>
           <state>$PROJ_DIR$/../LPC54608</state>
@@ -1284,6 +1286,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$</state>
           <state>$PROJ_DIR$/../board</state>
           <state>$PROJ_DIR$/../LPC54608</state>

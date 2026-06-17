@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>UART &amp; VLPS</iar_name>                                                                  <!--App-->
-  <iar_description>This example shows unique capability of the device to wake up from Very Low Power Stop (VLPS) mode when an active edge on receive pin of the UART is detected.</iar_description>   <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

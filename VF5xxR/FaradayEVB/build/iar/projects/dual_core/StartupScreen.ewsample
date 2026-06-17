@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<exampleInfo>
-  <copyDir>..\dual_core_m4</copyDir>
-  <copyDir>..\..\linker</copyDir>
-  <copyDir>..\..\config</copyDir>
-  <copyDir>..\..\..\..\src</copyDir>
-</exampleInfo>
-

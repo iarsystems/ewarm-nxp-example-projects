@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<exampleInfo>
-  <copyDir>..\..\..\..\..\devices</copyDir>
-  <copyDir>..\..\..\..\..\middleware\mmcau_2.0.0</copyDir>
-  <copyDir>..\</copyDir>
-</exampleInfo>

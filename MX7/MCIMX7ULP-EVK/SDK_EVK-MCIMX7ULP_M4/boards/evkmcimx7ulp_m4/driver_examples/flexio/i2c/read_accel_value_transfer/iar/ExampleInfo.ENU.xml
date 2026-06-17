@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>flexio_i2c_read_accel_value_transfer</iar_name>               <!--App-->
-  <iar_description>The example shows how to use FLEXIO I2C Master driver to communicate with an i2c device.</iar_description>  <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

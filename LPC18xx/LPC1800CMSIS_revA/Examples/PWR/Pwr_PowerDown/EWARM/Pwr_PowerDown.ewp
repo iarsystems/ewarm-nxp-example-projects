@@ -301,6 +301,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\Device\NXP\LPC18xx\Include</state>
@@ -1237,6 +1239,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\Device\NXP\LPC18xx\Include</state>
@@ -2173,6 +2177,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\Device\NXP\LPC18xx\Include</state>
@@ -3109,6 +3115,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\Device\NXP\LPC18xx\Include</state>

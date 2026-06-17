@@ -292,6 +292,10 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\Core\Include</state>
+
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\DSP\Include</state>
+
           <state>$PROJ_DIR$\..\..\Source\Common\Include\</state>
         </option>
         <option>
@@ -733,7 +737,7 @@
         </option>
         <option>
           <name>IlinkAdditionalLibs</name>
-          <state/>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\Lib\IAR\iar_cortexM3l_math.a</state>
         </option>
         <option>
           <name>IlinkOverrideProgramEntryLabel</name>
@@ -1186,6 +1190,10 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\Core\Include</state>
+
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\DSP\Include</state>
+
           <state>$PROJ_DIR$\..\..\Source\Common\Include\</state>
         </option>
         <option>
@@ -1627,7 +1635,7 @@
         </option>
         <option>
           <name>IlinkAdditionalLibs</name>
-          <state/>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\Lib\IAR\iar_cortexM4l_math.a</state>
         </option>
         <option>
           <name>IlinkOverrideProgramEntryLabel</name>

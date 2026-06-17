@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
-<infocenter_data version="1.0">
-  <iar_template_variant>A</iar_template_variant>
-  <iar_name>NXP's general purpose USB stack</iar_name>                           <!--Board-->
-  <iar_title>Examples for NXP's general purpose USB stack with personal health care device class (PHDC)</iar_title>            <!--Board-->
-</infocenter_data>

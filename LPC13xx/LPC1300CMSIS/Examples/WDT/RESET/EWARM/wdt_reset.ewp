@@ -292,6 +292,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Device\NXP\LPC13xx\Include\</state>
           <state>$PROJ_DIR$\..\..\..\..\Drivers\include</state>

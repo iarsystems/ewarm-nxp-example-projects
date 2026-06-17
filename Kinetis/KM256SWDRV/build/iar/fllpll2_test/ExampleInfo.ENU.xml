@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>FLL &amp; PLL 2</iar_name>                                                                  <!--App-->
-  <iar_description>This example shows FLL Engaged Internal (FEI) controlled by 32.0 kHz IRC and PLL
-  Engaged External (PEE) clocked by 32.768 kHz RTC Oscillator.</iar_description>   <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>PGM</iar_name>                                   <!--App-->
-  <iar_description>This example shows hot to use SPI and I2C to program serial memorys</iar_description>                     <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

@@ -332,6 +332,8 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+                    <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
                     <state>$PROJ_DIR$\inc</state>
                     <state>$PROJ_DIR$\..\peripherals_lib\inc</state>
                     <state>$PROJ_DIR$\..\utilities_lib\inc</state>
@@ -1346,6 +1348,8 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+                    <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
                     <state>$PROJ_DIR$\inc</state>
                     <state>$PROJ_DIR$\..\peripherals_lib\inc</state>
                     <state>$PROJ_DIR$\..\utilities_lib\inc</state>

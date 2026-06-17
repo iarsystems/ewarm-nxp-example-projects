@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>eth_to_serial</iar_name>                                    <!--App-->
-  <iar_description>Simple character passing between the UART console and the telnet session. Shows custom "lightweight" telnet.</iar_description> <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

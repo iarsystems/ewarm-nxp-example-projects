@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>Touch Screen Demo</iar_name>                                                                                    <!--App-->
-  <iar_description>Basic use of I/O, timers, interrupts, LCD controllers, LCD touch screen, touch screen ADC and beep generator of CS43L22 codec</iar_description>  <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

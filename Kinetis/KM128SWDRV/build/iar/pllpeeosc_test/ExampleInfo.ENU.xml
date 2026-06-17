@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>PLL Engaged External OSC</iar_name>                                                                  <!--App-->
-  <iar_description>This example shows PLL Engaged External (PEE) mode clocked by 8.0 MHz System Oscillator (OSC).</iar_description>   <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

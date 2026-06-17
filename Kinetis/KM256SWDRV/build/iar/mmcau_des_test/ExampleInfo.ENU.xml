@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>MMCAU DES</iar_name>                                                                  <!--App-->
-  <iar_description>This example shows DES cipher using the 8-byte secret key on the 8 byte long data (plain text).</iar_description>   <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

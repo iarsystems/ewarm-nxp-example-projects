@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>mmcau_api</iar_name>               <!--App-->
-  <iar_description>This project is a demonstration program that uses the KSDK software for encryption/decryption sample
-data using AES-CBC, DES3-CBC and Hash algorithms MD5, SHA1 and SHA256.</iar_description>  <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

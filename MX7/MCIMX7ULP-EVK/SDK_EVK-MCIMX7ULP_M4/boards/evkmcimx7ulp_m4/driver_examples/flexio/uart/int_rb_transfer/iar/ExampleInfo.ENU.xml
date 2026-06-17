@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<infocenter_data version="1.0">
-  <iar_name>flexio_uart_int_rb_transfer</iar_name>               <!--App-->
-  <iar_description>The example shows how to use flexio uart driver in interrupt way with RX ring buffer enabled.</iar_description>  <!--App short description-->
-  <iar_curdir>$CUR_DIR$</iar_curdir>
-</infocenter_data>

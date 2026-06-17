@@ -301,6 +301,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CM3\CoreSupport</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CM3\DeviceSupport\NXP\LPC18xx</state>
@@ -1243,6 +1245,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$\..</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CM3\CoreSupport</state>
           <state>$PROJ_DIR$\..\..\..\..\Core\CM3\DeviceSupport\NXP\LPC18xx</state>

@@ -310,6 +310,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$/../board</state>
           <state>$PROJ_DIR$/../LPC54608</state>
           <state>$PROJ_DIR$/../LPC54608/drivers</state>
@@ -1280,6 +1282,8 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\CMSIS\Core\Include</state>
+
           <state>$PROJ_DIR$/../board</state>
           <state>$PROJ_DIR$/../LPC54608</state>
           <state>$PROJ_DIR$/../LPC54608/drivers</state>

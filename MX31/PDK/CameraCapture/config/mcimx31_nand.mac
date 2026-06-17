@@ -1,8 +1,0 @@
-execUserPreload()
-{
-__var Reg;
-  __hwReset(1000);
-		
-  __message "----- User Preload Reset -----";
-
-}
