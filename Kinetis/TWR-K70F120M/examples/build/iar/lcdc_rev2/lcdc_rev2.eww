@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/lcdc_rev2_k70_tower.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>lcdc_rev2_k70_tower</project>
+        <configuration>FLASH 1M negative edge LSCLK</configuration>
+      </member>
+      <member>
+        <project>lcdc_rev2_k70_tower</project>
+        <configuration>FLASH 1M positive edge LSCLK</configuration>
+      </member>
+      <member>
+        <project>lcdc_rev2_k70_tower</project>
+        <configuration>RAM 128KB negative edge LSCLK</configuration>
+      </member>
+      <member>
+        <project>lcdc_rev2_k70_tower</project>
+        <configuration>RAM 128KB positive edge LSCLK</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

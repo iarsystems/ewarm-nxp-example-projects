@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>Boot Modes</iar_name>                                                                  <!--App-->
+  <iar_description>This section summarizes boot sequences supported by the MKM34Z128CLL5 device and ways of their entering by means of modifications performed in the appconfig.h file.</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

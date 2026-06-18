@@ -1,0 +1,10 @@
+execUserPreload()
+{
+__var Reg;
+
+  /*Disable MMU*/
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFDFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+}

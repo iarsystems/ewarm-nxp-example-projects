@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\..\httpsrv</copyDir>
+  <copyDir>..\..\..\..\..\..\config</copyDir>
+  <copyDir>..\..\..\..\..\build</copyDir>
+  <copyDir>..\..\..\..\..\source</copyDir>
+  <copyDir>..\..\..\..\..\..\mqx\build</copyDir>
+  <copyDir>..\..\..\..\..\..\mqx\source</copyDir>
+  <copyDir>..\..\..\..\..\..\mfs\build</copyDir>
+  <copyDir>..\..\..\..\..\..\mfs\source</copyDir>
+  <copyDir>..\..\..\..\..\..\rtcs\build</copyDir>
+  <copyDir>..\..\..\..\..\..\rtcs\source</copyDir>
+  <copyDir>..\..\..\..\..\..\shell\build</copyDir>
+  <copyDir>..\..\..\..\..\..\shell\source</copyDir>
+</exampleInfo>
+

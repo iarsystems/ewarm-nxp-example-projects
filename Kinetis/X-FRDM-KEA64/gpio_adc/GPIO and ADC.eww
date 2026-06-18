@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GPIO and ADC.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>TRK-KEAZ_LABTS3</project>
+        <configuration>Flash Debug KEAZ128xxx4</configuration>
+      </member>
+      <member>
+        <project>TRK-KEAZ_LABTS3</project>
+        <configuration>Flash Debug KEAZ64xxx4</configuration>
+      </member>
+      <member>
+        <project>TRK-KEAZ_LABTS3</project>
+        <configuration>Flash Debug KEAZN16xxx2</configuration>
+      </member>
+      <member>
+        <project>TRK-KEAZ_LABTS3</project>
+        <configuration>Flash Debug KEAZN32xxx2</configuration>
+      </member>
+      <member>
+        <project>TRK-KEAZ_LABTS3</project>
+        <configuration>Flash Debug KEAZN64xxx2</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

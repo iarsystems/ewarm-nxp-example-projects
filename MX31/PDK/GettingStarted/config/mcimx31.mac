@@ -1,0 +1,104 @@
+execUserPreload()
+{
+__var Reg;
+  __hwReset(0);
+  
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+  
+  // Set maximum JTAG Drive Strength
+  //Reg = __readMemory32(0x43FAC1C0,"Memory");
+  //Reg |=  (0x3<<1);
+  //__writeMemory32(Reg,0x43FAC1C0,"Memory"); 
+  //Reg = __readMemory32(0x43FAC1C4,"Memory");
+  //Reg |=  (0x3<<11);
+  //__writeMemory32(Reg,0x43FAC1C4,"Memory"); 
+  //__emulatorSpeed(-1);
+
+  // Init PLL
+  __message "----- Init PLL -----";
+  /*Disable MCU PLL*/	
+  //CCM_CCMR_bit.MPE = 0;
+  /*Disable Serial PLL*/
+  //CCM_CCMR_bit.SPE = 0;
+  Reg = __readMemory32(0x53F80000,"Memory");
+  Reg &= ~((0x1<<3)|(0x1<<8));
+  __writeMemory32(Reg,0x53F80000,"Memory"); 
+  /*Select CKIH for PLL reference*/
+  //CCM_CCMR_bit.PRCS = 2;
+  Reg = __readMemory32(0x53F80000,"Memory");
+  Reg &= ~(0x3<<1);
+  Reg |=  (0x2<<1);
+  __writeMemory32(Reg,0x53F80000,"Memory"); 
+  /*Set MCU PLL 532MHz*/
+  //CCM_MPCTL = 0x00192806;
+  __writeMemory32(0x00192806,0x53F80010,"Memory"); 
+  /*Set Serial PLL 292MHz*/
+  //CCM_SPCTL = 0x00331420;
+  __writeMemory32(0x00331420,0x53F80018,"Memory"); 
+  /*Enable IPU Module before changing the HSP Devider*/
+  //IPU_CONF_bit.DI_EN = 1;    
+  Reg = __readMemory32(0x53FC0000,"Memory");
+  Reg |= (0x1<<6);
+  __writeMemory32(Reg,0x53FC0000,"Memory"); 
+  /*Set Clock Deviders*/
+  //CCM_PDR0_bit.MCU_PODF = 0; /*MCU devider 1. Clock 532MHz*/
+  //CCM_PDR0_bit.MAX_PODF = 3; /*MAX devider 4. Clock 133MHz*/
+  //CCM_PDR0_bit.IPG_PODF = 1; /*IPG devider 3. Clock 66,5MHz*/
+  //CCM_PDR0_bit.HSP_PODF = 3; /*HSP devider 4. Clock 133MHz*/
+  //CCM_PDR0_bit.CSI_PODF = 3; /*CSI devider 4. Clock 73MHz*/
+  Reg = __readMemory32(0x53F80004,"Memory");
+  Reg &= ~((0x7<<0)|(0x7<<3)|(0x3<<6)|(0x7<<11)|(0x1FF<<23));
+  Reg |=  ((0x0<<0)|(0x3<<3)|(0x1<<6)|(0x3<<11)|(0x3<<23));
+  __writeMemory32(Reg,0x53F80004,"Memory"); 
+  /*Enable MCU PLL*/
+  //CCM_CCMR_bit.MPE = 1;
+  //CCM_CCMR_bit.SPE = 1;
+  Reg = __readMemory32(0x53F80000,"Memory");
+  Reg |= ((0x1<<3)|(0x1<<8));
+  __writeMemory32(Reg,0x53F80000,"Memory"); 
+  
+  // DDR RAM initialization
+  __message "----- Init DDR SDRAM -----";
+  
+  // DDR 4x8Mx32
+  // Row Address = 13
+  // Col Address = 9
+  // ESDMISC: enable DDR mode
+  __writeMemory32(0x00000004, 0xB8001010, "Memory");
+  // ESDCFG0: timing config
+  //__writeMemory32(0x006AC73A, 0xB8001004, "Memory");
+  __writeMemory32(0x0255B29, 0xB8001004, "Memory");
+  // ESDCTL0: Precharge Mode
+  __writeMemory32(0x92100000, 0xB8001000, "Memory");
+  // issue Precharge All command
+  __readMemory32(0x80000400, "Memory");
+  // ESDCTL0: AutoRefresh Mode
+  __writeMemory32(0xA2100000, 0xB8001000, "Memory");
+  // issue Autorefresh command
+  __readMemory32(0x80000000, "Memory");
+  __readMemory32(0x80000000, "Memory");
+  // ESDCTL0: Load Mode register Mode
+  __writeMemory32(0xB2100000, 0xB8001000, "Memory");
+  // issue Load Mode Register command
+  __readMemory8(0x80000033, "Memory");
+  __readMemory8(0x81000000, "Memory");
+  // ESDCTL0: Normal Mode
+  // Row Address  = 13
+  // Col Address  = 10
+  // Data width   = 32-bit
+  // Refresh Rate = 16384/64ms 
+  // Burst Length = 8
+  // /- 2 : 32 bit mode
+  // /- 1 : 16 bit - D[15:00]  
+  // /- 0 : 16 bit - D[31:16]
+  __writeMemory32(0x82226080, 0xB8001000, "Memory");
+  // issue normal access
+  __writeMemory32(0x00000000, 0x80000000, "Memory");
+  // ESDMISC: Reset Delay Line Measurement
+  __writeMemory32(0x0000000C, 0xB8001010, "Memory");
+}

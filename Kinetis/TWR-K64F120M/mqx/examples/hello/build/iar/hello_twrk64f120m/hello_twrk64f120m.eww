@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/hello_twrk64f120m.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/../../../../../build/iar/bsp_twrk64f120m/bsp_twrk64f120m.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/../../../../../build/iar/psp_twrk64f120m/psp_twrk64f120m.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>psp_twrk64f120m</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>psp_twrk64f120m</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>bsp_twrk64f120m</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>bsp_twrk64f120m</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>hello_twrk64f120m</project>
+        <configuration>Int Flash Debug</configuration>
+      </member>
+      <member>
+        <project>hello_twrk64f120m</project>
+        <configuration>Int Flash Release</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

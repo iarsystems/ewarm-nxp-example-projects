@@ -1,0 +1,28 @@
+__MMU_Disable()
+{
+__var Reg;
+  
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+  
+}
+
+execUserPreload()
+{
+  
+  __hwReset(0);
+  __message "---- execUserPreload ----" ;
+  __MMU_Disable();
+  
+}
+
+execUserReset()
+{
+  __message "---- execUserReset ----" ;
+  __MMU_Disable();
+
+}

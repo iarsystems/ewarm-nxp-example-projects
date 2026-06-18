@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+DESCRIPTION
+===========
+   The Software Examples demonstrate correct use of the MKM34Z256VLx7 bare metal
+  software drivers in an application. 
+  This section summarizes boot sequences supported by the MKM34Z256VLx7 device and
+  ways of their entering by means of modifications performed in the appconfig.h file.
+  Each particular boot mode is characteristic by a peak current, average current and
+  duration of the power up cycle.
+  
+  RUN Boot Fast Clock - Flash Clocked by 25 MHz During Initialization (default).
+                        Mode entered by all "BOOT_..." constants commented in the
+                        appconfig.h configuration file.
+						
+  RUN Boot Slow Clock - Flash Clocked by 25 MHz During Initialization. Mode entered by
+                        "BOOT_DIV_CLK_BY_8" constant left uncommented in the
+                        appconfig.h configuration file.
+						
+  RUN Boot Fast Clock - Flash Clocked by 1 MHz During Initialization. Mode entered by
+                       "BOOT_EXT_CLK" constant left uncommented in the appconfig.h
+                        configuration file. 						
+						
+  RUN Boot Fast Clock and Entering VLPR in SW - Flash Clocked by 1 MHz During
+                        Initialization. Mode entered by "BOOT_SWVLPR_MODE" and
+                       "BOOT_EXT_CLK" constant left uncommented in the appconfig.h
+                        configuration file.
+
+  Very Low Power RUN Boot - Mode entered by "BOOT_HWVLPR_MODE" constant left
+                        uncommented in the appconfig.h configuration file.
+  
+  In order to handle current spikes during Flash charging and Flash NVOPT fetching
+  (when booting in RUN mode), a capacitors on VDD supply pins are required. The
+  capacitors on VDD supply pins shall deliver current up to 6.41 mA for short duration
+  (5 us) without significant voltage drop. 
+  
+CONFIGURATION
+=============
+  
+  Release: The example is flashed into the embedded flash memory of the KM34Z256
+  microcontroller.
+  
+  By default the project is configured to use an I-Jet debugger.
+  
+ <br\>For more details please read the 
+ <a href="$CUR_DIR$/../../../refman.chm">MKM34Z256VLx7 Bare Metal Software Drivers Reference Manual.</a>
+ 
+  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

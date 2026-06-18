@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\..\..\devices</copyDir>
+  <copyDir>..\..\..\..\..\rtos</copyDir>
+  <copyDir>..\..\..\..\..\middleware</copyDir>
+  <copyDir>..\</copyDir>
+</exampleInfo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exampleInfo>
+  <copyDir>..\..\..\..\mouse</copyDir>
+  <copyDir>..\..\..\..\..\..\..\..\config</copyDir>
+  <copyDir>..\..\..\..\..\..\build</copyDir>
+  <copyDir>..\..\..\..\..\..\source</copyDir>
+  <copyDir>..\..\..\..\..\..\..\common</copyDir>
+  <copyDir>..\..\..\..\..\..\..\host</copyDir>
+  <copyDir>..\..\..\..\..\..\..\..\mqx\build</copyDir>
+  <copyDir>..\..\..\..\..\..\..\..\mqx\source</copyDir>
+</exampleInfo>
+

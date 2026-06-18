@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>crc</iar_name>               <!--App-->
+  <iar_description>The example project is a demonstration program that uses the KSDK software to generate checksums for an ASCII string.</iar_description>  <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

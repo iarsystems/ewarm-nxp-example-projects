@@ -1,0 +1,164 @@
+execUserPreload()
+{
+__var Reg;
+  __hwReset(0);
+
+  // Enable I Cache
+  // Disable MMU and enable ICache
+  Reg = __jtagCP15ReadReg(1, 0, 0, 0);
+  Reg &= 0xFFFFFFFA;
+  Reg |= 1<<12;
+  __jtagCP15WriteReg(1, 0, 0, 0, Reg);
+
+  /*Disable Watchdog Power Down Counter*/
+  //WMCR_bit.PDE = 0;
+  __writeMemory16(0x0000, 0x53FDC008, "Memory");
+
+  /* Init PLL*/
+  __message "----- Init PLL -----";
+  /*Disable MCU PLL*/
+
+  /**/
+  //CCM_CCMR = (0<<30) |    /*WFI = 0*/
+  //           (0<<29) |    /*STBY_EXIT_SRC = 0*/
+  //           (0<<28) |    /*VSTBY = 0*/
+  //           (0<<27) |    /*WBEN = 0*/
+  //          (15<<20) |    /*VOL_RDY_CNT = 15*/
+  //           (3<<18) |    /*ROMW = 3*/
+  //           (0<<16) |    /*RAMW = 0*/
+  //           (0<<14) |    /*LPM = 0*/
+  //            (1<<9) |    /*UPE = 1*/
+  //            (1<<3) ;    /*MPE = 1*/
+  __writeMemory32(0x00FC0208, 0x53F80000, "Memory");
+
+  /**/
+  //CCM_PDR0 = (0<<26) |    /*PER_SEL = 0*/
+  //           (1<<23) |    /*IPU_HND_BYP = 1*/
+  //           (0<<20) |    /*HSP_PODF = 0*/
+  //           (0<<16) |    /*CON_MUX_DIV = 0*/
+  //           (0<<15) |    /*CKIL_SEL = 0*/
+  //           (1<<12) ;    /*CCM_PER_AHB = 1*/
+  __writeMemory32(0x00801000, 0x53F80004, "Memory");
+
+  /*Set MCU PLL 532MHz*/
+  //CCM_MPCTL = (1<<31) |    /*BRMO = 1*/
+  //            (0<<26) |    /*PD = 0*/
+  //           (11<<16) |    /*MFD = 11*/
+  //           (11<<10) |    /*MFI = 11*/
+  //             (1<<0) ;    /*MFN = 1*/
+  __writeMemory32(0x800B2C01, 0x53F8001C, "Memory");
+
+  /*Set Peripheral PLL 300MHz*/
+  //CCM_PPCTL = (1<<31) |    /*BRMO = 1*/
+  //            (0<<26) |    /*PD = 0*/
+  //            (3<<16) |    /*MFD = 3*/
+  //            (6<<10) |    /*MFI = 11*/
+  //             (1<<0) ;    /*MFN = 1*/
+  __writeMemory32(0x80031801, 0x53F80020, "Memory");
+
+  // DDR RAM initialization
+  __message "----- Init DDR SDRAM -----";
+
+  // DDR RAM initialization
+  // DDR 4x8Mx16
+  // Row Address = 13
+  // Col Address = 10
+  // ESDMISC: enable DDR mode
+  // ESDMISC = 0x00000304;
+  __writeMemory32(0x00000304, 0xB8001010, "Memory");
+
+  // ESDCFG0: timing config
+  //ESDCFG0 = 0x007FFC3F;
+  __writeMemory32(0x007FFC3F, 0xB8001004, "Memory");
+
+  // ESDCTL0: Precharge Mode
+  //ESDCTL0 = 0x92226080;
+  __writeMemory32(0x92226080, 0xB8001000, "Memory");
+
+  // issue Precharge All command (MA10 = 1)
+  //Dummy = *((volatile unsigned int *)(SDRAM_CS0_BASE + 0x400));
+  __readMemory32(0x80000400,"Memory");
+
+  // ESDCTL0: AutoRefresh Mode
+  //ESDCTL0 = 0xA2226080;
+  __writeMemory32(0xA2226080, 0xB8001000, "Memory");
+
+  // issue Autorefresh command
+  //Dummy = *((volatile unsigned int *)SDRAM_CS0_BASE);
+  __readMemory32(0x80000000,"Memory");
+  //Dummy = *((volatile unsigned int *)SDRAM_CS0_BASE);
+  __readMemory32(0x80000000,"Memory");
+
+  // ESDCTL0: Load Mode register Mode
+  //ESDCTL0 = 0xB2226080;
+  __writeMemory32(0xB2226080, 0xB8001000, "Memory");
+
+  // issue Load Mode Register command
+  //Dummy = *((volatile unsigned char *)(SDRAM_CS0_BASE + 0x233));
+  __readMemory8(0x80000233,"Memory");
+  //Dummy = *((volatile unsigned char *)(SDRAM_CS0_BASE + 0x1000));
+  __readMemory8(0x80001000,"Memory");
+
+  // ESDCTL0: Normal Mode
+  // Row Address  = 13
+  // Col Address  = 10
+  // Data width   = 32-bit
+  // Refresh Rate = 7.81 uS
+  // Burst Length = 8
+  //ESDCTL0 = 0x82226080;
+  __writeMemory32(0x82226080, 0xB8001000, "Memory");
+
+  // issue normal access
+  //*((volatile unsigned int *)SDRAM_CS0_BASE) = 0;
+  __writeMemory32(0x00000000, 0x80000000, "Memory");
+
+
+  // ESDCFG1: timing config
+  //ESDCFG1 = 0x007FFC3F;
+  __writeMemory32(0x007FFC3F, 0xB800100C, "Memory");
+
+  // ESDCTL1: Precharge Mode
+  //ESDCTL1 = 0x92226080;
+  __writeMemory32(0x92226080, 0xB8001008, "Memory");
+
+  // issue Precharge All command (MA10 = 1)
+  //Dummy = *((volatile unsigned int *)(SDRAM_CS1_BASE + 0x400));
+  __readMemory32(0x90000400,"Memory");
+
+  // ESDCTL1: AutoRefresh Mode
+  //ESDCTL1 = 0xA2226080;
+  __writeMemory32(0xA2226080, 0xB8001008, "Memory");
+
+  // issue Autorefresh command
+  //Dummy = *((volatile unsigned int *)SDRAM_CS1_BASE);
+  __readMemory32(0x90000000,"Memory");
+  //Dummy = *((volatile unsigned int *)SDRAM_CS1_BASE);
+  __readMemory32(0x90000000,"Memory");
+
+  // ESDCTL1: Load Mode register Mode
+  //ESDCTL1 = 0xB2226080;
+  __writeMemory32(0xB2226080, 0xB8001008, "Memory");
+
+  // issue Load Mode Register command
+  //Dummy = *((volatile unsigned char *)(SDRAM_CS1_BASE + 0x233));
+  __readMemory8(0x90000233,"Memory");
+  //Dummy = *((volatile unsigned char *)(SDRAM_CS1_BASE + 0x1000));
+  __readMemory8(0x90001000,"Memory");
+
+  // ESDCTL1: Normal Mode
+  // Row Address  = 13
+  // Col Address  = 10
+  // Data width   = 32-bit
+  // Refresh Rate = 7.81 uS
+  // Burst Length = 8
+  // ESDCTL1 = 0x82226080;
+  __writeMemory32(0x82226080, 0xB8001008, "Memory");
+
+  // issue normal access
+  //*((volatile unsigned int *)(SDRAM_CS1_BASE)) = 0;
+  __writeMemory32(0x00000000, 0x90000000, "Memory");
+
+  // ESDMISC: Reset Delay Line Measurement
+  //ESDMISC = 0x0000030C;
+  __writeMemory32(0x0000030C, 0xB8001010, "Memory");
+}

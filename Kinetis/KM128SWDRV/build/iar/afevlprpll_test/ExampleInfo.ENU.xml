@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>AFE VLPR</iar_name>                                                                  <!--App-->
+  <iar_description>This application demonstrates VLPR mode of operation with AFE clocked by PLL module controlled by 32.768 KHz RTCOSC.</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

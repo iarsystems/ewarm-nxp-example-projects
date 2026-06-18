@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>isr</iar_name>                                    <!--App-->
+  <iar_description>Shows how to install interrupt service routine and how to chain it with the previous handler</iar_description> <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

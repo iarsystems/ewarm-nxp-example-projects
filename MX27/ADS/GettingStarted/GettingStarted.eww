@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GettingStarted.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>DDRRAM Debug</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>NOR Debug</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>PSRAM Debug</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>VRAM Debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

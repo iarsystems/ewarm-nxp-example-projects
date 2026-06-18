@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GettingStarted.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>A5 Debug DDR</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>A5 Debug OCRAM</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>A5 Debug QSPI0 XIP</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>A5 Debug QSPI1 XIP</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>A5 Release QSP0 DDR</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>M4 Debug DDR</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>M4 Debug OCRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

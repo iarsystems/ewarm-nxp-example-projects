@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+Dual cores
+
+DESCRIPTION
+===========
+  This example project shows how to use the IAR Embedded Workbench for ARM
+ to develop code for the Freescale TWR-VF600 board. It shows how to initilize 
+ second Cortex M4 core from Cortex A5 and execute two diferent applications 
+ on both cores.
+  The dual core sample code consists of two projects:
+  One for the A5 (dual_core_tower), and one for the M4 (dual_core_m4_tower). 
+  The M4 code gets compiled into a binary with an executable code start 
+ address at symbol __iar_program_start. This symbol is exported when the
+ M4 project is built to an elf file containing the symbol only but renamed to
+ __iar_program_start_slave to avoid name collision. The A5 project includes
+ this symbol elf file and uses it to set up the start address of the M4 core. 
+ This is done in a debugger macro. In the standalone case, this task would
+ be performed by the A5 startup code or whenever there is a need to start the 
+ M4 core.The linker files are built to split the SystemRAM in half between 
+ the two cores.
+  Open the \build\iar\projects\dual_core workspace to see both the A5 and M4 
+ projects. 
+   The key pieces of code for the A5 project are:
+   //Set M4 start address. Must be odd address since M4 is thumb
+   SRC->GPR2 = (unsigned int)0x3f040411; //Start address for the M4 core
+   //Enable M4 core                                                                                
+   CCM->CCOWR = 0x15a5a;                          
+
+   Then in the A5 linker file, there’s two key lines: 
+    define symbol __code_start_m4__ = 0x3f040000;
+    place at address mem:__code_start_m4__ { readonly section .noinit_m4 };
+  This tells the linker where to place the M4 binary code.
+  Finally the linker input configuration in the A5 project tells the linker 
+ to include the M4 binary code as part of the ELF it generates.
+  	
+   UART settings - 115200, 8 bits, noparity, 1 stop bit
+
+
+COMPATIBILITY
+=============
+   The example project is compatible with WTR-VF600 and TWR-SER boards.
+   By default, the project is configured to use I-jet with JTAG interface.
+
+
+CONFIGURATIONS
+===============
+Project Dual core tower 
+    CoreA5
+	This configuration is intended for debugging in OCRAM for Coretx-A5 core
+	but contains the image for a Coretx M4 core too     
+    SRAM
+	This configuration is intended for debugging in OCRAM for Coretx-A5 and 
+	Coretx M4 core simultaneously
+
+   Read about debugging an asymmetric multi-core system (AMP) in the Multicore debugging
+  chapter in the  IAR Embedded Workbench C-SPY Debugging Guide.
+
+   The dual_core_tower project is the master project, and the dual_core_m4_tower 
+  project is the slave project. 
+	
+Project Dual core M4 tower 
+    SRAM
+	This configuration is intended for debugging in OCRAM for Cortex-M4 core
+
+GETTING STARTED
+===============
+  1) Batch build the program (press key F8 and select appropriate action).
+
+  2) Download the program for Cortex A5 core (the program contains the image for a Cortex M4 core too)
+
+  3) Connet Host PC RS232 to TWR-SER board and open a terminal programe
+
+  4) Run the program.
+
+  </div>
+  </body>
+</html>

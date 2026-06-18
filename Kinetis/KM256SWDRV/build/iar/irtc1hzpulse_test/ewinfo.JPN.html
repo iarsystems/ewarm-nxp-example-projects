@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+DESCRIPTION
+===========
+   The Software Examples demonstrate correct use of the MKM34Z256VLx7 bare metal
+  software drivers in an application. 
+  The fine compensation logic is suitable for many 32.768 kHz crystals, and can
+  correct a wide range of crystal offsets. The software example initializes IRTC
+  module including so called fine compensation logic, RTCCLKOUT pin to generate 1 Hz
+  pulse output, and FreeMASTER interface to communicate through UART2 module
+  (38400/8-N-1). It demonstrates capability of the IRTC module to output a precise 
+  1 Hz pulse output signal (through RTCCLKOUT pin) that represents clock frequency
+  used to drive IRTC's internal time and date counters. This 1 Hz pulse output signal
+  is outputted by the fine compensation logic and is generated with high resolution of
+  the clock edge placement (up to 0.88 ppm) and near 50% duty cycle.
+  The software sets an integral compensation value, a 2's complement value of the
+  integer part of correction or compensation value that has to be adjusted in every 1
+  second period, to value -5 (-152.59 ppm), and a fraction compensation value, a
+  fractional part of the correction or compensation value that has to be adjusted in
+  every 1 second period, to value 11 (+2.62 ppm). Note that, integral and fraction
+  compensation values are expressed in terms of number of clock cycles of the 32.768
+  kHz oscillator clock (30.51 ppm) and fixed 4.194304 MHz clock (0.24 ppm),
+  respectively
+
+ 
+CONFIGURATION
+=============
+  
+  Release: The example is flashed into the embedded flash memory of the KM34Z256
+  microcontroller.
+  
+  By default the project is configured to use an I-Jet debugger.
+  
+ <br\>For more details please read the 
+ <a href="$CUR_DIR$/../../../refman.chm">MKM34Z256VLx7 Bare Metal Software Drivers Reference Manual.</a>
+ 
+  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+
