@@ -1,0 +1,67 @@
+;Codewright Project File (do not remove or modify this line)
+[ProjInit]
+ProjSetConfigFlags=0x00010140
+
+[Files]
+d:\projects\philips\simpleex\lpc2106\ma_gpio.c
+d:\projects\philips\examples\mb40ex01\clock.c
+d:\projects\philips\examples\mb40ex01\easypgm.c
+d:\projects\philips\examples\mb40ex01\editor.c
+d:\projects\philips\examples\mb40ex01\em6125.c
+d:\projects\philips\examples\mb40ex01\extra.c
+d:\projects\philips\examples\mb40ex01\interupt.c
+d:\projects\philips\examples\mb40ex01\key_api.c
+d:\projects\philips\examples\mb40ex01\keyboard.c
+d:\projects\philips\examples\mb40ex01\lcd.c
+d:\projects\philips\examples\mb40ex01\lcd_api.c
+d:\projects\philips\examples\mb40ex01\led.c
+d:\projects\philips\examples\mb40ex01\ma_gpio.c
+d:\projects\philips\examples\mb40ex01\ma_i2c.c
+d:\projects\philips\examples\mb40ex01\ma_pcb.c
+d:\projects\philips\examples\mb40ex01\ma_pwm0.c
+d:\projects\philips\examples\mb40ex01\ma_rtc.c
+d:\projects\philips\examples\mb40ex01\ma_scb.c
+d:\projects\philips\examples\mb40ex01\ma_spi.c
+d:\projects\philips\examples\mb40ex01\ma_tmr.c
+d:\projects\philips\examples\mb40ex01\ma_uart0.c
+d:\projects\philips\examples\mb40ex01\ma_uart1.c
+d:\projects\philips\examples\mb40ex01\ma_vic.c
+d:\projects\philips\examples\mb40ex01\ma_wdt.c
+d:\projects\philips\examples\mb40ex01\pgm24c.c
+d:\projects\philips\examples\mb40ex01\template.c
+d:\projects\philips\examples\mb40ex01\timer.c
+
+[State]
+SysSetCwd='D:\PROJECTS\PHILIPS\EXAMPLES\MB40LCD'
+SrchSetFlags=0x600b
+FileSortMode=0x3
+StateWindowFrame=135,135,768,530,0x43097fca
+_OutputWindowPosition=0,44,44,768,537,0,0
+_StateWindow=129,115,826,451,0x00000028,'d:\projects\philips\examples\mb40lcd\my_files.c',240,15,244,32,32,0,32,32,32,32,8,160,625,1,0,'Courier',65520,0,49,0,8,243,14,15,241,252,249,73,27,400,0,244,246,242,252,0,0,0,0,0
+_StateWindow=119,16,671,570,0x00000028,'d:\projects\philips\examples\mb40lcd\mb40lcd1.c',240,15,244,32,32,0,32,32,32,32,8,0,625,0,0,'Courier',65520,0,49,0,8,243,14,15,241,252,249,164,23,400,0,244,246,242,252,0,0,0,0,0
+_StateWindow=75,11,826,589,0x00000028,'d:\projects\philips\examples\mb40lcd\clock.c',240,15,244,32,32,0,32,32,32,32,8,320,625,0,0,'Courier',65520,0,49,0,8,243,14,15,241,252,249,1,1,400,0,244,246,242,252,0,0,0,0,0
+_StateWindow=40,11,826,562,0x00000028,'d:\projects\philips\examples\mb40lcd\clock1.c',240,15,244,32,32,0,32,32,32,32,8,480,625,0,0,'Courier',65520,0,49,0,8,243,14,15,241,252,249,39,6,400,0,244,246,242,252,0,0,0,0,0
+_StateBuffer='d:\projects\philips\examples\mb40lcd\my_files.c',0x0400048e,73,27,25,'5 9','',0x0,''
+_StateBuffer='d:\projects\philips\examples\mb40lcd\clock1.c',0x0400048f,39,6,25,'5 9','',0x0,''
+_StateBuffer='d:\projects\philips\examples\mb40lcd\clock.c',0x0000048e,1,1,25,'5 9','',0x0,''
+_StateBuffer='d:\projects\philips\examples\mb40lcd\mb40lcd1.c',0x0400048e,164,23,25,'5 9','',0x0,''
+WrapEnable=0
+_StateHistory=SEARCH,'CurrentPageSize','My_WaitForChar\(','KEY_LEFT','76','1B','Test_Char_Keyboard\(','MA_GetChar_UART0\(','MA_Reset_SCB\(','Exec_Copy24C256_RAM','CurrentPageSize'
+_StateHistory=REPLACE,'My_PutString(','My_PutChar(','My_Put_Some(','My_PutChar(','My_PutString(','My_PutChar(','My_WaitForChar(','My_PutChar(','My_PutString(','My_WaitForChar('
+_StateHistory=FILELIST,'d:\projects\philips\examples\mb40lcd\pllturbo.c','d:\projects\philips\examples\mb40lcd\pllturbo.h','d:\projects\philips\examples\mb40lcd\led.h','d:\projects\philips\examples\mb40lcd\led.c','d:\projects\philips\examples\mb40lcd\editor.c','d:\projects\philips\examples\mb40lcd\ma_scb.c','d:\projects\philips\examples\mb40lcd\clock.c','d:\projects\philips\examples\mb40lcd\clock1.c','d:\projects\philips\examples\mb40lcd\pgm24c.c','d:\projects\philips\examples\mb40lcd\pgm_v01.xcl'
+_StateHistory=DIRECTORY,'D:\PROJECTS\PHILIPS\SIMPLEEX\LPC2106\PS2KEY','D:\PROJECTS\PHILIPS\SIMPLEEX\LPC2106','D:\PROJECTS\PHILIPS\EXAMPLES\MB40EX01'
+_StateHistory=FGREP,'Exec_Keyboard_PC(','My_WaitForChar(','CurrentPageSize','My_WaitForChar(','KEY_LEFT','Test_Char_Keyboard(','MA_GetChar_UART0(','MA_Reset_SCB(','Exec_Copy24C256_RAM','CurrentPageSize'
+
+[Editor]
+ClipboardSetTermStr='\r\n',0
+ClipboardEnableTermStr=1
+ClipboardSetSepStr='\r\n',0
+ClipboardEnableSepStr=1
+ScrapSetCount=1
+_RestoreSysFlags=0x43097fca, 0xfffffffc
+
+[Compiler]
+BrowseSetFile='d:\projects\philips\examples\mb40ex01\board01.ptg'
+TagSetFile='d:\projects\philips\examples\mb40ex01\board01.tag'
+CompilerAddBuild='$_cw_proj_hash_$',1073741880,'','ftee nmake -f %y.mak','ftee nmake -f %y.mak','','','_ErrorInfoDefault','proj.err','%x','','','','','',0
+CompilerAddResponse='$_cw_proj_hash_$',

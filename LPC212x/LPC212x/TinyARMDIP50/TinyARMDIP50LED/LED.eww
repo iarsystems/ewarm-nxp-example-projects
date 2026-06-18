@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\Ex_Ram.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Ex_Flash.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Ex_Flash</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>Ex_Flash</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>Ex_Ram</project>
+        <configuration>Debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+
