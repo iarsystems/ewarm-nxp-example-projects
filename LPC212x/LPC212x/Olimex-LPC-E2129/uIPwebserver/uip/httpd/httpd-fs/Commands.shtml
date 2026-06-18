@@ -1,0 +1,14 @@
+<html>
+<body>
+<h1>Control</h1>
+<form>
+  <div class="contentblock">
+    <pre align="left">&nbsp;
+    <input type=submit name="LED_RED" value="     RED   ">
+    <input type=submit name="LED_GREEN" id="LED_GREEN" value=" GREEN ">
+    <input type=submit name= "LED_YELLOW" id="LED_YELLOW" value="YELLOW">
+    </pre>
+</form>
+%! LED_Control
+</body>
+</html>

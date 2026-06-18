@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+This folder contains a set of example projects for the NXP LPC2103
+evaluation board produced by IAR Systems Software.
+
+As of 14 Jan 06 the examples consist of:
+
+2103_FIQIntIRQ - Fast Interrupt Request interrupting an Interrupt Request
+isr while it is executing.
+
+2103_MultiBlink - Interrupts on MR0 for Timer0-3
+
+2103_RTC_Ex - Create a 1Hz interrupt using RTC and put 350Hz 30% duty cycle
+square wave out on Pin P0.5
+
+2103_TMR0Int_Ex - Interrupt on MR0 of timer0 and set up interrupts for EXTINT1
+and EXTINT2, which have buttons connected to those pins.
+
+These examples use the iolpc2103.ddf file provided in the distribution. It is
+HIGHLY recommended that if is desired to see the VIC register group, the user
+take the following steps:
+1. Make a local copy of the iolpc2103.ddf file
+2. In the local copy, comment out the line
+
+sfr = "VICVectAddr"           , "Memory", 0xFFFFF030,        4, base=16
+
+3. In the line
+
+group = "VIC","VICIRQStatus","VICFIQStatus","VICRawIntr","VICIntSelect","VICIntEnable","VICIntEnClear","VICSoftInt","VICSoftIntClear","VICProtection","VICVectAddr","VICDefVectAddr"...
+
+Delet the reference to the register "VICVectAddr"
+
+The reason for doing this is as follows: The original configuration of iolpc2103.ddf
+enables C-SPY debugger to read and display the content of VICVectAddr. However, reading
+this register affects the state machine of the vector interrupt controller state
+machine. It has the effect of disabling further interrupts. This is an example of
+the intrusiveness of the debugger. If it is desired to see the VICVectAddr during the
+course of application exectuion, th work around is suggested.
+
+Implement a single entry point interrupt handler for IRQ and inspect the temporary value
+vector.
+
+in startup code, put:
+EXTERN irq_handler
+org 0x18
+ldr pc,=irq_handler
+
+and in C module:
+
+__irq __arm void irq_andler (void)        // IRQ_ISR_Handler() at 0x18
+{
+  void (*interrupt_function)(void);
+  unsigned int vector;
+  vector = VICVectAddr;                        // Get address of isr for this interrupt
+  interrupt_function = (void(*)())vector;      // Call Tmr0IntOnMR0_isr thru pointer
+  (*interrupt_function)();                     // Call vectored interrupt function
+  VICVectAddr = 0;                             // Clear interrupt in VIC, complete interrupt cycle
+}
+
+void Tmr0IntOnMR0_isr(void)
+{
+  static unsigned int us_Ticks =0;
+  unsigned int intrptID;
+  us_Ticks++;
+  if(us_Ticks == TICKS_PER_FIVEHUNDRED_MSEC)
+  {
+    bl_TimerFlag ^= 1;                         // The background "task"
+    us_Ticks = 0;
+  }
+  intrptID = T0IR & 0xFF;                      // determine which channel
+  T0IR = intrptID;
+}
+   </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

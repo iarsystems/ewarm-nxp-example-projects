@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/timer.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>timer</project>
+        <configuration>FLASH VIA JLINK</configuration>
+      </member>
+      <member>
+        <project>timer</project>
+        <configuration>SRAM VIA JLINK</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

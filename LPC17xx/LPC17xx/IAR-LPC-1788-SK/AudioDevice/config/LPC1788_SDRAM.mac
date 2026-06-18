@@ -1,0 +1,180 @@
+__Clock_Init()
+{
+  __message "---- Init Clock ----" ;
+
+  /*Init OSC*/
+  //SCS_bit.OSCRANGE = 0;
+  //SCS_bit.OSCEN = 1;
+  __writeMemory32(0x00000029,0x400FC1A0,"Memory");  
+  /*Wait for OSC ready*/
+  __delay(5);
+  /*Sysclk is used as the input to the CPU clock divider*/
+  /*and CCLKDIV = 1*/
+  __writeMemory32(0x00000001,0x400FC104,"Memory");  //CCLKSEL = 1; 
+  /*Disable PLL*/
+  __writeMemory32(0x00000000,0x400FC080,"Memory"); //PLL0CON_bit.PLLE = 0;
+  __writeMemory32(0x000000AA,0x400FC08C,"Memory"); //PLL0FEED = 0xAA;
+  __writeMemory32(0x00000055,0x400FC08C,"Memory"); //PLL0FEED = 0x55;
+  /*Selects the main oscillator as the sysclk and PLL0 clock source*/
+  __writeMemory32(0x00000001,0x400FC10C,"Memory"); //CLKSRCSEL_bit.CLKSRC = 1; 
+  /*Set PLL settings 96 MHz*/
+  //PLL0CFG_bit.MSEL = 8-1;
+  //PLL0CFG_bit.PSEL = 0;
+  __writeMemory32(0x00000007,0x400FC084,"Memory"); 
+  __writeMemory32(0x000000AA,0x400FC08C,"Memory"); //PLL0FEED = 0xAA;
+  __writeMemory32(0x00000055,0x400FC08C,"Memory"); //PLL0FEED = 0x55;
+  /*Enable PLL*/
+  __writeMemory32(0x00000001,0x400FC080,"Memory"); //PLL0CON_bit.PLLE = 0;
+  __writeMemory32(0x000000AA,0x400FC08C,"Memory"); //PLL0FEED = 0xAA;
+  __writeMemory32(0x00000055,0x400FC08C,"Memory"); //PLL0FEED = 0x55;
+  /* Wait for the PLL to achieve lock*/
+  while(!(__readMemory32(0x400FC088,"Memory") & (1<<10))){}//while(!PLL0STAT_bit.PLOCK);
+  /*CPU Clock = 96MHz*/
+   __writeMemory32(0x00000001,0x400FC104,"Memory");  //CCLKSEL_bit.CCLKDIV = 1; 
+  /*Peripheral clock 48MHz*/
+   __writeMemory32(0x00000002,0x400FC1A8,"Memory");  //PCLKSEL_bit.PCLKDIV = 2;
+  /*PLL0 out is used as the input to the CPU clock divider*/
+  __writeMemory32(0x00000101,0x400FC104,"Memory");  //CCLKSEL_bit.CCLKSEL = 1; 
+	
+  /*Flash accelerator init*/
+  __writeMemory32((0x4UL<<12) | 0x3AUL,0x400FC000,"Memory");  //FLASHCFG = (0x4UL<<12) | 0x3AUL;
+  
+}
+
+__SDRAM_Init()
+{
+  __message "---- Init SDRAM ----" ;
+  
+  /* Enable EMC clock*/
+  __writeMemory32(__readMemory32(0x400FC0C4,"Memory") | (1<<11),0x400FC0C4,"Memory"); //PCONP_bit.PCEMC = 1;
+  /*The EMC uses the same clock as the CPU*/
+  __writeMemory32(0x00000000,0x400FC100,"Memory");	//EMCCLKSEL = 0;
+  /*Assign pins to SDRAM controller*/
+  __writeMemory32(0x00000021,0x4002C140,"Memory");	//IOCON_P2_16 = 0x21;
+  __writeMemory32(0x00000021,0x4002C144,"Memory");	//IOCON_P2_17 = 0x21;
+  __writeMemory32(0x00000021,0x4002C148,"Memory");	//IOCON_P2_18 = 0x21;
+  __writeMemory32(0x00000021,0x4002C150,"Memory");	//IOCON_P2_20 = 0x21;
+  __writeMemory32(0x00000021,0x4002C160,"Memory");	//IOCON_P2_24 = 0x21;
+  __writeMemory32(0x00000021,0x4002C170,"Memory");	//IOCON_P2_28 = 0x21;
+  __writeMemory32(0x00000021,0x4002C174,"Memory");	//IOCON_P2_29 = 0x21;
+  __writeMemory32(0x00000021,0x4002C178,"Memory");	//IOCON_P2_30 = 0x21;
+  __writeMemory32(0x00000021,0x4002C17C,"Memory");	//IOCON_P2_31 = 0x21;
+  __writeMemory32(0x00000021,0x4002C180,"Memory");	//IOCON_P3_00 = 0x21;
+  __writeMemory32(0x00000021,0x4002C184,"Memory");	//IOCON_P3_01 = 0x21;
+  __writeMemory32(0x00000021,0x4002C188,"Memory");	//IOCON_P3_02 = 0x21;
+  __writeMemory32(0x00000021,0x4002C18C,"Memory");	//IOCON_P3_03 = 0x21;
+  __writeMemory32(0x00000021,0x4002C190,"Memory");	//IOCON_P3_04 = 0x21;
+  __writeMemory32(0x00000021,0x4002C194,"Memory");	//IOCON_P3_05 = 0x21;
+  __writeMemory32(0x00000021,0x4002C198,"Memory");	//IOCON_P3_06 = 0x21;
+  __writeMemory32(0x00000021,0x4002C19C,"Memory");	//IOCON_P3_07 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1A0,"Memory");	//IOCON_P3_08 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1A4,"Memory");	//IOCON_P3_09 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1A8,"Memory");	//IOCON_P3_10 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1AC,"Memory");	//IOCON_P3_11 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1B0,"Memory");	//IOCON_P3_12 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1B4,"Memory");	//IOCON_P3_13 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1B8,"Memory");	//IOCON_P3_14 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1BC,"Memory");	//IOCON_P3_15 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1C0,"Memory");	//IOCON_P3_16 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1C4,"Memory");	//IOCON_P3_17 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1C8,"Memory");	//IOCON_P3_18 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1CC,"Memory");	//IOCON_P3_19 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1D0,"Memory");	//IOCON_P3_20 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1D4,"Memory");	//IOCON_P3_21 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1D8,"Memory");	//IOCON_P3_22 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1DC,"Memory");	//IOCON_P3_23 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1E0,"Memory");	//IOCON_P3_24 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1E4,"Memory");	//IOCON_P3_25 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1E8,"Memory");	//IOCON_P3_26 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1EC,"Memory");	//IOCON_P3_27 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1F0,"Memory");	//IOCON_P3_28 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1F4,"Memory");	//IOCON_P3_29 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1F8,"Memory");	//IOCON_P3_30 = 0x21;
+  __writeMemory32(0x00000021,0x4002C1FC,"Memory");	//IOCON_P3_31 = 0x21;
+  __writeMemory32(0x00000021,0x4002C200,"Memory");	//IOCON_P4_00 = 0x21;
+  __writeMemory32(0x00000021,0x4002C204,"Memory");	//IOCON_P4_01 = 0x21;
+  __writeMemory32(0x00000021,0x4002C208,"Memory");	//IOCON_P4_02 = 0x21;
+  __writeMemory32(0x00000021,0x4002C20C,"Memory");	//IOCON_P4_03 = 0x21;
+  __writeMemory32(0x00000021,0x4002C210,"Memory");	//IOCON_P4_04 = 0x21;
+  __writeMemory32(0x00000021,0x4002C214,"Memory");	//IOCON_P4_05 = 0x21;
+  __writeMemory32(0x00000021,0x4002C218,"Memory");	//IOCON_P4_06 = 0x21;
+  __writeMemory32(0x00000021,0x4002C21C,"Memory");	//IOCON_P4_07 = 0x21;
+  __writeMemory32(0x00000021,0x4002C220,"Memory");	//IOCON_P4_08 = 0x21;
+  __writeMemory32(0x00000021,0x4002C224,"Memory");	//IOCON_P4_09 = 0x21;
+  __writeMemory32(0x00000021,0x4002C228,"Memory");	//IOCON_P4_10 = 0x21;
+  __writeMemory32(0x00000021,0x4002C22C,"Memory");	//IOCON_P4_11 = 0x21;
+  __writeMemory32(0x00000021,0x4002C230,"Memory");	//IOCON_P4_12 = 0x21;
+  __writeMemory32(0x00000021,0x4002C234,"Memory");	//IOCON_P4_13 = 0x21;
+  __writeMemory32(0x00000021,0x4002C238,"Memory");	//IOCON_P4_14 = 0x21;
+  __writeMemory32(0x00000021,0x4002C264,"Memory");	//IOCON_P4_25 = 0x21;
+  /*Init SDRAM controller*/
+  //EMCDLYCTL_bit.CMDDLY = 0x8;
+  /*Set data read delay*/
+  //EMCDLYCTL_bit.FBCLKDLY = 0x8;  
+  /**/
+  //EMCDLYCTL_bit.CLKOUT0DLY = 0x8;  
+  __writeMemory32(0x00080808,0x400FC1DC,"Memory");
+  __writeMemory32(0x00000001,0x2009C000,"Memory");	//EMCControl      = 1;         // enable EMC
+  __writeMemory32(0x00000001,0x2009C028,"Memory");	//EMCDynamicReadConfig = 1;
+  //EMCDynamicRasCas0_bit.CAS = 3;
+  //EMCDynamicRasCas0_bit.RAS = 3;
+  __writeMemory32(0x00000303,0x2009C104,"Memory");	//
+  __writeMemory32(0x00000002,0x2009C030,"Memory");	//EMCDynamictRP = P2C(SDRAM_TRP);
+  __writeMemory32(0x00000005,0x2009C034,"Memory");	//EMCDynamictRAS = P2C(SDRAM_TRAS);
+  __writeMemory32(0x00000007,0x2009C038,"Memory");	//EMCDynamictSREX = P2C(SDRAM_TXSR);
+  __writeMemory32(0x00000001,0x2009C03C,"Memory");	//EMCDynamictAPR = SDRAM_TAPR;
+  __writeMemory32(0x00000005,0x2009C040,"Memory");	//EMCDynamictDAL = SDRAM_TDAL+P2C(SDRAM_TRP);
+  __writeMemory32(0x00000003,0x2009C044,"Memory");	//EMCDynamictWR = SDRAM_TWR;
+  __writeMemory32(0x00000007,0x2009C048,"Memory");	//EMCDynamictRC = P2C(SDRAM_TRC);
+  __writeMemory32(0x00000007,0x2009C04C,"Memory");	//EMCDynamictRFC = P2C(SDRAM_TRFC);
+  __writeMemory32(0x00000007,0x2009C050,"Memory");	//EMCDynamictXSR = P2C(SDRAM_TXSR);
+  __writeMemory32(0x00000002,0x2009C054,"Memory");	//EMCDynamictRRD = P2C(SDRAM_TRRD);
+  __writeMemory32(0x00000003,0x2009C058,"Memory");	//EMCDynamictMRD = SDRAM_TMRD;
+  __writeMemory32(0x00004680,0x2009C100,"Memory");	//EMCDynamicConfig0 = 0x0004680;        // 13 row, 9 - col, SDRAM
+  // JEDEC General SDRAM Initialization Sequence
+  // DELAY to allow power and clocks to stabilize ~100 us
+  // NOP
+  __writeMemory32(0x00000183,0x2009C020,"Memory");	//EMCDynamicControl = 0x0183;
+  __delay(1); //for(volatile Int32U i = 200*30; i;i--);
+  // PALL
+  __writeMemory32(0x00000103,0x2009C020,"Memory");	//EMCDynamicControl_bit.I = 2;
+  __writeMemory32(0x00000001,0x2009C024,"Memory");	//EMCDynamicRefresh = 1;
+  __delay(1); //for(volatile Int32U i= 256; i; --i); // > 128 clk
+  __writeMemory32(0x0000002F,0x2009C024,"Memory");	//EMCDynamicRefresh = P2C(SDRAM_REFRESH) >> 4;
+  // COMM
+  __writeMemory32(0x00000083,0x2009C020,"Memory");	//EMCDynamicControl_bit.I = 1;
+  // Burst 4, Sequential, CAS-3
+  //volatile unsigned long Dummy = *(volatile unsigned short *)
+  //                                ((uint32_t)&SDRAM_BASE_ADDR + (0x32UL << (13)));
+  __readMemory32(0xA0000000|(0x32UL <<13),"Memory");	//
+  // NORM
+  __writeMemory32(0x00000000,0x2009C020,"Memory");	//EMCDynamicControl = 0x0000;
+  __writeMemory32(0x00084680,0x2009C100,"Memory");	//EMCDynamicConfig0_bit.B = 1;
+  __delay(10); //for(volatile Int32U i = 100000; i;i--);
+}
+
+__MPU_Init()
+{
+  __message "---- Init MPU ----" ;
+  
+  __writeMemory32(0xA0000010,0xE000ED9C,"Memory");	//SDRAM Address
+  __writeMemory32(0x02020031,0xE000EDA0,"Memory");	//
+  __writeMemory32(0x00000005,0xE000ED94,"Memory");	//Enable MPU, and default regions
+}
+
+execUserReset()
+{
+  __message "**** User Reset ****" ;
+
+  __MPU_Init();
+}
+
+execUserPreload()
+{
+  __message "**** User Preload ****" ;
+  
+  __Clock_Init();
+
+  __SDRAM_Init();
+}
+

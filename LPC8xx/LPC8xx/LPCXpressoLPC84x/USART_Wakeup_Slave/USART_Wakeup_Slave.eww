@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$/USART_Wakeup_Slave.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$/../peripherals_lib/peripheral_lib.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$/../utilities_lib/utilities_lib.ewp</path>
+    </project>
+    <batchBuild>
+        <batchDefinition>
+            <name>Build All</name>
+            <member>
+                <project>peripheral_lib</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>utilities_lib</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>USART_Wakeup_Slave</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>USART_Wakeup_Slave</project>
+                <configuration>Release</configuration>
+            </member>
+        </batchDefinition>
+    </batchBuild>
+</workspace>

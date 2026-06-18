@@ -1,0 +1,85 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to change privilege to unprivilege mode and vice vesa.
+	Process:
+		CONTROL[0] register controls the privilege level for software execution when the 
+		processor is in Thread mode. So, we can access to get/set CONTROL[0] to change Thread
+		mode privilege level.
+		
+		Out of reset, Thread mode is privilege.
+		Read CONTROL[0] to check if it is truly privilege or not.
+		If Thread mode is not privilege, so it's not compliant with Cortex-M3 Technical, the 
+		program will enter into infinite error loop.
+		Then, set CONTROL[0] = 1, changing Thread mode to unprivilege.
+		Re-check by re-read CONTROL[0] again.
+		A system service will be call __SCV(). In this exception mode, we can switch back Thread 
+		mode into privilege 
+		(Note that:
+			When Thread mode has been changed from privilege to use, it cannot change ifself back 
+			to privilege. Only a handler can change the privilege of Thread mode.
+			Handler mode is always privilege.
+		)
+		After call handler, get CONTROL[0] to check if it is truly privilege or not.
+		If not, program will enter to error loop.
+		
+					
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CortexM3_Privilege.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			Hitex LPC1800 Board
+				
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			- 115200bps 
+			- 8 data bit 
+			- No parity 
+			- 1 stop bit 
+			- No flow control  
+	
+	Running mode:
+		RAM mode :	This example can run on RAM mode.
+		ROM mode: 	This example can run on EXFLASH mode.
+					
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example and observe on serial display
+					+ Press '1' to change into unprivilege mode
+					+ Press '2' to switch back to privilege mode
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > Cortex-M3 > Privilege_mode"
+		for more details)
+		
+@Tip:
+	- Open  <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\Cortex-M3\cortex.eww project file to run example on IAR

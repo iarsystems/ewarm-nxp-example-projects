@@ -1,0 +1,54 @@
+ ******************** (C) COPYRIGHT 2010 NXPSemiconductors *******************
+ * @file    LCD\Lcd_Demo\abstract.txt 
+ * @author  NXP MCU SW Application Team
+ * @version 1.0
+ * @date    
+ * @brief   Description of Hitex LCD example.
+ ******************************************************************************
+ * Software that is described herein is for illustrative purposes only
+ * which provides customers with programming information regarding the
+ * products. This software is supplied "AS IS" without any warranties.
+ * NXP Semiconductors assumes no responsibility or liability for the
+ * use of the software, conveys no license or title under any patent,
+ * copyright, or mask work right to the product. NXP Semiconductors
+ * reserves the right to make changes in the software without
+ * notification. NXP Semiconductors also make no representation or
+ * warranty that such application will be suitable for the specified
+ * use without further testing or modification.
+ ******************************************************************************
+  
+@Example description:
+	Purpose:
+		This example describes how to config LCD on Hitex board and LogicPD 4.3.
+	Process:
+		- Set up LCD panel clock
+		- Init SDRAM and SRAM
+		- Init IO port for LCD
+		- Init LCD Controller
+		- Fill Colorbar and Logo
+		*** Work with default jumper ***
+					
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files  
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	IS42S16400D.c: Support functions for intializing I242S16400D IC
+	Lcd_Demo.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 board
+						
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Run example
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\LCD\LCD.eww project file to run example on IAR	

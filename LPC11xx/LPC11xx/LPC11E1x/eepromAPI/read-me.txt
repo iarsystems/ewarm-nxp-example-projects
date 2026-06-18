@@ -1,0 +1,28 @@
+########################################################################
+#
+#                           EepromAPI.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+DESCRIPTION
+===========
+   This example project shows how to use the IAR Embedded Workbench for ARM
+  to develop code for the NXP LPC11E1x evaluation board. It shows
+  basic use of embedded EEPROM.
+   This program EEPROM initialization, EEPROM interrupt handler, and APIs for
+ EEPROM access. Using UART interface, user can fill EEPROM with various pattern
+ data.
+
+
+COMPATIBILITY
+=============
+   The EepromAPI example project is compatible with NXP LPC11E1x
+  evaluation board. By default, the project is configured to use the
+  J-Link JTAG/SWD interface.
+
+GETTING STARTED
+===============
+  1) Build and download the program.
+  2) Run the program.

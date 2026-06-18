@@ -1,0 +1,70 @@
+/**********************************************************************
+* $Id: Abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+
+@Example description:
+	Purpose:
+		This example describes how to write a USB Composite(MassStorage, HID and DFU)
+		application using USB ROM driver on LPC43xx.
+
+@Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+
+	usbd_dfu.c: contains USB DFU function
+	usbd_msd_mem.c : contains USB MSC function and memory device definition
+	usbd_hid.c : contains USB HID function
+	composite_usbdesc.c : contains usb device descriptor.
+
+@How to run:
+	Hardware configuration:
+		This example was tested on:
+			Hitex LPC4350 Development Board
+
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger.
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: Testing HID interface
+					- On PC launch Keil's HIDClient.exe
+					- Select the "LPC43xx" device in the drop down box
+					- Now set check boxes next to "Outputs (LEDs)"
+					- The out report recived by the device loop-backed to PC. Hence the checkbox
+					next to "Inputs (Buttons)" should look same a "Outputs".
+			- Testing Mass storage interface
+					- On PC a new unformatted drive with 32KB size should appear.
+					- Format the drive and copy images to the drive.
+			- Testing DFU interface
+			  - On PC launch DFU download utility.
+
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > USBDEV_ROM > USBComposite"
+		for more details)

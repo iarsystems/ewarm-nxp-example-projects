@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+GettingStarted_DualCore
+
+DESCRIPTION
+===========
+
+   The example consists of 2 projects and shows how to use the IAR Embedded
+  Workbench for ARM to develop code for Hitex-LPC4350 - evaluation board
+  with LPC4350 dual-core processor. It shows how to excange data between
+  2 cores. The application lights up corresponding LED - LED0, LED1, LED2,
+  LED3, when one or more sensor buttons are touched. USB0_IND LED toggles
+  with frequency which depends on the touched sensor button.
+
+  CortexM4.ewp
+  ============
+
+   The CortexM4 project is intended for the Cortex-M4 core and shows basic
+  use of I2C and interrupt controller.It also provides basic initialization
+  of the Cortex-M0 core, and brings it out of reset. When one of the sensor
+  buttons is touched, event is generated and the button number is sent to
+  the Cortex-M0 core through a shared memory.
+   If the NORFLASH/SPIFI configuration is selected, the linker compresses and
+  embeds the CortexM0 application image to the program code. When the application
+  is started, the image is decompressed to the internal RAM, prior to the
+  Cortex-M0 reset release. This is done by a hidden code added by the compiler
+  and executed before execution of main().
+   If the IFLASH configuration is selected the CortexM0 application is also
+  embedded in the program code by the linker, but is run from the internal flash.
+
+  CortexM0.ewp
+  ============
+
+   The CortexM0 project is intended for the Cortex-M0 core and shows basic
+  use of RI Timer, I/O and interrupt controller. The application waits for
+  interrupts from the Cortex-M4 core. When there is an interrupt, the
+  application reads from the shared memory which sensor button is touched.
+  Then it updates RI timer's COMPVAL register with value, corresponding to
+  the touched button, and the USB0_IND LED starts to blink with different
+  frequency.
+
+COMPATIBILITY
+=============
+
+   The example project is compatible with Hitex-LPC4350-A2 evaluation board.
+
+CONFIGURATION
+=============
+
+   Once you have successfully programmed the flash on the Hitex board, there is
+  one step left before the LPC4350 can boot from external flash. That final
+  step is to configure the boot mode using the boot mode jumpers.
+
+  <img src="$CUR_DIR$/../IPC_Example/Boot_Jumpers.png"/>
+
+   LPC4350 Boot Jumpers
+
+   Here is a diagram that shows how to configure the boot jumpers on the LPC4350
+  Hitex board. The boards are shipped with the center two positions shorted with
+  jumpers.
+
+  <img src="$CUR_DIR$/../IPC_Example/Capture7.png"/>
+
+   LPC4350 Boot Jumper Diagram
+
+  Jumper JP5 should be open.
+
+  Note: Boot config pin P2_9 must be pulled down to GND via 10k resistor
+         to boot from external flash. On some early revision boards this pin
+         cannot be configured by jumper and is default high level, so booting
+         is not possible.
+
+   The GettingStarted_DualCore application is downloaded to NOR, SPI Flash (SPIFI)
+  internal flash or RAM memory depending of the project's configuration and
+  executed.
+
+  IRAM - runs project from internal RAM.
+
+  NORFLASH - loads project to external NOR flash.
+
+  SPIFI - loads project to external SPI flash.
+
+  IFLASH - loads project to the internal flash (only if LPC43xx device with
+           internal flash is present).
+
+GETTING STARTED
+===============
+
+ IRAM Configuration:
+ -------------------
+
+  1) Activate the CortexM4 project and choose the IRAM configuration.
+     Start debug session and run the CortexM4 application.
+
+  2) Open second instance of IAR EWARM, open the GettingStarted_DualCore
+     example and activate the CortexM0 project.
+
+  3) From the second instance choose the IRAM configuration, start the
+     second debug session and run the CortexM0 application.
+
+ NORFLASH/SPIFI/IFLASH Configuration:
+ ------------------------------------
+
+  1) Activate the CortexM4 project and choose the NORFLASH/SPIFI/IFLASH
+     configuration.
+
+  2) Open second instance of IAR EWARM, activate the CortexM0 project,
+     choose NORFLASH/SPIFI/IFLASH configuration and build it. A binary image
+     of the CortexM0 application will be created.
+
+  3) From the firstly opened instance of IAR EWARM with the activated
+     CortexM4 project, start debug session and run the application.
+     This action loads both CortexM4 and cortexM0 images to NORFLASH/SPIFI/
+     IFLASH.
+
+  4) From the second instance of IAR EWARM, start debug session without
+     downloading (Debug without Downloading) and run the CortexM0
+     application.
+
+     Note: NORFLASH/SPIFI/IFLASH Batch build can be executed to build the
+           NORFLASH/SPIFI/IFLASH configurations of both projects.
+</pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

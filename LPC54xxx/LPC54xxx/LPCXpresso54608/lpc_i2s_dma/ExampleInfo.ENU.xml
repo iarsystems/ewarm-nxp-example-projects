@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_i2s_dma</iar_name>                                   <!--App-->
+  <iar_description>
+    The I2S example project lpc_i2s_dma uses one I2S interface to continuously record
+    input sound to a buffer and another I2S interface to playback the buffer to output.
+    The example uses the DMA controller to handle tx and rx events.
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

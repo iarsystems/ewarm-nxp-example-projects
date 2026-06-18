@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+UART Autobaud
+
+  Purpose:
+	  This is a simple UART example using auto baudrate mode
+
+  Hardware configuration:
+	  This example tested on IAR-LPC1343 Rev.B board
+	  These jumpers must be configured as following:
+		  J_Link_D: 		OFF
+		  3.3V_IO_E: 		ON
+		  3.3V_CORE_E: 	ON
+		  PIO1_LOW:		OFF
+		  PIO3_E:			ON
+		  PIO3_HIGH:		OFF
+		  PIO1_RS:		OFF
+		  RST_E:			OFF
+
+  Running mode:
+	  This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+  Note:
+	  - Open the termina window with desired baudrate speed.
+	  - First, type 'A' or 'a' character to start
+	  Auto baud rate mode.
+	  - Once Auto baud rate mode completed, print welcome screen,
+	  then press any key to have it read in from the terminal
+	  and returned back to the terminal.
+--------------------------------------------------------------------------------
+UART Interrupt
+
+  Purpose:
+	  This is a simple UART example in interrupt mode
+	  UART0 - 9600bps - 8 data bit - No parity - 1 stop bit - No flow control.
+
+  Hardware configuration:
+	  This example tested on IAR-LPC1343 Rev.B board
+	  These jumpers must be configured as following:
+		  J_Link_D: 		OFF
+		  3.3V_IO_E: 		ON
+		  3.3V_CORE_E: 	ON
+		  PIO1_LOW:		OFF
+		  PIO3_E:			ON
+		  PIO3_HIGH:		OFF
+		  PIO1_RS:		OFF
+		  RST_E:			OFF
+
+  Running mode:
+	  This example can run on ROM mode with a debugger or standalone after burning.
+	
+  Note:
+	  Print welcome screen first, then press any key to have it
+	  read in from the terminal and returned back to the terminal.
+--------------------------------------------------------------------------------
+UART Polling
+
+  Purpose:
+	  This is a simple UART example in polling mode
+	  UART0 - 9600bps - 8 data bit - No parity - 1 stop bit - No flow control.
+
+  Hardware configuration:
+	  This example tested on IAR-LPC1343 Rev.B board
+	  These jumpers must be configured as following:
+		  J_Link_D: 		OFF
+		  3.3V_IO_E: 		ON
+		  3.3V_CORE_E: 	ON
+		  PIO1_LOW:		OFF
+		  PIO3_E:			ON
+		  PIO3_HIGH:		OFF
+		  PIO1_RS:		OFF
+		  RST_E:			OFF
+
+  Running mode:
+	  This example can run on ROM mode with a debugger or standalone after burning.
+	
+  Note:
+	  Print welcome screen first, then press any key to have it
+	  read in from the terminal and returned back to the terminal.
+	  - Press ESC to exit.
+	  - Press 'r' to print welcome screen menu again.
+   </pre>
+
+  </div>
+  </body>
+</html>
+

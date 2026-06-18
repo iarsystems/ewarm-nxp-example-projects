@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Gpdma_Flash2Ram/EWARM/Gpdma_Flash2Ram.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpdma_LinkList/EWARM/Gpdma_LinkList.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpdma_Ram2Ram/EWARM/Gpdma_Ram2Ram.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Gpdma_Flash2Ram</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Gpdma_LinkList</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Gpdma_Ram2Ram</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

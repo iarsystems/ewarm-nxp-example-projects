@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Emac_EasyWeb/EWARM/Emac_EasyWeb.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Emac_EasyWeb</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

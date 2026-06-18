@@ -1,0 +1,73 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to use Capture Timer function.
+	Process:
+		We use Timer 0 to take a snapshot of the timer value when an input signal 
+		on CAP0.2 (pin PF.8) transitions.
+		Timer configuration:
+			- Prescaler in microsecond value
+			- prescaler value = 1000000us = 1s
+			- Use channel, CAPn.0
+			- Enable capture both on rising and falling edge
+			- Generate capture interrupt
+		Whenever capture interrupt occurs, TIMER interrupt service routine will be invoke 
+		to get captured time and display it into serial display
+		Changing connect PF_8 with GND and VCC whenever want to capture time.
+
+@Directory contents:
+	\EWARM:	includes IAR project and configuration files 	 
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Timer_Capture.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+				
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 	
+	Running mode:
+		RAM mode:	This example can run on RAM
+		ROM mode: 	This example can run on EXFLASH
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Start Debug then Run example and observe timer capture value on serial display
+		Changing connect PF_8 with GND and VCC whenever want to capture time.
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > TIMER > Capture"
+		for more details)
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\TIMER\TIMER.eww project file to run example on IAR

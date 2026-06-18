@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/DMA_Flash2Ram/EWARM/Dma_Flash2Ram.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Dma_Flash2Ram</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Dma_Flash2Ram</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

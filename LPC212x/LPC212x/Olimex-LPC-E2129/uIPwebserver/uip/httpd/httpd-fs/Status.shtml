@@ -1,0 +1,39 @@
+%! Status
+<html>
+<META HTTP-EQUIV="refresh" CONTENT="5">
+<body>
+<h1>Status</h1>
+<table width="142" height="226">
+  <tr>
+    <td>AN_TR:</td> <td>%1.2f</td> <td>V</td>
+  </tr>
+  <tr>
+    <td height="40"><b>LEDs:</b></td>
+  </tr>
+  <tr>
+    <td>Red </td>
+    <td>%s</td>
+  </tr>
+  <tr>
+    <td width="158">Green </td>
+    <td>%s</td>
+  </tr>
+  <tr>
+    <td width="158">Yellow </td>
+    <td>%s</td>
+  </tr>
+  <tr>
+    <td height="42"><b>BUTTONS:</b></td>
+  </tr>
+  <tr>
+    <td width="158" height="33">Button1:</td>
+    <td width="54">%s</td>
+  </tr>
+  <tr>
+    <td width="158" height="30">Button2:</td>
+    <td width="54">%s</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

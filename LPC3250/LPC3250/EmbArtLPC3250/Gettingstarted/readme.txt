@@ -1,0 +1,43 @@
+########################################################################
+#
+#                           GettingStarted.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+DESCRIPTION
+===========
+This example project shows how to use IAR Embedded Workbench for ARM
+to develop code for the Embedded Artists LPC3250 evaluation board. It shows
+the basic use of I/O, Timers, ADC, Interrup controller and DDRAM. The project
+also shows how to boot the system from the NAND Flash. It starts with blinking
+the LED1 on the LPC3250 OEM board. The blinking period can be changed by 
+the trimmer.
+
+COMPATIBILITY
+=============
+This example project is compatible with the Embedded Artists LPC3250 evaluation 
+board. By default, the project is configured to use the IAR J-Link JTAG interface.
+
+CONFIGURATION
+=============
+The example has the following configurations:
+ 
+Debug_iRAM: This configuration is intended for debugging in the microcontroller's internal RAM.
+
+Debud_xRAM: This configuration is intended for debugging in the external SDRAM.
+
+Release_xRAM_boot_from_NAND: This confuguration will download the example and the 
+                        bootloader in the NAND flash. It is intended for example stand alone execution.
+                        Note: This will overwrite the S1L and Kickstart bootloaders that are shipped 
+                        with the board.
+
+GETTING STARTED
+===============
+  1) Follow the steps in the Getting Started Guide to open the example project Getting Started. 
+
+  2) Build and download the program.
+
+  3) Run the program - The LED1 on the LPC3250 OEM board will start blinking and the blinking 
+      period can be changed by the trimmer.

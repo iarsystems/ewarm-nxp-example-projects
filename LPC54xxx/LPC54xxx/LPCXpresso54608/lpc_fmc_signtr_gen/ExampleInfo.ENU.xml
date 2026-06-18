@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_fmc_signtr_gen</iar_name>                                   <!--App-->
+  <iar_description>
+    The lpc_fmc_signtr_gen is a demonstration program that uses the KSDK software to generate flash signature
+    for a specified flash address range and prints them to the terminal
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

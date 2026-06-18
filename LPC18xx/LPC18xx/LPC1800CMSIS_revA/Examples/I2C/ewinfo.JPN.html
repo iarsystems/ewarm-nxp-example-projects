@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+I2C master example
+
+Example description:
+	Purpose:
+		This example configures two GPIOs to perform as SCL and SDA of an I2C master.
+	Process:
+		After a welcome screen is displayed via UART
+		- GPIO5_12 is configured as SDA, GPIO3_13 is configured as SCL
+		- These GPIOs go to the LCD connector pins #13 and #14
+		- The 7" display kit (800x480) from Embedded Artists uses a PCA9532 port expander
+		   to control power, backlight and contrast
+		- Write into 3 registers of the PCA9532 in order to switch the display module on
+		- Read display parameter data from the EEPROM device
+		
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	I2c_EmuMaster.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC4350 Board vA4 + 7" display module from Embedded Artists
+			U-Link2 on Keil
+			J-Link on IAR
+	Boot mode jumper settings (Hitex A4):
+				+ External parallel Flash:
+					Select boot mode jumpers [BOOT4,BOOT3,BOOT2,BOOT1] to [LOW,LOW,HIGH,HIGH]
+				+ SPIFI quad SPI flash (SPIFI 64MB and 128MB):
+					Select boot mode jumpers [BOOT4,BOOT3,BOOT2,BOOT1] to [LOW,LOW,LOW,HIGH]
+
+		Serial configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8N1
+			– No flow control
+
+	
+	Running mode:
+		On IAR
+			Internal SRAM mode, external parallel flash and serial qSPI.
+					Select "Project -> Download -> Download active application" for flash programming
+
+	Steps to run:
+		- Step 1: Build example.
+		- Step 2: Program binary into flash if compiled for flash
+		- Step 3: Connect UART to COM port of a PC
+		- Step 4: Connect 7 inch display module to LCD connector of Hitex Rev A4 board
+		- Step 5: Power-on the board to run example
+
+-----------------------------------------------------------------------------------
+I2C slave example
+
+Example description:
+	Purpose:
+		This example configures I2C0 as master, write, read, and verify on a register of UDA1380;
+		or as master/slave to communicate with another board via I2C1
+	Process:
+		After a welcome screen is displayed via UART, I2C0 and I2C1 are configured with 100KHz speed,
+		user can select one of 5 modes as following:
+		1. I2C Polling   Master
+		2. I2C Interrupt Master: configures I2C1 as polling/interrupt master mode:
+			- Transmit an array of bytes
+			- Receive an array of bytes and verify
+			- Transmit, then repeat start and receive
+		3. I2C Polling   Slave 
+		4. I2C Interrupt Slave: configures I2C1 as polling/interrupt slave mode:
+			- Receive an array of bytes and verify
+			- Transmit an array of bytes
+			- Receive, wait for repeat start and transmit
+		5. Communicate with UDA1380: configures I2C0 as polling master mode:
+			- Write 2 bytes to UDA1380's 0x00_register
+			- Read 2 bytes at UAD1380's 0x00_register
+			- Verify the data
+		
+		UART0 is configure for display message and control I2C.
+		
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	I2c_MasterSlave.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART0 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Run example, using Serial display to monitor the message and to send a charater to UART
+  </pre>
+
+  </div>
+  </body>
+</html>
+

@@ -1,0 +1,46 @@
+########################################################################
+#
+#                          periph_pinint.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+periph_pinint
+
+DESCRIPTION
+===========
+   This example project shows how to use the IAR Embedded Workbench for ARM
+  to develop code for LPCXpresso5411x board. The Pin interrupt example
+  demonstrates how to configure pin interrupts to generate an interrupt and
+  wake up from sleep, deep sleep, and power down state.
+   This example configures a pin interrupt as a falling edge interrupt. The
+  WAKEUP/SW1 switch generates the interrupt signal to the input.
+   The application will sleep spin in a loop.  With every pin interrupt the 
+  board LED0 will be toggled.
+   Sleep modes can be selected by changing the PDOWNMODE define.  For this example,
+  the possible modes are POWER_SLEEP, POWER_DEEP_SLEEP, POWER_POWER_DOWN.
+  
+
+COMPATIBILITY
+=============
+  The example project is compatible with LPCXpresso5411x board.
+
+CONFIGURATION
+=============
+    The LPCXpresso5411x board must be powered from the Link2 USB connector J7,
+    and jumper JP2 must be fitted in position pin 1 - 2 (Local Target). Jumper
+    JP1 must be open to enable the target LPC5411x.
+
+GETTING STARTED
+===============
+  1) Batch Build (F8->Rebuild All) and download the program.
+
+  2) Run the program.
+     Press WAKEUP button and observe LEDs.
+     
+NOTE!!!
+  After initially programming the device and running the program, the probe
+  might not be able to connect ot the device because of it sleep mode. If so
+  reset the device while holding down ISP0 and reconnect afterwards.
+   

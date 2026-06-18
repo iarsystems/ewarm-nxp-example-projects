@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+Bit-banding example
+ 
+Example description:
+	Purpose:
+		This example describes how to test Bit-banding feature of Cortex-M3 processor
+	Process:
+		The processor memory map includes two bit-band regions. These occupy the lowest
+		1MB of the SRAM and peripheral memory regions respectively.
+		+ SRAM: 	Bit-band region: 	0x20000000 - 0x20100000
+					Bit-band alias:		0x22000000 - 0x23FFFFFF
+		+ PERI:		Bit-band region:	0x40000000 - 0x40100000
+					Bit-band alias:		0x42000000 - 0x43FFFFFF
+		The mapping formula:
+				bit_word_offset = (byte_offset * 32) + (bit_number * 4)
+				bit_word_address = bit_band_base + bit_word_offset
+		where:
+		+ bit_word_offset: the position of the target bit in the bit-band memory region
+		+ bit_word_addr: the address of the word in the alias memory region that maps to the target bit
+		+ bit_band_base: the starting address of the alias region
+		+ byte_offset: the number of byte in the bit-band region that contains the targeted bit
+		+ bit_number: is the bit position (0-7) of the targeted bit
+		
+		Note: In fact, the SRAM on LPC1768 just available in range:
+					+ 0x20000000 - 0x2000FFFF: for AHB SRAM
+			  So, just can set 'VAR_ADDR' with value that exits in range SRAM above.
+		
+		First, the program test SRAM bit-banding:
+			+ read the value at VAR_ADDRESS
+			Using bit-band access to:
+			+ read the value at 'VAR_BIT'.
+			+ clear the value at 'VAR_BIT' and print new value at VAR_ADDRESS 
+			+ re-set the value at 'VAR_BIT' and print new value at VAR_ADDRESS
+		Then, the program test PERIPHERAL bit-banding:
+		In this case, use SPCR register for testing
+			+ Assigned value SSPCR0: 0x00000020
+			Use bit-band access to:
+			+ read the value at 'PERI_BIT'
+			+ clear the value at 'PERI_BIT' and print new value of SSPCR0 
+			+ re-set the value at 'PERI_BIT' and print new value of SSPCR0
+					
+Directory contents:
+	EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CortexM3_Bitband.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			EA LPC1800 EvalBoard
+			Hitex LPC1800 Board
+			
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		RAM mode:	This example can run on RAM mode.
+		ROM mode: This example can run on EXFLASH mode.
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Run example and observe result on serial display
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > Cortex-M3 > Bit-Banding"
+		for more details)		
+
+Tip:
+	- Open  <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\Cortex-M3\cortex.eww project file to run example on IAR
+	        
+-----------------------------------------------------------------------------------
+MPU example     
+  
+Example description:
+	Purpose:
+		This example describes how to use MPU to protect memory region.
+	Process:
+		Use MPU to set up 8 memory regions as follows:
+		  Region 0 - Local SRAM:		0x10000000 (1MB)
+		  Region 1 - Static Memory:		0x1C000000 (64MB)
+		  Region 2 - AHB RAM:			0x20000000 (64MB)
+		  Region 3 - DYCS0:				0x28000000 (128MB)
+		  Region 4 - AHB Peripheral:	0x40000000 (64MB)
+		  Region 5 - DYCS2 DYCS3:		0x60000000 (512MB)
+		  Region 6 - SPIF Data:			0x80000000 (128MB)
+		  Region 7 - ARM BUS:			0xE0000000 (1MB)
+		Except region 2 can not access, remain regions can access normally.
+		After setup:
+		- First, we try to access memory at address: 0x10000000 -> it will allow to access
+		- Last, we try to access memory at address: 0x20000000 -> it will not allow to access
+		At the time we access to memory that disallow, Memory Management Handler will be invoked
+		and we blink LED P4_1 to announce.
+					
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CortexM3_Mpu.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			Hitex LPC1800 Board
+				
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		RAM mode:	This example can run on RAM mode.
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example
+			- Press '1' to access memory in region 0
+			- Press '2' to access memory in region 2
+			See LED P4_7 blink
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > Cortex-M3 > MPU"
+		for more details)
+		
+Tip:
+	- Open  <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\Cortex-M3\cortex.eww project file to run example on IAR
+
+-----------------------------------------------------------------------------------
+Privilege mode example
+
+Example description:
+	Purpose:
+		This example describes how to change privilege to unprivilege mode and vice vesa.
+	Process:
+		CONTROL[0] register controls the privilege level for software execution when the 
+		processor is in Thread mode. So, we can access to get/set CONTROL[0] to change Thread
+		mode privilege level.
+		
+		Out of reset, Thread mode is privilege.
+		Read CONTROL[0] to check if it is truly privilege or not.
+		If Thread mode is not privilege, so it's not compliant with Cortex-M3 Technical, the 
+		program will enter into infinite error loop.
+		Then, set CONTROL[0] = 1, changing Thread mode to unprivilege.
+		Re-check by re-read CONTROL[0] again.
+		A system service will be call __SCV(). In this exception mode, we can switch back Thread 
+		mode into privilege 
+		(Note that:
+			When Thread mode has been changed from privilege to use, it cannot change ifself back 
+			to privilege. Only a handler can change the privilege of Thread mode.
+			Handler mode is always privilege.
+		)
+		After call handler, get CONTROL[0] to check if it is truly privilege or not.
+		If not, program will enter to error loop.
+		
+					
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CortexM3_Privilege.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			Hitex LPC1800 Board
+				
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		RAM mode :	This example can run on RAM mode.
+		ROM mode : 	This example can run on EXFLASH mode.
+					
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example and observe on serial display
+					+ Press '1' to change into unprivilege mode
+					+ Press '2' to switch back to privilege mode
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > Cortex-M3 > Privilege_mode"
+		for more details)		
+Tip:
+	- Open  <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\Cortex-M3\cortex.eww project file to run example on IAR
+	  </pre>
+
+  </div>
+  </body>
+</html>
+

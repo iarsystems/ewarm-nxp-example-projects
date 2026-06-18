@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+CAN
+    
+This is the readme file for the EW CAN library package. The library makes it easy to 
+create an application using the LPC2129 CAN module. The library has been developed and 
+tested using IAR LPC2129 KickStart Kit.
+
+Highlights
+  The CAN Library include initialization, run-time and interrupt functions.
+  A CAN Definition file is used were application specific CAN module settings are defined.
+  An application source code file is included with a CAN application running on IAR LPC2129 
+  KickStart kit.
+  The application can be tested on the IAR LPC2129 KickStart Kit.
+
+CAN Library, <ew_can.c> and <ew_can.h>
+
+This module contains the CAN library functions for NXP LPC2129. The following functions are included:
+
+Initialization functions:
+
+void EW_Init_CAN( void )    
+       Initializes the CAN module.
+S16 EW_AddFilter_CAN( CAN_Filter *pNewFilter )
+        New filter is inserted into the look-up filter table RAM.
+
+Run-time functions:
+S16 EW_Manage_CAN( U8 Controller )
+        Manage status information from the selected module.
+S16 EW_ReceiveData_CAN( U8 Controller, CAN_MSG *pRxMsg )
+        Reads data from full CAN message or the selected CAN controller.
+S16 EW_SendData_CAN( U8 Controller, CAN_MSG *pTxMsg )
+        Writes data to the selected CAN controller.
+
+Interrupt functions:
+  void EW_IntHandler_RX_CAN1( void )
+        High level interrupt handler for RX CAN1 interrupt.
+  void EW_IntHandler_RX_CAN2( void )
+        High level interrupt handler for RX CAN2 interrupt.
+  void EW_IntHandler_TX_CAN1( void )
+        High level interrupt handler for TX CAN1 interrupt.
+  void EW_IntHandler_TX_CAN2( void )
+        High level interrupt handler for TX CAN2 interrupt.
+  void EW_IntHandler_OTHER_CAN( void )
+        High level interrupt handler for OTHER CAN interrupt.
+  CAN Definitions, <user_can_def.h>
+
+This file is intended to be updated by users and contains the application specific CAN 
+definitions used by the CAN library. Update this file according to application requirements. 
+
+CAN module setting: 
+  CAN pin usage - RD2, TD2, and RD1 are enabled.. (TD1 is by default enabled in LPC2129)
+  CAN Mode is set as Priority depends on Tx priority field.
+  CAN Interrupt - CAN1 interrupt disabled (polled by application), CAN2 RX interrupt enabled.
+  CAN Bit timing - Clock = 100 usec/bit, SAM =0 Bus is sampled once, TSEG1 = 0xC=12, TSEG2 = 1, 
+  SJW = 0, BRP = 0x16 =22
+  Acceptance filter mode - AcceptanceFilter Full CAN message is used.
+  User code macros for CAN2 RX interrupts are defined
+  Application usercode, <usercode.c>
+
+Contains application source code. This file can be used as a basic platform for CAN application 
+development. CAN module settings made in <user_def.h> are used.
+
+Software overview : 
+
+  GPIO, and interrupt are initialized. CAN1 interrupt disabled (polled by application), CAN2 RX 
+  interrupt enabled. CAN module is initialized using EW_Init_CAN() 
+  Used CAN IDs are initialized using EW_AddFilter_CAN().  The CAN filter uses the 5 different 
+  filter types
+    A. Full standard ID messages 
+    B. Standard ID messages
+    C. Standard Group ID messages
+    D. Extended ID messages
+    E. Extended Group ID messages
+  CAN messages are sent between CAN1 and CAN2
+  CAN1 is polled to detect received CAN message
+  CAN2 uses receive interrupt to detect rx message
+  The LEDs will toggle if CAN messages are running
+  Button B1 can be used to stop CAN messages
+  Button B2 can be used to start CAN messages
+
+Please read the information in <usercode.c> to get a more detailed view of the operation and how 
+the CAN library is intended to be used.
+
+Hardware requirements:    
+
+The application runs on an IAR LPC2129 KickStart kit but the following additional connections 
+are needed:
+An external power supply connected to PWR-JACK. (7.5 Volt has been used during test).
+A CAN bus connected between D-sub connector CAN1 and CAN2 in the following way:
+        CAN1                        CAN2
+        pin2 ---- CANL ----  pin2
+        pin7 ---- CANH ----  pin7
+
+Miscellaneous
+
+The distribution also contain an IAR ARM workspace file to be opened by IAR EW for ARM. 
+   </pre>
+
+  </div>
+  </body>
+</html>
+

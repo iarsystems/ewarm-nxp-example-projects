@@ -1,0 +1,13 @@
+%!: /header.html
+<html>
+  <tr>
+    <iframe name="I1" src="Status.shtml" border="10" frameborder="0" height="500" scrolling="auto" >
+    Your browser does not support inline frames or is currently configured not to display inline frames.
+    </iframe>
+
+    <iframe name="I2" src="Commands.shtml" border="10" frameborder="0" height="500" scrolling="auto">
+    Your browser does not support inline frames or is currently configured not to display inline frames.
+    </iframe>
+  </tr>
+</html>
+%!: /footer.html

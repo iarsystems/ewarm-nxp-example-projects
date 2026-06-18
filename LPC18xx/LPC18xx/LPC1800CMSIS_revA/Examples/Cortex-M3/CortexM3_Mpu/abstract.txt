@@ -1,0 +1,95 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+* Permission to use, copy, modify, and distribute this software and its
+* documentation is hereby granted, under NXP Semiconductors'
+* relevant copyright in the software, without fee, provided that it
+* is used in conjunction with NXP Semiconductors microcontrollers.  This
+* copyright, permission, and disclaimer notice must appear in all copies of
+* this code.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to use MPU to protect memory region.
+	Process:
+		Use MPU to set up 8 memory regions as follows:
+		  Region 0 - Local SRAM:		0x10000000 (1MB)
+		  Region 1 - Static Memory:		0x1C000000 (64MB)
+		  Region 2 - AHB RAM:			0x20000000 (64MB)
+		  Region 3 - DYCS0:				0x28000000 (128MB)
+		  Region 4 - AHB Peripheral:	0x40000000 (64MB)
+		  Region 5 - DYCS2 DYCS3:		0x60000000 (512MB)
+		  Region 6 - SPIF Data:			0x80000000 (128MB)
+		  Region 7 - ARM BUS:			0xE0000000 (1MB)
+		Except region 2 can not access, remain regions can access normally.
+		After setup:
+		- First, we try to access memory at address: 0x10000000 -> it will allow to access
+		- Last, we try to access memory at address: 0x20000000 -> it will not allow to access
+		At the time we access to memory that disallow, Memory Management Handler will be invoked
+		and we blink LED D10 to announce.
+					
+@Directory contents:
+	\Keil:	includes Keil project and configuration files
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CortexM3_Mpu.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			Hitex LPC1850EVA-A4-2 Board
+				
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		>Keil project:
+		Internal SRAM mode:	This example can run on Internal SRAM mode.
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART0 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Run example
+			- Press '1' to access memory in region 0
+			- Press '2' to access memory in region 2
+			See LED D10 blink
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > Cortex-M3 > MPU"
+		for more details)
+		
+@Tip:
+	- Open \Keil\*.uvproj project file to run example on Keil
+	- Open \EWARM\*.eww workspace file to run example on IAR

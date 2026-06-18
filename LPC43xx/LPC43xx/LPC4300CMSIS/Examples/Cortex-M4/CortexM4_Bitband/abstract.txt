@@ -1,0 +1,93 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+
+@Example description:
+	Purpose:
+		This example describes how to test Bit-banding feature of Cortex-M4 processor
+	Process:
+		The processor memory map includes two bit-band regions. These occupy the lowest
+		1MB of the SRAM and peripheral memory regions respectively.
+		+ SRAM:		Bit-band region:	0x20000000 - 0x20100000
+				Bit-band alias:	0x22000000 - 0x23FFFFFF
+		+ PERI:		Bit-band region:	0x40000000 - 0x40100000
+				Bit-band alias:	0x42000000 - 0x43FFFFFF
+		The mapping formula:
+				bit_word_offset = (byte_offset * 32) + (bit_number * 4)
+				bit_word_address = bit_band_base + bit_word_offset
+		where:
+		+ bit_word_offset: the position of the target bit in the bit-band memory region
+		+ bit_word_addr: the address of the word in the alias memory region that maps to the target bit
+		+ bit_band_base: the starting address of the alias region
+		+ byte_offset: the number of byte in the bit-band region that contains the targeted bit
+		+ bit_number: is the bit position (0-7) of the targeted bit
+
+		Note: In fact, the SRAM on LPC43xx just available in range:
+					+ 0x20000000 - 0x2000FFFF: for AHB SRAM
+			  So, just can set 'VAR_ADDR' with value that exits in range SRAM above.
+
+		First, the program test SRAM bit-banding:
+			+ read the value at VAR_ADDRESS
+			Using bit-band access to:
+			+ read the value at 'VAR_BIT'.
+			+ clear the value at 'VAR_BIT' and print new value at VAR_ADDRESS
+			+ re-set the value at 'VAR_BIT' and print new value at VAR_ADDRESS
+		Then, the program test PERIPHERAL bit-banding:
+		In this case, use SPCR register for testing
+			+ Assigned value SSPCR0: 0x00000020
+			Use bit-band access to:
+			+ read the value at 'PERI_BIT'
+			+ clear the value at 'PERI_BIT' and print new value of SSPCR0
+			+ re-set the value at 'PERI_BIT' and print new value of SSPCR0
+
+@Directory contents:
+	\IAR:	includes IAR EWARM project and configuration files
+	lpc43xx_libcfg.h: Library configuration file - include needed driver library for this example
+	CortexM4_Bitband.c: Main program
+
+@How to run:
+	Hardware configuration:
+		This example was tested only on:
+			EA LPC1800 EvalBoard
+			Hitex LPC4350 Board
+
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...)
+			– 115200bps
+			– 8 data bit
+			– No parity
+			– 1 stop bit
+			– No flow control
+
+	Running mode:
+		RAM mode:   This example can run on RAM mode.
+		ROM mode:   This example can run on EXFLASH mode.
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction
+		- Step 4: Run example and observe result on serial display
+
+		(Pls see "LPC43xx Example Description" document - chapter "Examples > Cortex-M4 > Bit-Banding"
+		for more details)

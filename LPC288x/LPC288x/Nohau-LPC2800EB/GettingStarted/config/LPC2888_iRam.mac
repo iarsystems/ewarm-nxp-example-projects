@@ -1,0 +1,20 @@
+setup()
+{
+  // Reset cache
+  __writeMemory32(0x00000001, 0x80104004, "Memory");  // CACHE_SETTINGS
+  __writeMemory32(0x00000000, 0x80104004, "Memory");  // CACHE_SETTINGS  
+  
+  while(__readMemory32(0x80104000,"Memory"));
+
+  // remap  iRAM on address 0
+  __writeMemory32((0x00400000>>21), 0x80104018, "Memory");  // PAGE_ADDRESS_0
+  __writeMemory32( 0x00000001     , 0x80104008, "Memory");  // CACHE_PAGE_CTRL  
+  
+}
+
+
+execUserPreload()
+{
+  __message "Executing execUserPreload \n";
+  setup();
+}

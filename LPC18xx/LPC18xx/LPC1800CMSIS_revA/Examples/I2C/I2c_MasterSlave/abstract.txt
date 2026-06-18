@@ -1,0 +1,108 @@
+/**********************************************************************
+* $Id: abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2012-08-31
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		31. Aug. 2012
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2012, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+* Permission to use, copy, modify, and distribute this software and its
+* documentation is hereby granted, under NXP Semiconductors'
+* relevant copyright in the software, without fee, provided that it
+* is used in conjunction with NXP Semiconductors microcontrollers.  This
+* copyright, permission, and disclaimer notice must appear in all copies of
+* this code.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example configures I2C0 as master, write, read, and verify on a register of UDA1380;
+		or as master/slave to communicate with another board via I2C1
+	Process:
+		After a welcome screen is displayed via UART, I2C0 and I2C1 are configured with 100KHz speed,
+		user can select one of 5 modes as following:
+		1. I2C Polling   Master
+		2. I2C Interrupt Master: configures I2C1 as polling/interrupt master mode:
+			- Transmit an array of bytes
+			- Receive an array of bytes and verify
+			- Transmit, then repeat start and receive
+		3. I2C Polling   Slave 
+		4. I2C Interrupt Slave: configures I2C1 as polling/interrupt slave mode:
+			- Receive an array of bytes and verify
+			- Transmit an array of bytes
+			- Receive, wait for repeat start and transmit
+		5. Communicate with UDA1380: configures I2C0 as polling master mode:
+			- Write 2 bytes to UDA1380's 0x00_register
+			- Read 2 bytes at UAD1380's 0x00_register
+			- Verify the data
+		
+		UART0 is configure for display message and control I2C.
+		
+@Directory contents:
+	\Keil:	includes Keil project and configuration files
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	I2c_MasterSlave.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1850EVA-A4-2 Board
+
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+	
+	Running mode:
+		>Keil project:
+		RAM mode: This example can run on Internal SRAM.
+		ROM mode: This example can run on Hitex Flash (external parallel flash), SPIFI quad SPI flash
+				  All files must be built to .hex file before burn into flash
+				  Burn by Keil's Load feature:
+						a) Copy all things in ..\..\..\Tools\Flash\Keil_Binaries to
+							   C:\Keil\ARM\Flash (Keil uVision 4)
+						b) Open Keil->Select Target->Compile->Target Options
+						   ->Debug Tab->Select Debugger->Initialization File->Select ".ini" file
+						   ->Utilities Tab->Select Debugger->Press Settings->Add Flash Programming Algorithm
+						   ->Press LOAD button
+			Boot mode jumper settings:
+				+ Hitex Flash: 	
+					Select boot mode jumpers [BOOT4,BOOT3,BOOT2,BOOT1] to [LOW,LOW,HIGH,HIGH]				
+				+ SPIFI quad SPI flash (SPIFI 64MB and 128MB):
+					Select boot mode jumpers [BOOT4,BOOT3,BOOT2,BOOT1] to [LOW,LOW,LOW,HIGH]
+	
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART0 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: Run example, using Serial display to monitor the message and to send a charater to UART
+
+@Tip:
+	- Open \Keil\*.uvproj project file to run example on Keil
+	- Open \EWARM\*.eww workspace file to run example on IAR

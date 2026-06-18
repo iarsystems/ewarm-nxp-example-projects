@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_enet_ptp1588_transfer</iar_name>                                   <!--App-->
+  <iar_description>
+    The lpc_enet_ptp1588_transfer example shows the way to use ENET driver to  
+    receive and transmit frame in the 1588 feature required cases
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+SSP Master example
+
+Example description:
+	Purpose:
+		This example describes how to use SSP peripheral as master to connect with SSP slave
+		Note that: this example will run combinate with slave example at folder \Slave.
+		(Pls see "Step to run" part in this file for more information)
+	Process:
+		SSP configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- DSS = 8: 8 bits per transfer
+			- MSTR = 1: SSP operates in Master mode
+			- FRF= 0: SPI Frame format
+		After initialize buffer, SPI master will transfer/receive data to/from SSP slave
+		in POLLING mode by calling 'SPI_ReadWrite( )' function.
+		After transmittion completed, receive and transmit buffer will be compared, if they 
+		are not similar, the program will enter infinite loop and a error notice will
+		be displayed. 
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files	 
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Ssp_Master.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board				
+				
+		SSP Connection:
+			- P3.3 - SCK on master connects to P3.3 - SCK on slave board;
+	 		- P3.6 - SSEL on master connects to P3.6 - SSEL on slave board
+	  		- P3.7 - MISO on master connects to P3.7 - MISO on slave board
+	  		- P3.8 - MOSI on master connects to P3.8 - MOSI on slave board
+			Common ground must be connected together between two board.
+						
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port 
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+
+							
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into master board (if run on ROM mode) 
+		- Step 3: Build "Slave\ssp_slave" example
+		- Step 4: Burn this hex file into slave board.
+		- Step 5: Connect UART1->USB port on this board to USB port on your computer
+		- Step 6: Configure hardware, connect master board and slave board as above instruction 
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and observe SPI slave transfer result from serial display
+			Note that: Press '1' to start SSP operation on master board first.
+
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\SSP\SSP.eww project file to run example on IAR
+		
+-----------------------------------------------------------------------------------
+SSP MicroWire example
+
+Example description:
+	Purpose:
+		This example describes how to use SSP peripheral with MicroWire frame format.
+	Process:
+		This example uses two SSP peripherals in MicroWire frame format, one is set 
+		as master mode and the other is set as slave mode.
+		SSP master/slave configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- DSS = 8: 8 bits per transfer
+			- MSTR = 0/1: SSP operates in Slave/Master mode
+			- FRF= 2: MicroWire Frame format
+		After initialize buffer, SPI master will transfer/receive data to/from SSP slave
+		in POLLING mode.
+		After transmittion completed, receive and transmit buffer will be compared, if they 
+		are not similar, the program will enter infinite loop and a error notice will
+		be displayed. 
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files	 
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Ssp_MicroWire.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board				
+				
+		SSP Connection:
+			- P3.3 <-> PF.4 : SCK
+		 	- P3.6 <-> PF.5 : SSEL 
+		  	- P3.7 <-> PF.6 : MISO
+		  	- P3.8 <-> PF.7 : MOSI
+						
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port 
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, observe SSP transfer result on serial display
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\SSP\SSP.eww project file to run example on IAR
+
+-----------------------------------------------------------------------------------
+SSP Slave example
+
+Example description:
+	Purpose:
+		This example describes how to use SSP peripheral as slave to connect with SSP master
+		Note that: this example will run combinate with master example at folder \Master.
+		(Pls see "Step to run" part in this file for more information)
+	Process:
+		SSP configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- DSS = 8: 8 bits per transfer
+			- MSTR = 1: SSP operates in Slave mode
+			- FRF= 0: SPI Frame format
+		After initialize buffer, SPI slave will receive/transfer data from/to SSP slave
+		in POLLING mode by calling 'SPI_ReadWrite( )' function.
+		After transmittion completed, receive and transmit buffer will be compared, if they 
+		are not similar, the program will enter infinite loop and a error notice will
+		be displayed. 
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files	 
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Ssp_Slave.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board				
+				
+		SSP Connection:
+			- P3.3 - SCK on master connects to P3.3 - SCK on slave board;
+	 		- P3.6 - SSEL on master connects to P3.6 - SSEL on slave board
+	  		- P3.7 - MISO on master connects to P3.7 - MISO on slave board
+	  		- P3.8 - MOSI on master connects to P3.8 - MOSI on slave board
+			Common ground must be connected together between two board.
+						
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port 
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into slave board (if run on ROM mode) 
+		- Step 3: Build "Master\spi_master" example
+		- Step 4: Burn this hex file into master board.
+		- Step 5: Connect UART1->USB port on this board to USB port on your computer
+		- Step 6: Configure hardware, connect master board and slave board as above instruction 
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and observe SPI slave transfer result from serial display
+			Note that: Press '1' to start SSP operation on master board first.
+			
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\SSP\SSP.eww project file to run example on IAR
+
+-----------------------------------------------------------------------------------
+SSP TI example
+
+Example description:
+	Purpose:
+		This example describes how to use SSP peripheral with TI frame format.
+	Process:
+		This example uses two SSP peripherals in TI frame format, one is set 
+		as master mode and the other is set as slave mode.
+		SSP master/slave configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- DSS = 8: 8 bits per transfer
+			- MSTR = 0/1: SSP operates in Slave/Master mode
+			- FRF= 1: MicroWire Frame format
+		After initialize buffer, SPI master will transfer/receive data to/from SSP slave
+		in INTERRUPT mode.
+		After transmittion completed, receive and transmit buffer will be compared, if they 
+		are not similar, the program will enter infinite loop and a error notice will
+		be displayed. 
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files	
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Ssp_Ti.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board				
+				
+		SSP Connection:
+			- P3.3 <-> PF.4 : SCK
+		 	- P3.6 <-> PF.5 : SSEL 
+		  	- P3.7 <-> PF.6 : MISO
+		  	- P3.8 <-> PF.7 : MOSI
+						
+		Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+			- Use USB cable connect to board's UART1->USB port 
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Connect UART1->USB port on this board to USB port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example, observe SSP transfer result on serial display
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\SSP\SSP.eww project file to run example on IAR			
+		  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

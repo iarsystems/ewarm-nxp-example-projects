@@ -1,0 +1,29 @@
+
+Purpose:
+	An example of SSP using interrupt mode to test the SSP driver.
+	Using SSP in SPI frame mode as master/8bit on LPC1343 to communicate with
+	SC16IS750/760 Demo Board
+	
+Hardware configuration:
+	This example tested on IAR-LPC1343 Rev.B board
+	These jumpers must be configured as following:
+		J_Link_D: 		OFF
+		3.3V_IO_E: 		ON
+		3.3V_CORE_E: 	ON
+		PIO1_LOW:		OFF
+		PIO3_E:			ON
+		PIO3_HIGH:		OFF
+		PIO1_RS:		OFF
+		RST_E:			OFF
+		SSP Connectivity:
+		- P1.11 - SCK;
+	 	- P0.2 - SSEL - used as GPIO
+	  	- P0.8 - MISO
+	  	- P0.9 - MOSI
+		Common ground must be connected together between two board.
+		
+Running mode:
+	This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+Note:
+	None

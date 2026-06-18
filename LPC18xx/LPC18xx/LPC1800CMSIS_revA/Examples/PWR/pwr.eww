@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Pwr_DeepPowerDown/EWARM/Pwr_DeepPowerDown.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_DeepSleep/EWARM/Pwr_DeepSleep.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_PowerDown/EWARM/Pwr_PowerDown.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_Sleep/EWARM/Pwr_Sleep.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Pwr_DeepPowerDown</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepPowerDown</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepPowerDown</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepPowerDown</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_PowerDown</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Pwr_PowerDown</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_PowerDown</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_PowerDown</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

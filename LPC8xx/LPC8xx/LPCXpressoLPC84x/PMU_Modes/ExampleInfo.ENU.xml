@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>PMU_Mode</iar_name>                                   <!--App-->
+  <iar_description>This example demonstrates the entry into, and wakeup from, the four low-power modes, 
+  while allowing the user to measure current consumption and wakeup time
+  </iar_description>          <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

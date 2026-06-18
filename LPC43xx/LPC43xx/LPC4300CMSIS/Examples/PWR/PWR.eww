@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Pwr_DeepPowerDown/IAR/Pwr_DeepPowerDown.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_DeepSleep/IAR/Pwr_DeepSleep.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_PowerDown/IAR/Pwr_PowerDown.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/PWR_Sleep/IAR/Pwr_Sleep.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Pwr_DeepPowerDown</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Pwr_DeepSleep</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_PowerDown</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Pwr_Sleep</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

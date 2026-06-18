@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/can.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>can</project>
+        <configuration>Flash_Debug_2378-SK</configuration>
+      </member>
+      <member>
+        <project>can</project>
+        <configuration>RAM_Debug_2378-SK</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

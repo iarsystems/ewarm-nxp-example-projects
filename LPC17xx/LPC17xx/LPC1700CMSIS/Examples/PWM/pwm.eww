@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Dual_Edge/EWARM/pwm_dualedge.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Match_Interrupt/EWARM/pwm_matchint.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Single_Edge/EWARM/pwm_singleedge.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>pwm_dualedge</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>pwm_dualedge</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>pwm_matchint</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>pwm_matchint</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>pwm_singleedge</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>pwm_singleedge</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

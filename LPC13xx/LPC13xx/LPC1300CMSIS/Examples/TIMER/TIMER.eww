@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Capture/EWARM/Capture.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Delay/EWARM/Delay.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Interrupt_Match/EWARM/Interrupt_Match.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Capture</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Capture</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Delay</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Delay</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Interrupt_Match</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Interrupt_Match</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,15 @@
+__Setup(){
+
+  __writeMemory32(0x14000000, 0x40043100, "Memory"); // map SPIFI to shadow area at address 0
+}
+
+execUserReset()
+{
+  __message "------ execUserReset\n";
+  __Setup();
+}
+
+execUserPreload(){
+  __message "------ execUserPreload\n";
+  __Setup();
+}

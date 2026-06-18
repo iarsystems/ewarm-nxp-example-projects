@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+USB ROM Composite(MassStorage, HID and DFU) example
+
+Example description:
+	Purpose:
+		This example describes how to write a USB Composite(MassStorage, HID and DFU) 
+		application using USB ROM driver on LPC18xx.
+
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	usbd_dfu.c: contains USB DFU function
+	usbd_msd_mem.c : contains USB MSC function and memory device definition
+	usbd_hid.c : contains USB HID function
+	composite_usbdesc.c : contains usb device descriptor.
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: Testing HID interface
+  				- On PC launch C:\Keil\ARM\Utilities\HID_Client\Release\HIDClient.exe
+    			- Select the "LPC18xx" device in the drop down box
+    			- Now set check boxes next to "Outputs (LEDs)"
+    			- The out report recived by the device loop-backed to PC. Hence the checkbox 
+    			next to "Inputs (Buttons)" should look same a "Outputs".
+			- Testing Mass storage interface
+  				- On PC a new unformatted drive with 32KB size should appear.
+    			- Format the drive and copy images to the drive.
+			- Testing DFU interface
+			  - On PC launch DFU download utility.
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV_ROM > USBComposite"
+		for more details)
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV_ROM\USBDEV_ROM.eww project file to run example on IAR
+    	
+---------------------------------------------------------------------------  
+USBDEV ROM DFU example
+
+Example description:
+	Purpose:
+		This example describes how to write a USB DFU
+		application using USB ROM driver on LPC18xx.
+
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	usbd_dfu.c: contains USB DFU function
+	dfu_usbdesc.c : contains usb device descriptor.
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: - Testing DFU interface
+			  		- On PC launch DFU download utility.
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV_ROM > USBDFU"
+		for more details)
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV_ROM\USBDEV_ROM.eww project file to run example on IAR
+
+---------------------------------------------------------------------------  
+USBDEV ROM HID example
+
+Example description:
+	Purpose:
+		This example describes how to write a USB HID
+		application using USB ROM driver on LPC18xx.
+
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	usbd_hid.c : contains USB HID function
+	hid_usbdesc.c : contains usb device descriptor.
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running \
+					
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: Testing HID interface
+  				- On PC launch C:\Keil\ARM\Utilities\HID_Client\Release\HIDClient.exe
+    			- Select the "LPC18xx" device in the drop down box
+    			- Now set check boxes next to "Outputs (LEDs)"
+    			- The out report recived by the device loop-backed to PC. Hence the checkbox 
+    			next to "Inputs (Buttons)" should look same a "Outputs".
+			
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV_ROM > USBHID"
+		for more details)
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV_ROM\USBDEV_ROM.eww project file to run example on IAR
+		
+---------------------------------------------------------------------------  
+USBDEV ROM Mass storage example
+
+Example description:
+	Purpose:
+		This example describes how to write a USB MassStorage
+		application using USB ROM driver on LPC18xx.
+
+
+Directory contents:
+	\EWARM:	includes IAR project and configuration files 
+	
+	usbd_msd_mem.c : contains USB MSC function and memory device definition
+	msc_usbdesc.c : contains usb device descriptor.
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Development Board
+	
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+					
+		ROM mode:   This example can be run on EXFLASH mode with debugger. 
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Configure hardware as above instruction 
+		- Step 4: Run example
+		- Step 5: Connect the USB0 port to PC with USB cable.
+		- Step 6: 
+			- Testing Mass storage interface
+  				- On PC a new unformatted drive with 32KB size should appear.
+    			- Format the drive and copy images to the drive.
+
+		
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > USBDEV_ROM > USBComposite"
+		for more details)
+		
+Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\USBDEV_ROM\USBDEV_ROM.eww project file to run example on IAR
+
+ 	    </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

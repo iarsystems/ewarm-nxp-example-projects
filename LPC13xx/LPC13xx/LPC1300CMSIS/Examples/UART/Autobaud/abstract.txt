@@ -1,0 +1,26 @@
+
+Purpose:
+	This is a simple UART example using auto baudrate mode
+
+Hardware configuration:
+	This example tested on IAR-LPC1343 Rev.B board
+	These jumpers must be configured as following:
+		J_Link_D: 		OFF
+		3.3V_IO_E: 		ON
+		3.3V_CORE_E: 	ON
+		PIO1_LOW:		OFF
+		PIO3_E:			ON
+		PIO3_HIGH:		OFF
+		PIO1_RS:		OFF
+		RST_E:			OFF
+
+Running mode:
+	This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+Note:
+	- Open the termina window with desired baudrate speed.
+	- First, type 'A' or 'a' character to start
+	Auto baud rate mode.
+	- Once Auto baud rate mode completed, print welcome screen,
+	then press any key to have it read in from the terminal
+	and returned back to the terminal.

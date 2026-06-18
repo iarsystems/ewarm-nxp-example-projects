@@ -1,0 +1,23 @@
+
+Purpose:
+	This is a simple example for Watchdog timer application in reset mode
+	Using UART with this configuration – 9600bps – 8 data bit – No parity – 1 stop bit – No flow control 
+	
+
+Hardware configuration:
+	This example tested on IAR-LPC1343 Rev.B board
+	These jumpers must be configured as following:
+		J_Link_D: 		OFF
+		3.3V_IO_E: 		ON
+		3.3V_CORE_E: 	ON
+		PIO1_LOW:		OFF
+		PIO3_E:			ON
+		PIO3_HIGH:		OFF
+		PIO1_RS:		OFF
+		RST_E:			OFF
+
+Running mode:
+	This example can run on ROM mode with a debugger or standalone after burning.
+	
+Note:
+	None

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/LowPower.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>ALL</name>
+      <member>
+        <project>LowPower</project>
+        <configuration>RAM_Debug_M0Plus</configuration>
+      </member>
+      <member>
+        <project>LowPower</project>
+        <configuration>RAM_Debug_M4</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

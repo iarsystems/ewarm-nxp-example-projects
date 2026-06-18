@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/CCan_SimpleTxRx/EWARM/CCan_SimpleTxRx.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>CCan_SimpleTxRx</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>CCan_SimpleTxRx</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

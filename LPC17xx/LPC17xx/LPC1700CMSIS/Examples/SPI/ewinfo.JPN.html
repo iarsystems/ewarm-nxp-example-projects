@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+SPI Loopback example
+
+Example description:
+	Purpose:
+		This example describes how to test SPI operation by using loop-back mode
+	Process:
+		SPI configuration:
+			- CPHA = 1: data is sampled on the second clock edge of SCK.
+			- CPOL = 1: SCK is active low
+			- Clock rate = 2MHz
+			- LSBF = 0: SPI data is transferred MSB first 
+			- BITS = 10: 10 bits per transfer
+			- MSTR = 1: SPI operates in Master mode
+		After initialize buffer, SPI will transfer data to itself (loop-back mode)
+		by calling 'SPI_ReadWrite( )' function and use POLLING mode to send/receive data.
+		After transmittion completed, receive and transmit buffer will be compare, it they 
+		are not similare, the program will be enter infinite loop and a error notice will
+		be displayed.  
+
+Directory contents:
+	\EWARM: includes EWARM (IAR) project and configuration files
+	
+	lpc17xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	makefile: Example's makefile (to build with GNU toolchain)
+	spi_loopback_test.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Keil MCB1700 with LPC1768 vers.1
+				These jumpers must be configured as following:
+				- VDDIO: ON
+				- VDDREGS: ON 
+				- VBUS: ON
+				- Remain jumpers: OFF
+			IAR LPC1768 KickStart vers.A
+				These jumpers must be configured as following:
+				- PWR_SEL: depend on power source
+				- DBG_EN : ON
+				- Remain jumpers: OFF
+				
+		SPI connection:
+	 	 	- P0.17 - MISO
+	  		- P0.18 - MOSI
+	  		MOSI pin must be cross-connected with MISO pin (loop-back mode)	
+	  			
+	Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+		This example can run on RAM/ROM mode.
+					
+		Note: If want to burn hex file to board by using Flash Magic, these jumpers need
+		to be connected:
+			- MCB1700 with LPC1768 ver.1:
+				+ RST: ON
+				+ ISP: ON
+			- IAR LPC1768 KickStart vers.A:
+				+ RST_E: ON
+				+ ISP_E: ON
+						
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode) 
+		- Step 3: Connect UART0 on this board to COM port on your computer
+		- Step 4: Configure hardware and serial display as above instruction 
+		- Step 5: Run example and observe SPI transfer result from serial display
+		
+		(Pls see "LPC17xx Example Description" document - chapter "Examples > SPI > LoopBack" 
+		for more details)
+		
+Tip:
+	- Open \EWARM\*.eww project file to run example on IAR
+	
+-----------------------------------------------------------------------------------
+SPI Master example
+
+Example description:
+	Purpose:
+		This example describes how to use SPI as master to connect with SPI slave
+		Note that: this example will run combine with slave example at folder \Slave.
+		(Pls see "Step to run" part in this file for more information)
+	Process:
+		SPI configuration:
+			- CPHA = 0: data is sampled on the second clock edge of SCK.
+			- CPOL = 1: SCK is active low
+			- Clock rate = 2MHz
+			- LSBF = 0: SPI data is transferred MSB first 
+			- BITS = 10: 10 bits per transfer
+			- MSTR = 1: SPI operates in Master mode
+		Using SSEL as GPIO pin to handler chip select signal via 'CS_Force( )' function.
+		After initialize buffer, SPI master will transfer/receive data to/from SPI slave
+		in POLLING mode by calling 'SPI_ReadWrite( )' function.
+		After transmittion completed, receive and transmit buffer will be compare, if they 
+		are not similare, the program will be enter infinite loop and a error notice will
+		be displayed.  
+
+Directory contents:
+	\EWARM: includes EWARM (IAR) project and configuration files
+	
+	lpc17xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	makefile: Example's makefile (to build with GNU toolchain)
+	spi_master.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Keil MCB1700 with LPC1768 vers.1
+				These jumpers must be configured as following:
+				- VDDIO: ON
+				- VDDREGS: ON 
+				- VBUS: ON
+				- Remain jumpers: OFF
+			IAR LPC1768 KickStart vers.A
+				These jumpers must be configured as following:
+				- PWR_SEL: depend on power source
+				- DBG_EN : ON
+				- Remain jumpers: OFF
+				
+		SPI connection:
+			- P0.15 - SCK on master connects to P0.15 - SCK on slave board;
+	 		- P0.16 - SSEL on master connects to P0.16 - SSEL on slave board (used as GPIO)
+	  		- P0.17 - MISO on master connects to P0.17 - MISO on slave board
+	  		- P0.18 - MOSI on master connects to P0.18 - MOSI on slave board
+			Common ground must be connected together between two board.
+	  			
+	Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+		This example can run on RAM/ROM mode.
+					
+		Note: If want to burn hex file to board by using Flash Magic, these jumpers need
+		to be connected:
+			- MCB1700 with LPC1768 ver.1:
+				+ RST: ON
+				+ ISP: ON
+			- IAR LPC1768 KickStart vers.A:
+				+ RST_E: ON
+				+ ISP_E: ON
+		
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into master board (if run on ROM mode) 
+		- Step 3: Build "Slave\spi_slave" example
+		- Step 4: Burn this hex file into slave board.
+		- Step 5: Connect UART0 on master board to COM port on your computer
+		- Step 6: Configure hardware, connect master board and slave board as above instruction 
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and observe SPI master transfer result from serial display
+			+ Press '1' to start SPI transfer
+			
+		(Pls see "LPC17xx Example Description" document - chapter "Examples > SPI > Master" 
+		for more details)
+		
+Tip:
+	- Open \EWARM\*.eww project file to run example on IAR		
+
+-----------------------------------------------------------------------------------
+SPI SC16IS750 Interrupt example
+
+Example description:
+	Purpose:
+		This example describes how to use SPI in interrupt mode to communicate 
+		with SC16IS750/760 Demo Board.
+	Process:
+		SPI configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- LSBF = 0: SPI data is transferred MSB first 
+			- BITS = 8: 8 bits per transfer
+			- MSTR = 1: SPI operates in Master mode
+		First, SPI send commands to reset, config direction SC16IS740 chip in interrupt mode.
+		Start to use SPI polling mode to handle SC16IS740 board.
+		On serial display:
+		- Press 'r' to print menu
+		- Press '1': send 0x00 value to IOStat register to turn on 8 LEDs on SC16IS740 board.
+		- Press '2': send 0xFF value to IOStat register to turn off 8 LEDs on SC16IS740 board.
+		
+		(Pls see two pdf file:
+			- SC16IS740_750_760_6.pdf
+			- schematics.sc16is750.demo.board.pdf
+		for more information about SC16IS740 board)
+
+Directory contents:
+	\EWARM: includes EWARM (IAR) project and configuration files
+	
+	lpc17xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	makefile: Example's makefile (to build with GNU toolchain)
+	spi_interrupt_test.c: Main program
+	SC16IS740_750_760_6.pdf: SC16IS740_750_760_6's datasheet file
+	schematics.sc16is750.demo.board.pdf: SC16IS750 board's schematic file
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Keil MCB1700 with LPC1768 vers.1
+				These jumpers must be configured as following:
+				- VDDIO: ON
+				- VDDREGS: ON 
+				- VBUS: ON
+				- Remain jumpers: OFF
+			IAR LPC1768 KickStart vers.A
+				These jumpers must be configured as following:
+				- PWR_SEL: depend on power source
+				- DBG_EN : ON
+				- Remain jumpers: OFF
+				
+		SC16IS750 board:
+			 	These jumpers must be configured as following:
+			 	- JP2: 2-3 (SPI)
+			 	- JP16: 2-3 (hard reset)
+			 	- Remain jumper: OFF
+			
+		SPI connection:
+			- P0.15 - SCK on eval board connects to SCLK on SC16IS750 board
+	 		- P0.16 - SSEL on eval board connects to /CS on SC16IS750 board (used as GPIO)
+	  		- P0.17 - MISO on eval board connects to MISO on SC16IS750 board
+	  		- P0.18 - MOSI on eval board connects to MOSI on SC16IS750 board
+			Common power source 3.3V and ground must be connected together between two board.
+	  			
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+		This example can run on RAM/ROM mode.
+					
+		Note: If want to burn hex file to board by using Flash Magic, these jumpers need
+		to be connected:
+			- MCB1700 with LPC1768 ver.1:
+				+ RST: ON
+				+ ISP: ON
+			- IAR LPC1768 KickStart vers.A:
+				+ RST_E: ON
+				+ ISP_E: ON
+		
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode) 
+		- Step 5: Connect UART0 on board to COM port on your computer
+		- Step 6: Configure hardware, connect this board with SC16IS750 board as above instruction 
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and handle SPI transfer via serial display
+				+ Press '1' to turn on 8 LEDs on SC16IS750 board
+				+ Press '2' to turn off 8 LEDs on SC16IS750 board
+				
+		(Pls see "LPC17xx Example Description" document - chapter "Examples > SPI > sc16is750_int" 
+		for more details)
+		
+Tip:
+	- Open \EWARM\*.eww project file to run example on IAR	
+
+-----------------------------------------------------------------------------------
+SPI SD card example
+
+Example description:
+	Purpose:
+		This example describes how to use SPI to read SD card's CID register 
+	Process:
+		SPI configuration:
+			- CPHA = 0: data is sampled on the first clock edge of SCK.
+			- CPOL = 0: SCK is active high
+			- Clock rate = 1MHz
+			- LSBF = 0: SPI data is transferred MSB first 
+			- BITS = 8: 8 bits per transfer
+			- MSTR = 1: SPI operates in Master mode
+			1)Look for SD card connected or not, if yes then
+			2)Configure SD card in SPI mode, then start SD card's internal
+			initialization process.
+			3)Read SD card's CID register then decode and display out via UART0
+
+Directory contents:
+	\EWARM: includes EWARM (IAR) project and configuration files
+	\Keil:	includes RVMDK (Keil)project and configuration files 
+	
+	lpc17xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	makefile: Example's makefile (to build with GNU toolchain)
+	spi_sdcard.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Keil MCB1700 with LPC1768 vers.1
+				These jumpers must be configured as following:
+				- VDDIO: ON
+				- VDDREGS: ON 
+				- VBUS: ON
+				- Remain jumpers: OFF
+						 			
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+	Running mode:
+		This example can run on RAM/ROM mode.
+					
+		Note: If want to burn hex file to board by using Flash Magic, these jumpers need
+		to be connected:
+			- MCB1700 with LPC1768 ver.1:
+				+ RST: ON
+				+ ISP: ON
+			- IAR LPC1768 KickStart vers.A:
+				+ RST_E: ON
+				+ ISP_E: ON	
+		
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode) 
+		- Step 3: Connect UART0 on board to COM port on your computer
+		- Step 4: Run example
+				+ Plug in the SD card.
+				+ Look at the PC terminal screen to see the information of SD card.  
+				
+		(Pls see "LPC17xx Example Description" document - chapter "Examples > SPI > SDCard" 
+		for more details)
+		
+Tip:
+	- Open \EWARM\*.eww project file to run example on IAR	
+	
+-----------------------------------------------------------------------------------
+SPI Slave example
+	
+Example description:
+	Purpose:
+		This example describes how to use SPI as slave to connect with SPI master
+		Note that: this example will run combinate with master example at folder \Master.
+		(Pls see "Step to run" part in this file for more information)
+	Process:
+		SPI configuration:
+			- CPHA = 1: data is sampled on the second clock edge of SCK.
+			- CPOL = 1: SCK is active low
+			- Clock rate = 2MHz
+			- LSBF = 0: SPI data is transferred MSB first 
+			- BITS = 10: 10 bits per transfer
+			- MSTR = 1: SPI operates in Slave mode
+		After initialize buffer, SPI slave will wait to receive/send data from/to master in 
+		POLLING mode by calling 'SPI_ReadWrite( )' function.
+		After transmittion completed, receive and transmit buffer will be compare, if they 
+		are not similare, the program will be enter infinite loop and a error notice will
+		be displayed.  
+
+Directory contents:
+	\EWARM: includes EWARM (IAR) project and configuration files
+	
+	lpc17xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	makefile: Example's makefile (to build with GNU toolchain)
+	spi_slave.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Keil MCB1700 with LPC1768 vers.1
+				These jumpers must be configured as following:
+				- VDDIO: ON
+				- VDDREGS: ON 
+				- VBUS: ON
+				- Remain jumpers: OFF
+			IAR LPC1768 KickStart vers.A
+				These jumpers must be configured as following:
+				- PWR_SEL: depend on power source
+				- DBG_EN : ON
+				- Remain jumpers: OFF
+				
+		SPI connection:
+			- P0.15 - SCK on slave connects to P0.15 - SCK on master board;
+	 		- P0.16 - SSEL on slave connects to P0.16 - SSEL on master board (used as GPIO)
+	  		- P0.17 - MISO on slave connects to P0.17 - MISO on master board
+	  		- P0.18 - MOSI on slave connects to P0.18 - MOSI on master board
+			Common ground must be connected together between two board.
+	  			
+	Serial display configuration: (e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+		- 115200bps 
+		- 8 data bit 
+		- No parity 
+		- 1 stop bit 
+		- No flow control 
+	
+	Running mode:
+		This example can run on RAM/ROM mode.
+					
+		Note: If want to burn hex file to board by using Flash Magic, these jumpers need
+		to be connected:
+			- MCB1700 with LPC1768 ver.1:
+				+ RST: ON
+				+ ISP: ON
+			- IAR LPC1768 KickStart vers.A:
+				+ RST_E: ON
+				+ ISP_E: ON
+		
+		(Please reference "LPC1000 Software Development Toolchain" - chapter 4 "Creating and working with
+		LPC1000CMSIS project" for more information)
+	
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into slave board (if run on ROM mode) 
+		- Step 3: Build "Slave\spi_slave" example
+		- Step 4: Burn this hex file into master board.
+		- Step 5: Connect UART0 on slave board to COM port on your computer
+		- Step 6: Configure hardware, connect master board and slave board as above instruction 
+		- Step 7: Configure serial display as above instruction
+		- Step 8: Run example and observe SPI slave transfer result from serial display
+		Note: You have to press '1' on master's serial display to start master transmition first
+		
+		(Pls see "LPC17xx Example Description" document - chapter "Examples > SPI > Slave"
+		 for more details)
+		
+Tip:
+	- Open \EWARM\*.eww project file to run example on IAR	
+		  </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

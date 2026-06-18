@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/ADC/ADC.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Blinky/Blinky.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/CAN/CAN.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/gpio/GPIO.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/i2c/I2C.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/pmu/pmu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/RS485/RS485.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/SSP/SSP.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/systick/systick.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/timer32/timer32.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/UART/UART.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/wdt/WDT.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all</name>
+      <member>
+        <project>ADC</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>Blinky</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>CAN</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>GPIO</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>I2C</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>pmu</project>
+        <configuration>Flash debug</configuration>
+      </member>
+      <member>
+        <project>RS485</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>SSP</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>systick</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>timer32</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>UART</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+      <member>
+        <project>WDT</project>
+        <configuration>Flash Debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

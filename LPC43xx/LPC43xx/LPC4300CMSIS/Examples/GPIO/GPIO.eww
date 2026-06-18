@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Gpio_LedBlinky/IAR/Gpio_LedBlinky.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

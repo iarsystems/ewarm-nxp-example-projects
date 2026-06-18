@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Usb_Composite/EWARM/Usb_Composite.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Usb_Dfu/EWARM/Usb_Dfu.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Usb_Hid/EWARM/Usb_Hid.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Usb_Composite</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Usb_Composite</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_Composite</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Usb_Composite</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_Dfu</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Usb_Dfu</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_Dfu</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Usb_Dfu</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_Hid</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Usb_Hid</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Usb_Hid</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Usb_Hid</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

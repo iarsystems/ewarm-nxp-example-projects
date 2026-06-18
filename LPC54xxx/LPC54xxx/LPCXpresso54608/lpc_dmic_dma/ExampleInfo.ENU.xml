@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_dmic_dma</iar_name>                                   <!--App-->
+  <iar_description>
+    This example (lpc_dmic_dma) shows how to use DMA to transfer data from DMIC to memory
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

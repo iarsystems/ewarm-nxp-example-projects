@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/GettingStarted.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>fbench</project>
+        <configuration>200MHz_FULL_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>200MHz_NO_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>200MHz_VFP9_FULL_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>200MHz_VFP9_NO_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>60MHz_FULL_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>60MHz_NO_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>60MHz_VFP9_FULL_OPTIMIZATION</configuration>
+      </member>
+      <member>
+        <project>fbench</project>
+        <configuration>60MHz_VFP9_NO_OPTIMIZATION</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

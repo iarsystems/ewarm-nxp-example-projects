@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>UART</iar_name>                                   <!--App-->
+  <iar_description>This application is intended to show how to set up the UART to transmit characters by a simple polling routine</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

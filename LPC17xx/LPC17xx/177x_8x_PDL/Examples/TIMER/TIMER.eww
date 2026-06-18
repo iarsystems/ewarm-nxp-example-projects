@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/TIMER_Capture/EWARM/Timer_Capture.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Timer_FreqMeasure/EWARM/Timer_FreqMeasure.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/TIMER_MatchInterrupt/EWARM/Timer_MatchInterrupt.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_Capture</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_FreqMeasure</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Timer_MatchInterrupt</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Dac_Dma/EWARM/Dac_Dma.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Dac_SineWave/EWARM/Dac_SineWave.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>Ram</configuration>
+      </member>
+      <member>
+        <project>Dac_SineWave</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Dac_SineWave</project>
+        <configuration>Ram</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

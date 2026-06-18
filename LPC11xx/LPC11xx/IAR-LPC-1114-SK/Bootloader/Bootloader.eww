@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Application/Application.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Bootloader/Bootloader.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Application</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>Bootloader</project>
+        <configuration>Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

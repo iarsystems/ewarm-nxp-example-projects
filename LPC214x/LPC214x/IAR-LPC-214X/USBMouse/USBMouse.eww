@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/USBMouse.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>USBMouse</project>
+        <configuration>Debug Flash</configuration>
+      </member>
+      <member>
+        <project>USBMouse</project>
+        <configuration>Debug RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

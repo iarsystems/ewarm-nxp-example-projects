@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Adc_Burst/EWARM/Adc_Burst.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Adc_Dma/EWARM/Adc_Dma.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Adc_Interrupt/EWARM/Adc_Interrupt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Adc_Polling/EWARM/Adc_Polling.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Adc_Burst</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Adc_Burst</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Burst</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Adc_Burst</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Dma</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Adc_Dma</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Dma</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Adc_Dma</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Interrupt</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Adc_Interrupt</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Interrupt</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Adc_Interrupt</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Polling</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Adc_Polling</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Adc_Polling</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Adc_Polling</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

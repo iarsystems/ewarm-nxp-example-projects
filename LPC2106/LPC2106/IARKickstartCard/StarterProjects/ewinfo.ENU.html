@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+  Running lights
+  
+  Timer interrupt and LED example for the Kickstart card.
+  Displays running lights on the Kickstart Card LED:s.
+
+  Jumper settings:
+  ----------------
+  For ROM-monitor:
+  Set JP4 (enables UART0, used for ROM-monitor communication).
+  Set jumpers p0.2-p0.14, p0.16, p0.17 and p0.31 in the LED jumper block.
+
+  For J-Link or Standalone:
+  Set JP6 to JTAG1.
+  Set jumpers p0.0-p0.15 in the LED jumper block.
+
+ Shoot
+
+ Kickstart Card shooting game. The object is to hit the led that blinks by
+ pressing the userbutton*) when the moving light reaches it.
+ 
+ Uses timer interrupt and button interrupt (external interrupt).
+ 
+ The game is played like this:
+ 
+ 1. The program starts in idle mode and displays running lights.
+ 2. Press the userbutton to get to the start position.
+ 3. All LED:s blinks two times and then the current game level is displayed 
+    as a binary number.
+ 4. The start position is reached and the target starts to blink.
+ 5. Press the userbutton to release the ball.
+ 6. When the ball reaches the blinking target, press the userbutton and try
+    to hit it.
+ 7. If the ball misses, the ball continues to run past the target slower and slower,
+    and the game is over. The program starts over from 1.
+ 8. If the ball hits the target an "explosion" is displayed. The level is increased
+    which means that the speed will be higher on the next run of the ball. The game
+    continues at 3.
+
+  *) The userbutton is the INT2 button when ROM-monitor is used, and the INT0
+  button when the program is run with J-Link or standalone.
+
+  Jumper settings:
+  ----------------
+  For ROM-monitor:
+  Set JP4 (enables UART0, used for ROM-monitor communication).
+  Set JP5 (enables INT2, the userbutton when ROM-monitor is used).
+  Set jumpers p0.2-p0.14, p0.16, p0.17 and p0.31 in the LED jumper block.
+
+  For J-Link or Standalone:
+  Set JP6 to JTAG1.
+  Set JP1 (enables INT0, the userbutton when the program runs with J-Link or Standalone).
+  Set jumpers p0.0-p0.15 in the LED jumper block.
+
+  UART Echo
+  
+  UART and button example for the Kickstart card.
+  
+  Echoes all bytes from UART1 and sends a * after each echoed byte.
+  When button INT2 is pressed led DS3 is turned off. When it is pressed
+  again, DS3 is turned on.
+
+  Uses UART interrupts for both send and receive. Uses button interrupt
+  to turn led DS3 on and off.
+
+  The simplest way to run this example is to connect serial port P1 on the
+  Kickstart card to a free serial port on your PC and run a terminal program.
+  (If you run it using the ROM-monitor you need two serial ports on your PC.)
+
+  Terminal settings:
+  ------------------
+  Communication speed: 9600 bps
+  Number of data bits:    8
+  Number of stop bits:    1
+  Parity:              none
+  
+  Jumper settings:
+  ----------------
+  Set JP3 (enables UART1).
+  Set JP5 (enables INT2 button).
+  Set jumper p0.2 in the LED jumper block. (The other jumpers in the LED jumper
+  block can be set as in the other examples, but then some other LED:s than DS3
+  might flash.)
+
+  For ROM-monitor:
+  Set JP4 (enables UART0, used for ROM-monitor communication).
+
+  For J-Link or Standalone:
+  Set JP6 to JTAG1.
+   </pre>
+
+  </div>
+  </body>
+</html>
+
+
+
+
+
+

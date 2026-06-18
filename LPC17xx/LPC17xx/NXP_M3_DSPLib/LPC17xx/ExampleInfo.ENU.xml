@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>DSP library NXP LPC1xxx Cortex-M3</iar_name>              <!--App-->
+  <iar_description>DSP library, Resonator, BiQuad 32, Block FIR and Random testbench examples</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

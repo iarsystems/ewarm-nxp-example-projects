@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Ssp_Master/EWARM/Ssp_Master.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Ssp_MicroWire/EWARM/Ssp_MicroWire.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Ssp_Slave/EWARM/Ssp_Slave.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Ssp_Ti/EWARM/Ssp_Ti.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Ssp_Master</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Ssp_Master</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_Master</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Ssp_Master</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_MicroWire</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Ssp_MicroWire</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_MicroWire</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Ssp_MicroWire</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_Slave</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Ssp_Slave</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_Slave</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Ssp_Slave</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_Ti</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Ssp_Ti</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Ssp_Ti</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Ssp_Ti</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/sdio_readwrite/EWARM/sdio_readwrite.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>sdio_readwrite</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>sdio_readwrite</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>sdio_readwrite</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>sdio_readwrite</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

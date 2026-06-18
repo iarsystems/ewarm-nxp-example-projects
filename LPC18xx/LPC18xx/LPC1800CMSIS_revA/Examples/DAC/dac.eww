@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Dac_Dma/EWARM/Dac_Dma.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Dac_Dma</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+SSP_Interrupt
+
+  Purpose:
+	  An example of SSP using interrupt mode to test the SSP driver.
+	  Using SSP in SPI frame mode as master/8bit on LPC1343 to communicate with
+	  SC16IS750/760 Demo Board
+	
+  Hardware configuration:
+	  This example tested on IAR-LPC1343 Rev.B board
+	  These jumpers must be configured as following:
+		  J_Link_D: 		OFF
+		  3.3V_IO_E: 		ON
+		  3.3V_CORE_E: 	ON
+		  PIO1_LOW:		OFF
+		  PIO3_E:			ON
+		  PIO3_HIGH:		OFF
+		  PIO1_RS:		OFF
+		  RST_E:			OFF
+		  SSP Connectivity:
+		  - P1.11 - SCK;
+	 	  - P0.2 - SSEL - used as GPIO
+	  	  - P0.8 - MISO
+	  	  - P0.9 - MOSI
+		  Common ground must be connected together between two board.
+		
+  Running mode:
+	  This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+  Note:
+	  None
+--------------------------------------------------------------------------------
+SSP_Polling
+
+  Purpose:
+	  An example of SSP using polling mode to test the SSP driver.
+	  Using SSP in SPI frame mode as master/8bit on LPC1343 to communicate with
+	  SC16IS750/760 Demo Board
+	
+  Hardware configuration:
+	  This example tested on IAR-LPC1343 Rev.B board
+	  These jumpers must be configured as following:
+		  J_Link_D: 		OFF
+		  3.3V_IO_E: 		ON
+		  3.3V_CORE_E: 	ON
+		  PIO1_LOW:		OFF
+		  PIO3_E:			ON
+		  PIO3_HIGH:		OFF
+		  PIO1_RS:		OFF
+		  RST_E:			OFF
+		  SSP Connectivity:
+		  - P1.11 - SCK;
+	 	  - P0.2 - SSEL - used as GPIO
+	  	  - P0.8 - MISO
+	  	  - P0.9 - MOSI
+		  Common ground must be connected together between two board.
+		
+  Running mode:
+	  This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+  Note:
+	  None
+     </pre>
+
+  </div>
+  </body>
+</html>
+

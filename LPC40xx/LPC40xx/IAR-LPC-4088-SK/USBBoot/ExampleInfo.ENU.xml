@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>USB Bootloader</iar_name>                                   			  <!--App-->
+  <iar_description>This example allows a user application code to be downloaded to the microcontroller's flash using USB.
+  Also the onboard SPIFI flash can be programmed with a spifi image.</iar_description><!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

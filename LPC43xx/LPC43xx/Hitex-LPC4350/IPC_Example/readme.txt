@@ -1,0 +1,119 @@
+########################################################################
+#
+#                        IPC_Example.eww
+#
+# $Revision: 28 $
+#
+########################################################################
+
+DESCRIPTION
+===========
+
+   The example consists of 2 projects and shows how to use the IAR Embedded
+  Workbench for ARM to develop code for Hitex-LPC4350 - evaluation board
+  with LPC4350 dual-core processor. It shows how to exchange data between two
+  cores using the IPC protocol. The application lights up the corresponding LED
+  - LED0, LED1, LED2, LED3, when one or more sensor buttons are touched.
+  USB0_IND LED toggles(blinks) with frequency which depends on the touched
+  sensor button. If the button T1 is touched, the USB0_IND LED stops blinking.
+
+  CortexM4.ewp
+  ============
+
+    The CortexM4 project is intended for the Cortex-M4 core and shows basic
+  use of interrupt controller. It also provides basic initialization
+  of the Cortex-M0 core, and brings it out of reset. The project uses IPC
+  protocol to comunicate with the slave application(at cortex-m0 core). It
+  sends various commands to the slave (for reading the keypad, switch-on or
+  switch-off the LEDs or configuring the RI timer) and receives responses as
+  IPC messages.
+    If any FLASH configuration is selected, the linker compresses and
+  embeds the CortexM0 application image to the program code. When the
+  application is started, the image is decompressed to the internal RAM,
+  prior to the Cortex-M0 reset release. This is done by a hidden code added
+  by the compiler and executed before execution of main().
+
+  CortexM0.ewp
+  ============
+
+    The CortexM0 project is intended for the Cortex-M0 core and shows basic
+  use of RI Timer, I2C, I/O and interrupt controller. The application waits
+  for IPC commands from the master application(cortex-m4 core), executes them
+  and sends back IPC response messages to the master. The IPC framework uses
+  command and message buffers located into shared memory.
+
+COMPATIBILITY
+=============
+
+   The example project is compatible with Hitex-LPC4350-A2 evaluation board.
+
+CONFIGURATION
+=============
+
+    Once you have successfully programmed the flash on the Hitex board, there is
+  one step left before the LPC4350 can boot from external flash. That final step
+  is to configure the boot mode using the boot mode jumpers.
+
+   See IPC_Example/Boot_Jumpers.png
+
+   Here is a diagram that shows how to configure the boot jumpers on the LPC4350
+  Hitex board. The boards are shipped with the center two positions shorted with
+  jumpers.
+
+   See IPC_Example/Capture7.png
+
+  Jumper JP5 should be open.
+
+  Note: Boot config pin P2_9 must be pulled down to GND via 10k resistor
+         to boot from external flash. On some early revision boards this pin
+         cannot be configured by jumper and is default high level, so booting
+         is not possible.
+
+   The IPC_Example application is downloaded to NOR, SPI Flash (SPIFI), internal
+  flash or RAM memory depending of the project's configuration and executed.
+
+  IRAM - runs project from internal RAM.
+
+  NORFLASH - loads project to external NOR flash.
+
+  SPIFI - loads project to external SPI flash.
+
+  IFLASH - loads project to internal flash (only if LPC43xx device with
+           internal flash is present).
+
+GETTING STARTED
+===============
+
+ IRAM Configuration:
+ -------------------
+
+  1) Activate the CortexM4 project and choose the IRAM configuration.
+     Start debug session and run the CortexM4 application.
+
+  2) Open second instance of IAR EWARM, open the IPC_Example and activate
+     the CortexM0 project.
+
+  3) From the second instance choose the IRAM configuration, start the
+     second debug session and run the CortexM0 application.
+
+ NORFLASH/SPIFI/IFLASH Configuration:
+ ------------------------------------
+
+  1) Activate the CortexM4 project and choose the NORFLASH/SPIFI/IFLASH
+     configuration.
+
+  2) Open second instance of IAR EWARM, activate the CortexM0 project,
+     choose NORFLASH/SPIFI/IFLASH configuration and build it. A binary image
+     of the CortexM0 application will be created.
+
+  3) From the firstly opened instance of IAR EWARM with the activated
+     CortexM4 project, start debug session and run the application.
+     This action loads both CortexM4 and cortexM0 images to NORFLASH/SPIFI/
+     IFLASH.
+
+  4) From the second instance of IAR EWARM, start debug session without
+     downloading (Debug without Downloading) and run the CortexM0
+     application.
+
+     Note: NORFLASH/SPIFI/IFLASH Batch build can be executed to build the
+           NORFLASH/SPIFI/IFLASH configurations of both projects.

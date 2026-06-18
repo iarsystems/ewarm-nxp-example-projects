@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Sct_SimpleCapture/EWARM/Sct_SimpleCapture.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Sct_SimpleMatch/EWARM/Sct_SimpleMatch.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Sct_SimpleCapture</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Sct_SimpleCapture</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>Sct_SimpleMatch</project>
+        <configuration>EXFLASH</configuration>
+      </member>
+      <member>
+        <project>Sct_SimpleMatch</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

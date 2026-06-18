@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.JPN.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+C CAN peripheral test example
+
+Example description:
+	Purpose:
+		This example describes how to test C CAN peripheral of LPC18xx
+	Process:
+		This demo need a CAN analyser or, another CAN device on bus.
+		Set PLL1 clock = 72MHz  in CGU_Init
+		After init, the lpc18xx will transmit first message with ID 0x200 on bus.
+		If success, it will wait for any trigger on wake up source 0 and then start transmit again.
+		The device always listen message on the bus with ID 0x100. Whenever it receive, 
+		it will reply back the message to bus with ID 0x200.
+					
+Directory contents:
+	\IAR:	includes IAR project and configuration files
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	CCan_SimpleTxRx.c: Main program
+
+How to run:
+	Hardware configuration:		
+		This example was tested only on:
+			Hitex LPC1800 Board
+			
+		Serial display configuration:(e.g: TeraTerm, Hyperterminal, Flash Magic...) 
+			– 115200bps 
+			– 8 data bit 
+			– No parity 
+			– 1 stop bit 
+			– No flow control 
+		Jumpers:
+			SV1: 1-2, 3-4 close
+			SV9: 5-6, 7-8 open
+			SV10: 5-6, 9-10 open
+	
+	Running mode:
+		>IAR project:
+			Built the project (F7)
+			Internal SRAM mode:	This example can run on Internal SRAM mode.
+				Download and debug (CTRL + D)
+				Seclect Device Cortex M4 (if any)
+			Hitex Flash mode: This example can run on Hitex Flash (external parallel flash SST39X320X), SPIFI quad SPI flash (with or without debug)
+				Select "Project->Download->Download active application" to burn into flash
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Connect UART1 on this board to COM port on your computer
+		- Step 3: Configure hardware and serial display as above instruction 
+		- Step 4: use a CAN analyser and set bitrate to 500kb/ss Start capture the bus
+		- Step 5: Create new transmit Message by Go to Transmit->New Message
+					Type in ID = 0x100, DLC = 8 and dont check anything
+					Type whatever data you want to transmit, device will feedback it
+		- Step 6: Run example and observe result on serial display
+			
+		(Pls see "LPC18xx Example Description" document - chapter "Examples > C_CAN > SimpleTxRx"
+		for more details)
+   </pre>
+
+  </div>
+  </body>
+</html>
+

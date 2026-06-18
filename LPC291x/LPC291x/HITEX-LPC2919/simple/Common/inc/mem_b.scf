@@ -1,0 +1,38 @@
+;/****************************************************************************
+; *   mem_b.scf:  Scatter file for Philips LPC318x Family 
+; *   Microprocessors
+; *
+; *   Copyright(C) 2006, Philips Semiconductor
+; *   All rights reserved.
+; *
+; *   History
+; *   2005.10.01  ver 1.00    Prelimnary version, first Release
+; *
+;*****************************************************************************/
+; code loaded to SRAM 0x08000000 for execution, build for debugging
+
+ROM_LOAD 0x08000000
+{
+    ROM_EXEC 0x08000000
+    {
+        Startup.o (vectors, +First)
+        * (+RO)
+    }
+
+    IRAM 0x08008000
+    {
+        Startup.o (MyStacks)
+        * (+RW,+ZI)
+    }
+
+    HEAP +0 UNINIT
+    {
+        Startup.o (Heap)
+    }
+
+    STACKS 0x0800E000 UNINIT
+    {
+        Startup.o (Stacks)
+    }
+}
+

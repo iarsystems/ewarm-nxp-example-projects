@@ -1,0 +1,63 @@
+/**********************************************************************
+* $Id: Abstract.txt 28 2014-01-27 14:45:13Z danielru $		abstract.txt		2011-06-02
+*//**
+* @file		abstract.txt
+* @brief	Example description file
+* @version	1.0
+* @date		02. June. 2011
+* @author	NXP MCU SW Application Team
+*
+* Copyright(C) 2011, NXP Semiconductor
+* All rights reserved.
+*
+***********************************************************************
+* Software that is described herein is for illustrative purposes only
+* which provides customers with programming information regarding the
+* products. This software is supplied "AS IS" without any warranties.
+* NXP Semiconductors assumes no responsibility or liability for the
+* use of the software, conveys no license or title under any patent,
+* copyright, or mask work right to the product. NXP Semiconductors
+* reserves the right to make changes in the software without
+* notification. NXP Semiconductors also make no representation or
+* warranty that such application will be suitable for the specified
+* use without further testing or modification.
+**********************************************************************/
+  
+@Example description:
+	Purpose:
+		This example describes how to use SCT to toggle its CTOUT pins
+		when there is a match timer occur.
+	Process:
+		First, to install and understand how to integrated Fizzim auto generating
+		C code file into Keil, please read ../tools/doc.
+		
+		This example serially set a SCT output pin high in a pre-programmed time.
+		When counter reaches limit, this pin is set low, other pin is set high like:
+		   All pin low -> CTOUT0 high -> CTOUT1 high -> CTOUT2 high -> CTOUT3 high
+		-> All pin low -> CTOUT0 high -> ....
+		
+@Directory contents:
+	Fizzim tools to translate *.fzm to C code. 
+	\EWARM: includes IAR project and configuration files 
+	lpc18xx_libcfg.h: Library configuration file - include needed driver library for this example 
+	Sct_SimpleMatch.c: Main program
+
+@How to run:
+	Hardware configuration:		
+		This example was tested on:
+			Hitex LPC1800 Board
+			
+	Running mode:
+		RAM mode:   This example can be run on RAM mode with debugger. 
+					All files must be build to .elf file, this file will be loaded into RAM through a 
+					debugger tool before running 
+		ROM mode:   This example can be run on EXFLASH mode with debugger.
+
+
+	Step to run:
+		- Step 1: Build example.
+		- Step 2: Burn hex file into board (if run on ROM mode)
+		- Step 3: Run example and observe CTOUT[0...4] signals by oscilloscope
+		
+@Tip:
+	- Open <installation-root>\arm\examples\NXP\LPC18xx\LPC1800CMSIS\Examples\SCT\SCT.eww project file to run example on IAR

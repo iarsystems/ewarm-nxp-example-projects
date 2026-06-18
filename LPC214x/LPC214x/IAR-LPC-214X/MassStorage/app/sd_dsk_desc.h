@@ -1,0 +1,33 @@
+/*************************************************************************
+ *
+ *    Used with ICCARM and AARM.
+ *
+ *    (c) Copyright IAR Systems 2005
+ *
+ *    File name   : sd_dsk_desc.h
+ *    Description : Define MMC/SD DISK descriptors
+ *
+ *    History :
+ *    1. Date        : November 23, 2005
+ *       Author      : Stanimir Bonev
+ *       Description : Create
+ *
+ *    $Revision: 28 $
+**************************************************************************/
+#include "arm_comm.h"
+#include "scsi_desc.h"
+
+#ifndef __SD_DSK_DESC_H
+#define __SD_DSK_DESC_H
+
+#ifdef  SD_DISK_DESC_GLOBAL
+#define SD_DISK_DESC_EXTERN
+#else
+#define SD_DISK_DESC_EXTERN extern
+#endif
+
+#define SizeOfInquiryDescMmcDsk     36
+
+SD_DISK_DESC_EXTERN const Int8U SdDskInquiry[];
+
+#endif // __MMC_DSK_DESC_H

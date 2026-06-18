@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_mmccard_fatfs</iar_name>                                   <!--App-->
+  <iar_description>
+    The lpc_mmccard_fatfs is a example program that uses the SDK software. Tt mounts a file
+    system based on a MMC card then does directory and file operations.
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

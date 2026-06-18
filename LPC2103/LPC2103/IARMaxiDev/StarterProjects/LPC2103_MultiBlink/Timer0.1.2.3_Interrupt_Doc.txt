@@ -1,0 +1,53 @@
+This example shows a "bare bones" program to set up an interrupt on Timer0 match compare on
+channel 0, and how to install the ISR, and configure the VIC for it to interrupt as an IRQ.
+
+Specifications:
+1. Configure Timer0 to interrupt on matching value 3,680 in MR0, generating 100Hz intrpt rate.
+1. Configure Timer1 to interrupt on matching value 3,680 in MR0, generating 143Hz intrpt rate.
+1. Configure Timer0 to interrupt on matching value 3,680 in MR0, generating 91Hz intrpt rate.
+1. Configure Timer0 to interrupt on matching value 3,680 in MR0, generating 333Hz intrpt rate.
+2. Set up IRQ isrs to execute directly, this requires instruction at address 0x18
+   to be ldr pc,[pc,#-0xFF0]. ISRs must be written in ARM mode and have __irq
+   keyword in declaration and definition
+3. increment a counter in timer isr
+4. when counter in isr = limit for various interrupts, set a bit in bl_TmrFlag so foreground loop
+   knows which port pin to toggle
+5. clear bit in Tmr0_Flag in foreground loop that was set by isr
+6. Toggle the state of port pins blink LED6 on row of LEDs
+7. Do not make provision for nesting of interrupts, timer interrupt is higher priority than
+   EXTINT1 and EXTINT2. If EXTINT1 or EXTINT22 happens while timer isr is executing, it will
+   PEND.
+8. Application should run out of flash or RAM
+9. Ensure that PLL is disengaged by clearing PLLE and PLLC and giving PLL feed
+   sequence
+11.Use .ddf file iolpc2103MM.ddf instead of iolpc2103.ddf which is provided as
+   as a default when the LPC2103 part is chosen in Project\Options\General.
+   This is because displaying the register VICVectAddr in C-SPY debugger's
+   register window can affect the state machine og the VIC, and under certain
+   circumstances disable interrupts. If the content of VICVectAddr must be
+   known, copy it into a register at read time for later display.
+12.Handle undefined instruction, instruction prefetch and data abort with a C function handler
+   that spins in a while(1) loop.
+
+Author: Mark Moran
+
+Last Date Modified: 6 Jan  2006
+Status:
+- Works as specified exectuing out of RAM
+- Works as specified executing out of flash memory with and without JLINK
+- Note: using lpc2103MM.ddf & iolpc2103.preliminary.h - these files adapted from other LPC21xx files
+  by Mark Moran. Modifications made to date:
+  - implemented support for timer 2 and timer 3
+  - To be done: implement support for ADC, Fast I/O, change PWM sfrs
+
+Copyright: IAR Systems Software Inc. 2005
+Disclaimer: This code is furnished "as is" solely for the purpose of
+illustrating how to use the IAR Embedded Workbench integrated development
+environment to create code for NXP LPC2xxx ARM7 microcontrollers, and to
+illustrate the use of peripherals of that part. Every effort has been made to
+ensure that this example works according to the above specifications. Code in
+this example may be used freely for any purpose with the understanding that
+IAR Systems Software assumes no further responsibility for accuracy or
+reliability once it has been partly or fully copied into another application.
+By using any portion of this code in other applications,the user takes full
+responsibility for code at that time.

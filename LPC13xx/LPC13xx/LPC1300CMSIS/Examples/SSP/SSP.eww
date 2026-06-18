@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/sc16is750_int/EWARM/ssp_int.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/sc16is750_polling/EWARM/ssp_polling.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>ssp_int</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>ssp_int</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>ssp_polling</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>ssp_polling</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

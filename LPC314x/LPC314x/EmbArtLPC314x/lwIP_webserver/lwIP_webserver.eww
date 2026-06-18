@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/lwIP_webserver.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>lwIP_webserver</project>
+        <configuration>Debug_iRAM</configuration>
+      </member>
+      <member>
+        <project>lwIP_webserver</project>
+        <configuration>Debug_SDRAM</configuration>
+      </member>
+      <member>
+        <project>lwIP_webserver</project>
+        <configuration>Debug_SPINOR_Boot_iRAM</configuration>
+      </member>
+      <member>
+        <project>lwIP_webserver</project>
+        <configuration>Debug_SPINOR_Boot_SDRAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

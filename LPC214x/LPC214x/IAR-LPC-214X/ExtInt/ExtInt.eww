@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Project/ExtInt.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>ExtInt</project>
+        <configuration>JLINK FLASH</configuration>
+      </member>
+      <member>
+        <project>ExtInt</project>
+        <configuration>JLINK_RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

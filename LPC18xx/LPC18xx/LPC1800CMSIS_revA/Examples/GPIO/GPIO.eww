@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Gpio_ExtInt/EWARM/Gpio_ExtInt.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpio_Input/EWARM/Gpio_Input.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/Gpio_LedBlinky/EWARM/Gpio_LedBlinky.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>Gpio_ExtInt</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpio_ExtInt</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpio_ExtInt</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpio_ExtInt</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Gpio_Input</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpio_Input</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpio_Input</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpio_Input</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>Gpio_LedBlinky</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

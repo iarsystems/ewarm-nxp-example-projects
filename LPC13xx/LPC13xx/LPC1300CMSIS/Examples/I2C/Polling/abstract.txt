@@ -1,0 +1,29 @@
+
+Purpose:
+	An example of I2C using polling mode to test the I2C driver.
+	Using I2C at mode I2C master/8bit on LPC1343 to communicate with
+	SC16IS750/760 Demo Board.
+	UART0 – 9600bps – 8 data bit – No parity – 1 stop bit – No flow control.
+
+Hardware configuration:
+	This example tested on IAR-LPC1343 Rev.B board
+	These jumpers must be configured as following:
+		J_Link_D: 		OFF
+		3.3V_IO_E: 		ON
+		3.3V_CORE_E: 	ON
+		PIO1_LOW:		OFF
+		PIO3_E:			ON
+		PIO3_HIGH:		OFF
+		PIO1_RS:		OFF
+		RST_E:			OFF
+		
+		This example use only one I2C peripheral to test.
+		- SDA -> P0.5
+		- SCL -> P0.4
+		Common ground must be connected together between two board.
+		
+Running mode:
+	This example can run on ROM mode with a debugger or stand-alone after burning.
+	
+Note:
+	None

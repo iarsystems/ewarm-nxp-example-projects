@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/I2c_EmuMaster/EWARM/I2c_EmuMaster.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/I2c_MasterSlave/EWARM/I2c_MasterSlave.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>I2c_EmuMaster</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>I2c_EmuMaster</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>I2c_EmuMaster</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>I2c_EmuMaster</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+      <member>
+        <project>I2c_MasterSlave</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>I2c_MasterSlave</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>I2c_MasterSlave</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>I2c_MasterSlave</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/10ms_base/EWARM/systick_10ms.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/STCLK/EWARM/systick_stclk.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>systick_10ms</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>systick_10ms</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>systick_stclk</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>systick_stclk</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

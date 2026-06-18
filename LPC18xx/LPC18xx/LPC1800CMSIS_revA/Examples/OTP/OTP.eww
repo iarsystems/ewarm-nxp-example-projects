@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/OTP_API/EWARM/OTP_API.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>OTP_API</project>
+        <configuration>Hitex NOR</configuration>
+      </member>
+      <member>
+        <project>OTP_API</project>
+        <configuration>Internal Flash</configuration>
+      </member>
+      <member>
+        <project>OTP_API</project>
+        <configuration>Internal SRAM</configuration>
+      </member>
+      <member>
+        <project>OTP_API</project>
+        <configuration>SPIFI Flash</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

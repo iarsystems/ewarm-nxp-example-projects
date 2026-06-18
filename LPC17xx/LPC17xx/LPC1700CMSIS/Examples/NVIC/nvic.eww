@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/Priority/EWARM/nvic_priority.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$/VecTable_Relocation/EWARM/nvic_vt_relocation.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>nvic_priority</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>nvic_priority</project>
+        <configuration>RAM</configuration>
+      </member>
+      <member>
+        <project>nvic_vt_relocation</project>
+        <configuration>Flash</configuration>
+      </member>
+      <member>
+        <project>nvic_vt_relocation</project>
+        <configuration>RAM</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>

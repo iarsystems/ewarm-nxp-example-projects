@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+  <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">Information Center for ARM</a> | EXAMPLES</div>
+  <div class="mainblock">
+   <h2>Example description</h2>
+
+   <pre>  <!--Insert readme.txt-->
+Ethernet Bootloader
+
+DESCRIPTION
+===========
+  This example shows how to use the IAR Embedded Workbench for ARM to develop code for IAR LPC-2468-SK board.
+ The Ethernet bootloader enable an use program to be loaded to microcontroller's flash using Ethernet. The first
+ 8KB are used by the bootloader. The rest of the flash can be used by the user program.
+ The workspace also contains preconfigured user code project (USBMouse). The output hex file can be programmed with
+ the Ethernet Bootloader.
+ 
+ On start up the bootloader will check for valid user program at address 
+ 0x00002000. If there is no user code or K4 button is pressed (if CRP3 is 
+ selected the bootloader will not check for pressed button) the Ethernet
+ bootloader is starded. Else the User program is started.
+  
+ User Program Build:
+  In order to be able to load user program with the Ethernet bootloader you should do:
+  1. Link the user program at start address 0x2000. You can do this by simply
+     using the EthernetBootlaoder\USBMouse\config\LPC2468_Flash.icf file.
+     
+  2. Build a hex image of the user program: Select Project\Options\Output Converter
+     Check the "Generate additional output" box and select "Intel extended"
+   
+
+ To download a user program:
+  1. Program the Ethernet Bootloader example on the target board (IAR-LPC2468-SK). 
+  2. Reset the board with K4 button pressed. The Bootloader is now started and LED connected to P2.0 will be on.
+  3. Connect a LAN cable to the board. The LED will blink.
+  4. Start Ethernet Flash Utility program on PC connected to the same LAN.
+  5. Configure the Ethernet Flash Utility program. Basically you should set the 
+     MAC address and IP address (Please read NXP application note AN10744 for 
+     more details).
+  6. From flash loader section for the Utility program browse to select the user hex file
+  7. Press "Upload to Flash button". The program is now downloaded to the 
+     microcontroller's flash.
+  
+  8. Reset the board. The user program should start.
+  
+  To load new user program repeat from step 2.
+
+Note: If CRP3 is selected, no future factory testing can be performed on the device
+ 
+COMPATIBILITY
+=============
+
+   The example project is compatible with IAR LPC-2468-SK evaluation board.
+  By default, the project is configured to use the J-Link JTAG interface.
+
+CONFIGURATION
+=============
+
+   After power-up the controller get clock from internal RC oscillator that
+  is unstable and may fail with J-Link auto detect, therefore adaptive clocking
+  should always be used. The adaptive clock can be select from menu:
+  Project->Options..., section Debugger->J-Link/J-Trace  JTAG Speed - Adaptive.
+
+   Make sure that the following jumpers are correctly configured on the
+  IAR LPC-2468 evaluation board:
+
+  Jumpers:
+   J5      - depending of power source
+   ISP     - unfilled
+   nRESET  - unfilled
+   EINT0   - filled
+
+  The LEDs share pins with Trace port. If ETM is enabled the LEDs can not be used. 
+
+GETTING STARTED
+===============
+
+  1) Select File->Open->Workspace...
+     Open the following workspace:
+
+     My Documents\IAR Embedded Workbench\arm\examples\NXP\
+     LPC24xx\IAR-LPC-2468\EthernetBootloader\EthernetBootloader.eww
+
+  2) Select USBMouse projec.
+
+  3) Press F7 or use make button to build the project.
+
+  4) Switch to Bootloader project.
+
+  5) Power on the board and connect the J-Linck.
+
+  6) Press Ctrl+1 or use "Download active application" to build the project and 
+     download it to the board.
+
+  7) Reset the board and meanwhile hold the K4 pressed. The Bootloader is now 
+     started and the LED connected to P2.0 will be on.
+  
+  8) Connect a LAN cable to the board. The LED will blink.
+
+  9) Start Ethernet Flash Utility program on PC connected to the same LAN.
+
+ 10) Configure the Ethernet Flash Utility program. Basically you should set the 
+     MAC address and IP address (Please read NXP application note AN10744 for 
+     more details).
+
+ 11) From flash loader section for the Utility program browse to 
+        My Documents\IAR Embedded Workbench\arm\examples
+        \NXP\LPC24xx\IAR-LPC-2468\EthernetBootloader\
+        \USBMouse\Flash Debug\Exe\USBMouse.hex
+ 12) Press "Upload to Flash button". The program is now downloaded to the 
+     microcontroller's flash.
+
+ 13) Reset the board. The USBMouse example starts.
+   </pre>
+
+  </div>
+  </body>
+</html>
+

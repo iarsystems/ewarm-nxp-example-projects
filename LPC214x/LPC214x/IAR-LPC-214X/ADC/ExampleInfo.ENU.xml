@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>ADC</iar_name>                                   <!--App-->
+  <iar_description>This application is intended to show how to set up the Analog-to-Digital converter for conversion of input to channel 0 of AD0</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

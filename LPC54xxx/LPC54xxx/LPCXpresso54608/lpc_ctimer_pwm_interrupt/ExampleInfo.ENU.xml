@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>lpc_ctimer_pwm_interrupt</iar_name>                                   <!--App-->
+  <iar_description>
+    The Simple PWM Interrupt project (lpc_ctimer_pwm_interrupt) is to demonstrate usage of the SDK 
+    CTimer driver as a PWM with interrupt callback functions
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

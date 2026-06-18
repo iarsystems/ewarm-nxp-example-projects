@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<infocenter_data version="1.0">
+  <iar_name>I2S</iar_name>                                    <!--App-->
+  <iar_description>How to use I2S to transfer audio data through I2S port to play a short music sound</iar_description>   <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>

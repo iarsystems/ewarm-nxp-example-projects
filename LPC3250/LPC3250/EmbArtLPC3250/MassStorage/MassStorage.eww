@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+  <project>
+    <path>$WS_DIR$/MassStorage.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>Debug iRAM</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>Debug xRAM</configuration>
+      </member>
+      <member>
+        <project>GettingStarted</project>
+        <configuration>Release xRAM boot from NAND</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
